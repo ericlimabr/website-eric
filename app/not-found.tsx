@@ -89,18 +89,14 @@ export default function NotFound() {
         <div className="mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-primary/20 bg-primary/5 mb-8 rounded-sm">
             <SearchX className="w-3.5 h-3.5 text-primary" />
-            <span className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase">
-              Route de-indexed
-            </span>
+            <span className="font-mono text-[10px] text-primary tracking-[0.2em] uppercase">Route de-indexed</span>
           </div>
 
           <h1 className="font-mono text-8xl sm:text-9xl font-bold text-foreground tracking-tighter mb-4 opacity-90">
             4<span className="text-primary animate-pulse">0</span>4
           </h1>
 
-          <p className="font-mono text-lg sm:text-xl text-primary/70 tracking-[0.3em] uppercase h-8">
-            {glitchText}
-          </p>
+          <p className="font-mono text-lg sm:text-xl text-primary/70 tracking-[0.3em] uppercase h-8">{glitchText}</p>
         </div>
 
         <div className="border border-border bg-card/40 backdrop-blur-md p-5 mb-10 text-left shadow-2xl">
@@ -112,14 +108,12 @@ export default function NotFound() {
               </span>
             </div>
           </div>
-          
+
           <div className="space-y-1.5 min-h-35">
             {logLines.map((line, i) => (
               <p key={`${i}-${line}`} className="font-mono text-[11px] leading-relaxed">
                 <span className="text-muted-foreground/30 mr-3 select-none">{String(i + 1).padStart(2, "0")}</span>
-                <span className={line.includes("[WARN]") ? "text-primary/80" : "text-muted-foreground/70"}>
-                  {line}
-                </span>
+                <span className={line.includes("[WARN]") ? "text-primary/80" : "text-muted-foreground/70"}>{line}</span>
               </p>
             ))}
             <span className="inline-block w-2 h-4 bg-primary/50 animate-blink align-middle ml-1" />
@@ -127,7 +121,7 @@ export default function NotFound() {
         </div>
 
         <p className="text-muted-foreground font-sans text-sm mb-10 max-w-xs mx-auto leading-relaxed">
-          The requested pointer does not exist in the current architectural scope. 
+          The requested pointer does not exist in the current architectural scope.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

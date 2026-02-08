@@ -1,10 +1,11 @@
+"use client"
+
 import { motion } from "framer-motion"
 import { useEffect, useRef } from "react"
 import Link from "next/link"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import ScrollProgress from "@/components/layout/ScrollProgress"
-import TextReveal from "@/components/layout/TextReveal"
 import { STACK_CATEGORIES } from "@/constants/stack-categories"
 
 gsap.registerPlugin(ScrollTrigger)

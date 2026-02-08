@@ -154,7 +154,8 @@ export default function ErrorPage() {
 
         {/* Description */}
         <p className="text-muted-foreground text-sm mb-8 max-w-md mx-auto leading-relaxed">
-          Something unexpected happened. The system encountered a critical error. Try reloading or return to the beginning.
+          Something unexpected happened. The system encountered a critical error. Try reloading or return to the
+          beginning.
         </p>
 
         {/* Actions */}
