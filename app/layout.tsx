@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: {
     default: "Eric Lima | Software Engineer & Platform Architect",
-    template: "%s | Eric Lima", // Permite que páginas internas fiquem "Project Palladium | Eric Lima"
+    template: "%s | Eric Lima",
   },
   description:
     "Software Engineer specializing in Go, Python, and System Design. Building scalable architectures and exploring the intersection of code and classical philosophy.",
@@ -38,26 +38,26 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ericlima.com.br", // Substitua pelo seu domínio
+    url: "https://ericlima.com.br",
     title: "Eric Lima | Software Engineer & Platform Architect",
     description: "High-performance systems and thoughtful software architecture.",
     siteName: "Eric Lima Portfolio",
     images: [
       {
-        url: "/og-image.png", // Crie uma imagem de 1200x630px para redes sociais
+        url: "/og-image.png", // Create a 1200x630px image for social media.
         width: 1200,
         height: 630,
         alt: "Eric Lima - Software Engineering",
       },
     ],
   },
-  twitter: {
+  /* twitter: {
     card: "summary_large_image",
     title: "Eric Lima",
     description: "Software Engineer & Platform Architect",
     creator: "@LuteroFeliz",
     images: ["/og-image.png"],
-  },
+  }, */
   robots: {
     index: true,
     follow: true,
