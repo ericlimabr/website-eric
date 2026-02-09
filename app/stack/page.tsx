@@ -110,31 +110,37 @@ export default function StackPage() {
       <section className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <div ref={cardsRef} className="grid md:grid-cols-2 gap-6" style={{ perspective: "1000px" }}>
-            {STACK_CATEGORIES.map((category) => (
-              <div
-                key={category.title}
-                className="stack-card p-6 bg-card border border-border rounded-sm
-                         hover:border-primary/20 transition-all duration-300"
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{category.icon}</span>
-                  <h3 className="text-lg font-semibold text-foreground">{category.title}</h3>
-                </div>
+            {STACK_CATEGORIES.map((category) => {
+              const Icon = category.icon
 
-                <div className="flex flex-wrap gap-2">
-                  {category.items.map((item) => (
-                    <span
-                      key={item}
-                      className="font-mono text-sm px-3 py-1.5 bg-muted text-muted-foreground
-                               rounded-sm hover:text-primary transition-colors cursor-default"
-                    >
-                      {item}
+              return (
+                <div
+                  key={category.title}
+                  className="stack-card p-6 bg-card border border-border rounded-sm
+                         hover:border-primary/20 transition-all duration-300"
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-2xl">
+                      <Icon className="w-6 h-6 text-primary transition-transform group-hover:scale-110" />
                     </span>
-                  ))}
+                    <h3 className="text-lg font-semibold text-foreground">{category.title}</h3>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {category.items.map((item) => (
+                      <span
+                        key={item}
+                        className="font-mono text-sm px-3 py-1.5 bg-muted text-muted-foreground
+                               rounded-sm hover:text-primary transition-colors cursor-default"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           {/* Engineering interests */}

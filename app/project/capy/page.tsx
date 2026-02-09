@@ -7,31 +7,38 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import ScrollProgress from "@/components/layout/ScrollProgress"
 import TextReveal from "@/components/layout/TextReveal"
 import Link from "next/link"
+import { Zap, GitBranch, Database, Waypoints, LucideIcon } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
 
-const features = [
+export interface Feature {
+  title: string
+  description: string
+  icon: LucideIcon
+}
+
+const features: Feature[] = [
   {
     title: "One-Click Deploy",
     description:
       "Push your code and let Capy handle the rest — from building containers to routing traffic through Traefik.",
-    icon: "⚡",
+    icon: Zap,
   },
   {
     title: "Git-Based Workflow",
     description: "Connect your repository and deploy on every push. Branch previews and rollback built in.",
-    icon: "⎇",
+    icon: GitBranch,
   },
   {
     title: "SQLite-Powered State",
     description:
       "Lightweight, embedded database for platform state. No external DB dependency needed to run the control plane.",
-    icon: "🗄",
+    icon: Database,
   },
   {
     title: "Traefik Reverse Proxy",
     description: "Automatic SSL, load balancing, and domain routing with zero-config Traefik integration.",
-    icon: "🔀",
+    icon: Waypoints,
   },
 ]
 
@@ -223,19 +230,25 @@ export default function ProjectCapy() {
           </TextReveal>
 
           <div ref={featuresRef} className="grid md:grid-cols-2 gap-6">
-            {features.map((feature) => (
-              <div
-                key={feature.title}
-                className="feature-card group p-6 md:p-8 bg-card border border-border rounded-sm
+            {features.map((feature) => {
+              const Icon = feature.icon
+
+              return (
+                <div
+                  key={feature.title}
+                  className="feature-card group p-6 md:p-8 bg-card border border-border rounded-sm
                          hover:border-primary/30 transition-all duration-500"
-              >
-                <span className="text-2xl mb-4 block">{feature.icon}</span>
-                <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {feature.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
-              </div>
-            ))}
+                >
+                  <span className="text-2xl mb-4 block">
+                    <Icon className="w-6 h-6 text-primary transition-transform group-hover:scale-110" />
+                  </span>
+                  <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                    {feature.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>

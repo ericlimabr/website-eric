@@ -48,7 +48,7 @@ export default function Footer() {
               <a href="/projects" className="text-muted-foreground hover:text-foreground transition-colors">
                 Projects
               </a>
-              <a href="#stack" className="text-muted-foreground hover:text-foreground transition-colors">
+              <a href="/stack" className="text-muted-foreground hover:text-foreground transition-colors">
                 Stack
               </a>
               {/* <a
