@@ -1,3 +1,4 @@
+import { PORTFOLIO_VERSION } from "@/constants/version"
 import { NextResponse } from "next/server"
 
 export async function GET() {
@@ -6,7 +7,7 @@ export async function GET() {
     timestamp: new Date().toISOString(),
     system: {
       name: "eric-lima-portfolio",
-      version: "1.0.0",
+      version: PORTFOLIO_VERSION,
       environment: process.env.NODE_ENV,
     },
     uptime: process.uptime(),

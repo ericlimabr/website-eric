@@ -3,10 +3,13 @@
 import React, { useState, useRef, useEffect } from "react"
 import ReactMarkdown from "react-markdown"
 import { Send, Terminal, X, MessageSquare, Loader2 } from "lucide-react"
+import { MAX_CHARS_FOR_ASK_ERIC } from "@/constants/max-chars-input-chat"
+import { ASK_ERIC_VERSION } from "@/constants/version"
 
 interface Message {
   role: "user" | "assistant"
   content: string
+  isError?: boolean
 }
 
 export default function AskEricChat() {
@@ -44,10 +47,16 @@ export default function AskEricChat() {
       if (res.ok) {
         setMessages((prev) => [...prev, { role: "assistant", content: data.answer }])
       } else {
-        setMessages((prev) => [...prev, { role: "assistant", content: `Error: ${data.answer || "Connection lost."}` }])
+        setMessages((prev) => [
+          ...prev,
+          { role: "assistant", content: `Error: ${data.answer || "Connection lost."}`, isError: true },
+        ])
       }
     } catch (err) {
-      setMessages((prev) => [...prev, { role: "assistant", content: "System failure. Try again later." }])
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: "System failure. Try again later.", isError: true },
+      ])
     } finally {
       setIsLoading(false)
     }
@@ -76,7 +85,7 @@ export default function AskEricChat() {
           <div className="flex items-center justify-between p-3 border-b border-primary/20 bg-primary/5">
             <div className="flex items-center gap-2 text-[10px] text-primary uppercase tracking-widest">
               <Terminal className="w-3 h-3" />
-              <span>Ask Eric Interface v1.0.4</span>
+              <span>Ask Eric Interface {ASK_ERIC_VERSION}</span>
             </div>
             <button onClick={() => setIsOpen(false)} className="hover:text-primary transition-colors cursor-pointer">
               <X className="w-4 h-4" />
@@ -95,14 +104,28 @@ export default function AskEricChat() {
               </div>
             )}
 
-            {messages.map((m, i) => (
-              <div key={i} className={`${m.role === "user" ? "text-muted-foreground" : "text-primary"} flex gap-2`}>
-                <span className="shrink-0 font-bold">{m.role === "user" ? "USER:" : "ERIC:"}</span>
-                <div className="prose prose-invert prose-xs max-w-full">
-                  <ReactMarkdown>{m.content}</ReactMarkdown>
+            {messages.map((m, i) => {
+              const isOutOfScope = m.content === "ERROR: Out of scope. Context denied."
+              const isSystemError = m.isError || isOutOfScope
+
+              const colorClass =
+                m.role === "user"
+                  ? "text-muted-foreground"
+                  : isSystemError
+                    ? "text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.8)] font-bold animate-glitch"
+                    : "text-primary"
+
+              return (
+                <div key={i} className={`${colorClass} flex gap-2 transition-all duration-300`}>
+                  <span className="shrink-0 font-bold">
+                    {m.role === "user" ? "USER:" : isSystemError ? "SYSTEM:" : "ERIC:"}
+                  </span>
+                  <div className={`prose prose-invert prose-xs max-w-full ${isSystemError ? "prose-red" : ""}`}>
+                    <ReactMarkdown>{m.content}</ReactMarkdown>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
 
             {isLoading && (
               <div className="flex items-center gap-2 text-primary animate-pulse">
@@ -121,6 +144,7 @@ export default function AskEricChat() {
               placeholder="Query the system..."
               className="flex-1 bg-transparent border-none outline-none text-sm text-foreground 
                          placeholder:text-primary/20 focus:ring-0"
+              maxLength={MAX_CHARS_FOR_ASK_ERIC}
             />
             <button
               type="submit"
