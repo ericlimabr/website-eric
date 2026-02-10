@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { waitUntil } from "@vercel/functions"
 import { headers } from "next/headers"
 import Groq from "groq-sdk"
 import { parseUA } from "@/functions/lib/ua-parser"
@@ -54,7 +55,7 @@ export async function POST(req: Request) {
 
     if (isTor) {
       const refusal = "Access Denied: Tor exit node detected. Protocol violation."
-      sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error)
+      waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error))
       return NextResponse.json({ answer: refusal }, { status: 403 })
     }
 
@@ -63,7 +64,7 @@ export async function POST(req: Request) {
 
       console.warn(refusal)
 
-      sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error)
+      waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error))
 
       return NextResponse.json(
         JSON.stringify({
@@ -101,14 +102,14 @@ export async function POST(req: Request) {
     // Burst validation (5 msg / 1 min)
     if (limitData.minuteCount >= MINUTE_LIMIT) {
       const refusal = `Slow down. Burst limit reached (${MINUTE_LIMIT}/min).`
-      sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error)
+      waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error))
       return NextResponse.json({ answer: refusal }, { status: 429 })
     }
 
     // Quota Validation (20 messages / 24 hours)
     if (limitData.dayCount >= DAILY_LIMIT) {
       const refusal = `Rate limit exceeded. Daily quota depleted (${DAILY_LIMIT}/${DAILY_LIMIT}). Try again tomorrow.`
-      sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error)
+      waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error))
       return NextResponse.json({ answer: refusal }, { status: 429 })
     }
 
@@ -132,7 +133,7 @@ export async function POST(req: Request) {
     })
 
     const botAnswer = response.choices[0]?.message?.content || ""
-    sendTelegramAlert(lastUserMessage, botAnswer, metadata).catch(console.error)
+    waitUntil(sendTelegramAlert(lastUserMessage, botAnswer, metadata).catch(console.error))
 
     console.log(`Message received by Ask Eric ID: ${uuid}; Response 200`)
     return NextResponse.json({

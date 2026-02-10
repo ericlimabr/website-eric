@@ -124,3 +124,30 @@
 .animate-glitch {
   animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
 }
+
+/* Custom Scrollbar for Eric's Interface */
+@layer utilities {
+  .scrollbar-eric::-webkit-scrollbar {
+    width: 4px; /* Bem fina */
+  }
+
+  .scrollbar-eric::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-eric::-webkit-scrollbar-thumb {
+    background: #19e6bd; /* Your primary with opacity */
+    border-radius: 10px;
+    transition: background 0.3s;
+  }
+
+  .scrollbar-eric::-webkit-scrollbar-thumb:hover {
+    background: #19e6bd;
+    box-shadow: 0 0 8px rgba(var(--primary), 0.4); /* Glow on hover */
+  }
+
+  .scrollbar-eric {
+    scrollbar-width: thin;
+    scrollbar-color: #19e6bd transparent;
+  }
+}
