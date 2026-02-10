@@ -1,7 +1,9 @@
 import type { Config } from "tailwindcss"
+import tailwindAnimate from "tailwindcss-animate"
+import typography from "@tailwindcss/typography"
 
 const config: Config = {
-  //darkMode: ["class"],
+  // darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
@@ -51,7 +53,8 @@ const config: Config = {
       },
       keyframes: {
         "heartbeat-scan": {
-          "0%": { strokeDashoffset: "50" },
+          /* Ajustado para 100 para sincronizar com o path do ECG */
+          "0%": { strokeDashoffset: "100" },
           "100%": { strokeDashoffset: "0" },
         },
         glitch: {
@@ -79,7 +82,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [tailwindAnimate, typography],
 }
 
 export default config
