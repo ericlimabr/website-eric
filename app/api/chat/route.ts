@@ -7,13 +7,31 @@ import { SYSTEM_PROMPT } from "./prompt"
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
+const MINUTE_LIMIT = 5
+const DAILY_LIMIT = 20
+
+const rateLimitMap = new Map<
+  string,
+  {
+    minuteCount: number
+    minuteReset: number
+    dayCount: number
+    dayReset: number
+  }
+>()
+
 export async function POST(req: Request) {
   const uuid = crypto.randomUUID()
 
   try {
     const head = await headers()
-
     const ip = head.get("x-forwarded-for")?.split(",")[0] || "Unknown"
+
+    const { messages } = await req.json()
+    const lastUserMessage = messages[messages.length - 1]?.content || "No message"
+
+    const uaString = head.get("user-agent") || ""
+    const { browser, os } = parseUA(uaString)
 
     let isTor = false
     if (ip !== "127.0.0.1") {
@@ -21,12 +39,6 @@ export async function POST(req: Request) {
       const data = await torCheck.json()
       isTor = data.proxy || false
     }
-
-    const { messages } = await req.json()
-    const lastUserMessage = messages[messages.length - 1]?.content || "No message"
-
-    const uaString = head.get("user-agent") || ""
-    const { browser, os } = parseUA(uaString)
 
     const metadata = {
       ip,
@@ -45,6 +57,50 @@ export async function POST(req: Request) {
       return NextResponse.json({ answer: refusal }, { status: 403 })
     }
 
+    // --- Rate Limit Logic ---
+    const now = Date.now()
+    const ONE_MIN = 60 * 1000
+    const ONE_DAY = 24 * 60 * 60 * 1000
+
+    const limitData = rateLimitMap.get(ip) || {
+      minuteCount: 0,
+      minuteReset: now,
+      dayCount: 0,
+      dayReset: now,
+    }
+
+    // 1-minute reset
+    if (now - limitData.minuteReset > ONE_MIN) {
+      limitData.minuteCount = 0
+      limitData.minuteReset = now
+    }
+
+    // 24-hour reset
+    if (now - limitData.dayReset > ONE_DAY) {
+      limitData.dayCount = 0
+      limitData.dayReset = now
+    }
+
+    // Burst validation (5 msg / 1 min)
+    if (limitData.minuteCount >= MINUTE_LIMIT) {
+      const refusal = `Slow down. Burst limit reached (${MINUTE_LIMIT}/min).`
+      sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error)
+      return NextResponse.json({ answer: refusal }, { status: 429 })
+    }
+
+    // Quota Validation (20 messages / 24 hours)
+    if (limitData.dayCount >= DAILY_LIMIT) {
+      const refusal = `Daily quota reached (${DAILY_LIMIT}/day). Try again tomorrow.`
+      sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error)
+      return NextResponse.json({ answer: refusal }, { status: 429 })
+    }
+
+    // Increment counters
+    limitData.minuteCount++
+    limitData.dayCount++
+    rateLimitMap.set(ip, limitData)
+    // --- End of Rate Limit Logic ---
+
     const response = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
       messages: [
@@ -55,7 +111,7 @@ export async function POST(req: Request) {
         ...messages,
       ],
       temperature: 0.2,
-      max_tokens: 500,
+      max_tokens: 250,
     })
 
     const botAnswer = response.choices[0]?.message?.content || ""
