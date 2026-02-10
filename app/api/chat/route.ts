@@ -4,6 +4,7 @@ import Groq from "groq-sdk"
 import { parseUA } from "@/functions/lib/ua-parser"
 import { sendTelegramAlert } from "@/functions/lib/notifications"
 import { SYSTEM_PROMPT } from "./prompt"
+import { MAX_CHARS_FOR_ASK_ERIC } from "@/constants/max-chars-input-chat"
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
@@ -52,9 +53,25 @@ export async function POST(req: Request) {
     }
 
     if (isTor) {
-      const refusal = "Access denied via Tor Network."
+      const refusal = "Access Denied: Tor exit node detected. Protocol violation."
       sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error)
       return NextResponse.json({ answer: refusal }, { status: 403 })
+    }
+
+    if (lastUserMessage.length > MAX_CHARS_FOR_ASK_ERIC) {
+      const refusal = `Payload too large. Max ${MAX_CHARS_FOR_ASK_ERIC} characters allowed for signal clarity.`
+
+      console.warn(refusal)
+
+      sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error)
+
+      return NextResponse.json(
+        JSON.stringify({
+          error: "Input too long.",
+          answer: `Please keep your message under ${MAX_CHARS_FOR_ASK_ERIC} characters to maintain high signal-to-noise ratio.`,
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      )
     }
 
     // --- Rate Limit Logic ---
@@ -90,7 +107,7 @@ export async function POST(req: Request) {
 
     // Quota Validation (20 messages / 24 hours)
     if (limitData.dayCount >= DAILY_LIMIT) {
-      const refusal = `Daily quota reached (${DAILY_LIMIT}/day). Try again tomorrow.`
+      const refusal = `Rate limit exceeded. Daily quota depleted (${DAILY_LIMIT}/${DAILY_LIMIT}). Try again tomorrow.`
       sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error)
       return NextResponse.json({ answer: refusal }, { status: 429 })
     }
@@ -111,7 +128,7 @@ export async function POST(req: Request) {
         ...messages,
       ],
       temperature: 0.2,
-      max_tokens: 250,
+      max_tokens: 300,
     })
 
     const botAnswer = response.choices[0]?.message?.content || ""
@@ -123,6 +140,6 @@ export async function POST(req: Request) {
     })
   } catch (error) {
     console.log(`Message received by Ask Eric ID: ${uuid}; Error: ${error}`)
-    return NextResponse.json({ error: "System overload" }, { status: 503 })
+    return NextResponse.json({ error: "Internal failure. Sovereign system state: UNSTABLE." }, { status: 503 })
   }
 }
