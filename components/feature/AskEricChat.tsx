@@ -93,10 +93,7 @@ export default function AskEricChat() {
           </div>
 
           {/* Messages Area */}
-          <div
-            ref={scrollRef}
-            className="flex-1 overflow-y-auto p-4 space-y-4 text-sm scrollbar-thin scrollbar-thumb-primary/20"
-          >
+          <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4 text-sm scrollbar-eric">
             {messages.length === 0 && (
               <div className="text-muted-foreground text-xs leading-relaxed italic">
                 {">"} System initialized. Accessing Eric's architecture, projects, and theological framework. Ask
@@ -105,7 +102,7 @@ export default function AskEricChat() {
             )}
 
             {messages.map((m, i) => {
-              const isOutOfScope = m.content === "ERROR: Out of scope. Context denied."
+              const isOutOfScope = m.content?.startsWith("ERROR: Out of scope. Context denied.")
               const isSystemError = m.isError || isOutOfScope
 
               const colorClass =
