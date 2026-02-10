@@ -1,6 +1,7 @@
 "use client"
 
 import { CONTACT_DATA } from "@/constants/contact-data"
+import { PORTFOLIO_VERSION } from "@/constants/version"
 import { motion } from "framer-motion"
 
 export default function Footer() {
@@ -68,7 +69,9 @@ export default function Footer() {
           className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row 
                       justify-between items-center gap-4"
         >
-          <p className="font-mono text-xs text-muted-foreground">© {currentYear} — Built with purpose and precision.</p>
+          <p className="font-mono text-xs text-muted-foreground">
+            © {currentYear} — Built with purpose and precision. {PORTFOLIO_VERSION}
+          </p>
           <p className="font-mono text-xs text-muted-foreground">
             <span className="text-primary">&lt;/&gt;</span> with Go, Python & TypeScript
           </p>
