@@ -3,6 +3,7 @@ import { Space_Grotesk, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import ScrollToTop from "@/components/feature/ScrollToTop"
 import { CONTACT_DATA } from "@/constants/contact-data"
+import AskEricChat from "@/components/feature/AskEricChat"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -87,6 +88,7 @@ export default function RootLayout({
       <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}>
         {children}
         <ScrollToTop />
+        <AskEricChat />
       </body>
     </html>
   )
