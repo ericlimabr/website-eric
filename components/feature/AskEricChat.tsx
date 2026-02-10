@@ -17,6 +17,8 @@ export default function AskEricChat() {
   const [input, setInput] = useState("")
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
+  const [userMessagesOnly, setUserMessagesOnly] = useState<Message[]>([])
+  const [historyIndex, setHistoryIndex] = useState(-1)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   // Auto-scroll to last message
@@ -62,6 +64,27 @@ export default function AskEricChat() {
     }
   }
 
+  useEffect(() => {
+    setUserMessagesOnly(messages.filter((msg) => msg.role === "user"))
+  }, [messages])
+
+  const handleKeyUp = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowUp") {
+      const nextIndex = historyIndex + 1
+      if (nextIndex < userMessagesOnly.length) {
+        setHistoryIndex(nextIndex)
+        setInput(userMessagesOnly[userMessagesOnly.length - 1 - nextIndex].content)
+      }
+    } else if (e.key === "ArrowDown") {
+      const nextIndex = historyIndex === -1 ? -1 : historyIndex - 1
+      if (nextIndex < userMessagesOnly.length) {
+        setHistoryIndex(nextIndex)
+        if (nextIndex === -1) setInput("")
+        else setInput(userMessagesOnly[userMessagesOnly.length - 1 - nextIndex].content)
+      }
+    }
+  }
+
   return (
     <div className="fixed bottom-6 right-6 z-50 font-mono">
       {/* Floating Button */}
@@ -102,7 +125,7 @@ export default function AskEricChat() {
             )}
 
             {messages.map((m, i) => {
-              const isOutOfScope = m.content?.startsWith("ERROR: Out of scope. Context denied.")
+              const isOutOfScope = m.content?.startsWith("ERROR:")
               const isSystemError = m.isError || isOutOfScope
 
               const colorClass =
@@ -133,7 +156,11 @@ export default function AskEricChat() {
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSubmit} className="p-3 border-t border-primary/20 bg-primary/5 flex gap-2">
+          <form
+            onSubmit={handleSubmit}
+            onKeyUp={handleKeyUp}
+            className="p-3 border-t border-primary/20 bg-primary/5 flex gap-2"
+          >
             <input
               autoFocus
               value={input}

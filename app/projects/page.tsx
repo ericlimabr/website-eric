@@ -7,6 +7,7 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import ScrollProgress from "@/components/layout/ScrollProgress"
 import { PROJECTS } from "@/constants/projects"
+import Heartbeat from "@/components/feature/Heartbeat"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -125,12 +126,16 @@ export default function ProjectsPage() {
                 </span>
 
                 <div className="flex flex-col gap-4">
-                  <h3
-                    className="text-xl md:text-2xl font-semibold text-foreground 
-                               group-hover:text-primary transition-colors"
-                  >
-                    {project.name}
-                  </h3>
+                  <div className="flex flex-row gap-4">
+                    <h3
+                      className="text-xl md:text-2xl font-semibold text-foreground 
+                                group-hover:text-primary transition-colors"
+                    >
+                      {project.name}
+                    </h3>
+
+                    <Heartbeat status={project.status === "Active" ? "Active" : "Inactive"} />
+                  </div>
 
                   <p className="text-muted-foreground leading-relaxed max-w-2xl">{project.description}</p>
 

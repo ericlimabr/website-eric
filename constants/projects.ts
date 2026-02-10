@@ -31,7 +31,7 @@ export const PROJECTS = [
     description:
       "Architectural evolution of corporate chat platform with focus on security and zero-knowledge architecture. End-to-end encrypted messages.",
     stack: ["Golang", "Python", "FastAPI", "Zero-Knowledge", "Next.js"],
-    status: "Private",
+    status: "Private / In Development",
     link: "#",
     internal: false,
   },
@@ -41,7 +41,7 @@ export const PROJECTS = [
       "Personal blog platform with markdown-based articles stored in Supabase. Features include scheduling tools and annual reporting for church administration.",
     stack: ["Next.js", "Supabase", "MDX", "Vercel"],
     status: "Active",
-    link: "https://isaiaslobao.com.br",
+    link: "https://lobao-website.vercel.app",
     internal: false,
   },
 ]
