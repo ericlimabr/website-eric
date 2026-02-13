@@ -5,29 +5,46 @@ import Groq from "groq-sdk"
 import { parseUA } from "@/functions/lib/ua-parser"
 import { sendTelegramAlert } from "@/functions/lib/notifications"
 import { SYSTEM_PROMPT } from "./prompt"
-import { MAX_CHARS_FOR_ASK_ERIC } from "@/constants/max-chars-input-chat"
+import { IP_VALIDATION_TIMEOUT, MAX_CHARS_FOR_ASK_ERIC } from "@/constants/max-chars-input-chat"
+import z from "zod"
+import { validateObject } from "@/functions/lib/validation"
+import { env } from "@/functions/lib/env"
+import { Redis } from "@upstash/redis"
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
+const groq = new Groq({ apiKey: env.GROQ_API_KEY })
 
 const MINUTE_LIMIT = 5
 const DAILY_LIMIT = 20
 
-const rateLimitMap = new Map<
-  string,
-  {
-    minuteCount: number
-    minuteReset: number
-    dayCount: number
-    dayReset: number
-  }
->()
+const ProxyCheckSchema = z
+  .object({
+    status: z.string(),
+  })
+  .catchall(
+    z.union([
+      z.string(),
+      z.object({
+        proxy: z.enum(["yes", "no"]),
+        type: z.string().optional(),
+        risk: z.number().default(0),
+        country: z.string().optional(),
+        provider: z.string().optional(),
+        asn: z.string().optional(),
+      }),
+    ])
+  )
+
+const redis = new Redis({
+  url: env.UPSTASH_REDIS_REST_URL,
+  token: env.UPSTASH_REDIS_REST_TOKEN,
+})
 
 export async function POST(req: Request) {
   const uuid = crypto.randomUUID()
 
   try {
     const head = await headers()
-    const ip = head.get("x-forwarded-for")?.split(",")[0] || "Unknown"
+    const ip = head.get("x-vercel-forwarded-for")?.split(",")[0] || "Unknown"
 
     const { messages } = await req.json()
     const lastUserMessage = messages[messages.length - 1]?.content || "No message"
@@ -36,11 +53,51 @@ export async function POST(req: Request) {
     const { browser, os } = parseUA(uaString)
 
     let isTor = false
-    if (ip !== "127.0.0.1") {
-      const torCheck = await fetch(`http://ip-api.com/json/${ip}?fields=proxy`)
-      const data = await torCheck.json()
-      isTor = data.proxy || false
+    if (ip !== "127.0.0.1" && ip !== "::1") {
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), IP_VALIDATION_TIMEOUT)
+
+      try {
+        const torCheck = await fetch(`https://proxycheck.io/v2/${ip}?vpn=1&asn=1&risk=1`, {
+          signal: controller.signal,
+        })
+
+        const invalidatedData = await torCheck.json()
+        const { success, data } = validateObject(ProxyCheckSchema, invalidatedData)
+
+        if (!success || !data || typeof data[ip] === "string") {
+          throw new Error("Invalid security payload")
+        }
+
+        const obj = data[ip]
+        isTor = obj.proxy === "yes" || obj.risk >= 66
+      } catch (err) {
+        const refusal = "Security verification failed. Access denied for system safety."
+
+        const metadata = {
+          ip,
+          city: head.get("x-vercel-ip-city") || "Unknown",
+          country: head.get("x-vercel-ip-country") || "Unknown",
+          browser,
+          os,
+          referer: head.get("referer") || "Direct",
+          isTor,
+          uuid,
+        }
+
+        waitUntil(
+          sendTelegramAlert(lastUserMessage, `[CRITICAL] IP verification to proxycheck failed: ${ip}`, metadata).catch(
+            console.error
+          )
+        )
+
+        return NextResponse.json({ answer: refusal }, { status: 403 })
+      } finally {
+        clearTimeout(timeoutId)
+      }
     }
+
+    console.log("Testando aqui")
 
     const metadata = {
       ip,
@@ -67,56 +124,62 @@ export async function POST(req: Request) {
       waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error))
 
       return NextResponse.json(
-        JSON.stringify({
+        {
           error: "Input too long.",
           answer: `Please keep your message under ${MAX_CHARS_FOR_ASK_ERIC} characters to maintain high signal-to-noise ratio.`,
-        }),
+        },
         { status: 400, headers: { "Content-Type": "application/json" } }
       )
     }
 
-    // --- Rate Limit Logic ---
-    const now = Date.now()
-    const ONE_MIN = 60 * 1000
-    const ONE_DAY = 24 * 60 * 60 * 1000
+    // --- Redis Rate Limit Logic ---
+    const rawIP = ip || "0.0.0.0"
+    const safeIP = rawIP.replace(/[^a-zA-Z0-9\.\:]/g, "_")
 
-    const limitData = rateLimitMap.get(ip) || {
-      minuteCount: 0,
-      minuteReset: now,
-      dayCount: 0,
-      dayReset: now,
+    const minKey = `limit:min:${safeIP}`
+    const dayKey = `limit:day:${safeIP}`
+    const alertKey = `limit:alert_sent:${safeIP}`
+
+    let minCount: number
+    let dayCount: number
+
+    try {
+      // Increments and sets expiration in a single trip (pipeline)
+      const results = await redis
+        .pipeline()
+        .incr(minKey)
+        .expire(minKey, 60, "NX")
+        .incr(dayKey)
+        .expire(dayKey, 86400, "NX")
+        .exec()
+
+      minCount = results?.[0] as number
+      dayCount = results?.[2] as number
+
+      if (typeof minCount !== "number" || typeof dayCount !== "number") {
+        throw new Error("Redis pipeline returned invalid results")
+      }
+    } catch (error) {
+      console.error("Redis rate limit error:", error)
+
+      // Fail-closed: lock on failure
+      return NextResponse.json({ answer: "Service temporarily unavailable. Please try again." }, { status: 503 })
     }
 
-    // 1-minute reset
-    if (now - limitData.minuteReset > ONE_MIN) {
-      limitData.minuteCount = 0
-      limitData.minuteReset = now
-    }
+    if (minCount > MINUTE_LIMIT || dayCount > DAILY_LIMIT) {
+      const isBurst = minCount > MINUTE_LIMIT
+      const refusal = isBurst
+        ? `Slow down. Burst limit reached (${MINUTE_LIMIT}/min).` // Burst Validation (5 msg / 1 min)
+        : `Rate limit exceeded. Daily quota depleted (${DAILY_LIMIT}/${DAILY_LIMIT}). Try again tomorrow.` // Quota Validation (20 messages / 24 hours)
 
-    // 24-hour reset
-    if (now - limitData.dayReset > ONE_DAY) {
-      limitData.dayCount = 0
-      limitData.dayReset = now
-    }
+      //
+      const shouldSendAlert = await redis.set(alertKey, "true", { ex: 300, nx: true })
+      if (shouldSendAlert) {
+        waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error))
+      }
 
-    // Burst validation (5 msg / 1 min)
-    if (limitData.minuteCount >= MINUTE_LIMIT) {
-      const refusal = `Slow down. Burst limit reached (${MINUTE_LIMIT}/min).`
-      waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error))
       return NextResponse.json({ answer: refusal }, { status: 429 })
     }
-
-    // Quota Validation (20 messages / 24 hours)
-    if (limitData.dayCount >= DAILY_LIMIT) {
-      const refusal = `Rate limit exceeded. Daily quota depleted (${DAILY_LIMIT}/${DAILY_LIMIT}). Try again tomorrow.`
-      waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error))
-      return NextResponse.json({ answer: refusal }, { status: 429 })
-    }
-
-    // Increment counters
-    limitData.minuteCount++
-    limitData.dayCount++
-    rateLimitMap.set(ip, limitData)
     // --- End of Rate Limit Logic ---
 
     const response = await groq.chat.completions.create({

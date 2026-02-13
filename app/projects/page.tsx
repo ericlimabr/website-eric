@@ -134,7 +134,10 @@ export default function ProjectsPage() {
                       {project.name}
                     </h3>
 
-                    <Heartbeat status={project.status === "Active" ? "Active" : "Inactive"} />
+                    <Heartbeat
+                      status={project.status === "Active" ? "Active" : "Inactive"}
+                      className="md:flex hidden"
+                    />
                   </div>
 
                   <p className="text-muted-foreground leading-relaxed max-w-2xl">{project.description}</p>
@@ -151,28 +154,35 @@ export default function ProjectsPage() {
                     ))}
                   </div>
 
-                  {project.link !== "#" &&
-                    (project.internal ? (
-                      <Link
-                        href={project.link}
-                        className="inline-flex items-center gap-2 text-sm text-primary 
-                                 hover:underline underline-offset-4 mt-2"
-                      >
-                        View Details
-                        <span className="group-hover:translate-x-1 transition-transform">→</span>
-                      </Link>
-                    ) : (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-primary 
-                                 hover:underline underline-offset-4 mt-2"
-                      >
-                        Visit
-                        <span className="group-hover:translate-x-1 transition-transform">→</span>
-                      </a>
-                    ))}
+                  <div className="flex justify-between">
+                    {project.link !== "#" &&
+                      (project.internal ? (
+                        <Link
+                          href={project.link}
+                          className="inline-flex items-center gap-2 text-sm text-primary 
+                                  hover:underline underline-offset-4 mt-2"
+                        >
+                          View Details
+                          <span className="group-hover:translate-x-1 transition-transform">→</span>
+                        </Link>
+                      ) : (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-sm text-primary 
+                                  hover:underline underline-offset-4 mt-2"
+                        >
+                          Visit
+                          <span className="group-hover:translate-x-1 transition-transform">→</span>
+                        </a>
+                      ))}
+
+                    <Heartbeat
+                      status={project.status === "Active" ? "Active" : "Inactive"}
+                      className="flex md:hidden"
+                    />
+                  </div>
                 </div>
 
                 {/* Hover glow effect */}

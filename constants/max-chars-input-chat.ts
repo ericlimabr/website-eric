@@ -1,1 +1,3 @@
 export const MAX_CHARS_FOR_ASK_ERIC = 300
+
+export const IP_VALIDATION_TIMEOUT = 5000
