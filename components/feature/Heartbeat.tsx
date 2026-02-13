@@ -1,8 +1,11 @@
+import { cn } from "@/functions/lib/styling"
+
 interface HeartbeatProps {
   status: "Active" | "Inactive"
+  className?: string
 }
 
-export default function Heartbeat({ status }: HeartbeatProps) {
+export default function Heartbeat({ status, className }: HeartbeatProps) {
   const isActive = status === "Active"
   const color = isActive ? "#19e6bd" : "#ef4444"
 
@@ -10,7 +13,7 @@ export default function Heartbeat({ status }: HeartbeatProps) {
   const flatLinePath = "M0 15 H50"
 
   return (
-    <div className="flex items-center gap-2 font-mono text-[10px] tracking-tighter uppercase">
+    <div className={cn("flex items-center gap-2 font-mono text-[10px] tracking-tighter uppercase", className)}>
       <svg width="50" height="30" viewBox="0 0 50 30" className="drop-shadow-[0_0_3px_rgba(var(--primary),0.5)]">
         {/* Ghost background line */}
         <path d={isActive ? heartbeatPath : flatLinePath} fill="none" stroke={color} strokeWidth="1" opacity="0.2" />

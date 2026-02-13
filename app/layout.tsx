@@ -83,7 +83,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <script type="application/ld+json" suppressHydrationWarning>
+          {JSON.stringify(jsonLd)}
+        </script>
       </head>
       <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}>
         {children}

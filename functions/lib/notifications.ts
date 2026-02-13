@@ -1,4 +1,5 @@
 import { Browser, OS } from "./ua-parser"
+import { env } from "@/functions/lib/env"
 
 interface AskEricMetadata {
   ip: string
@@ -12,10 +13,8 @@ interface AskEricMetadata {
 }
 
 export async function sendTelegramAlert(userMsg: string, botResp: string, metadata: AskEricMetadata): Promise<void> {
-  const token = process.env.TELEGRAM_BOT_TOKEN
-  const chatId = process.env.TELEGRAM_CHAT_ID
-
-  if (!token || !chatId) return
+  const token = env.TELEGRAM_BOT_TOKEN
+  const chatId = env.TELEGRAM_CHAT_ID
 
   const text = `
 🚀 *Nova Interação: Ask Eric*
