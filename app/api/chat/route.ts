@@ -44,7 +44,17 @@ export async function POST(req: Request) {
 
   try {
     const head = await headers()
-    const ip = head.get("x-vercel-forwarded-for")?.split(",")[0] || "Unknown"
+
+    const rawIp = head.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || "Unknown"
+    const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}$/
+    const ipv6Regex = /^[\da-f:]+$/i
+    let ip: string
+    if (rawIp && (ipv4Regex.test(rawIp) || ipv6Regex.test(rawIp))) {
+      ip = rawIp
+    } else {
+      console.warn("Invalid or missing IP:", rawIp)
+      return NextResponse.json({ answer: "Invalid request origin." }, { status: 400 })
+    }
 
     const { messages } = await req.json()
     const lastUserMessage = messages[messages.length - 1]?.content || "No message"
@@ -65,11 +75,11 @@ export async function POST(req: Request) {
         const invalidatedData = await torCheck.json()
         const { success, data } = validateObject(ProxyCheckSchema, invalidatedData)
 
-        if (!success || !data || typeof data[ip] === "string") {
+        const obj = !!data && data[ip]
+        if (!success || !obj || typeof obj === "string") {
           throw new Error("Invalid security payload")
         }
 
-        const obj = data[ip]
         isTor = obj.proxy === "yes" || obj.risk >= 66
       } catch (err) {
         const refusal = "Security verification failed. Access denied for system safety."
@@ -96,8 +106,6 @@ export async function POST(req: Request) {
         clearTimeout(timeoutId)
       }
     }
-
-    console.log("Testando aqui")
 
     const metadata = {
       ip,
@@ -203,7 +211,7 @@ export async function POST(req: Request) {
       answer: response.choices[0]?.message?.content,
     })
   } catch (error) {
-    console.log(`Message received by Ask Eric ID: ${uuid}; Error: ${error}`)
+    console.error(`Ask Eric error [${uuid}]:`, error instanceof Error ? error.message : String(error))
     return NextResponse.json({ error: "Internal failure. Sovereign system state: UNSTABLE." }, { status: 503 })
   }
 }
