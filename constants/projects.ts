@@ -41,7 +41,7 @@ export const PROJECTS = [
       "Personal blog platform with markdown-based articles stored in Supabase. Features include scheduling tools and annual reporting for church administration.",
     stack: ["Next.js", "Supabase", "MDX", "Vercel"],
     status: "Active",
-    link: "https://lobao-website.vercel.app",
+    link: "https://isaiaslobao.com.br",
     internal: false,
   },
 ]
