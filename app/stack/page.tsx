@@ -6,7 +6,7 @@ import Link from "next/link"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import ScrollProgress from "@/components/layout/ScrollProgress"
-import { STACK_CATEGORIES } from "@/constants/stack-categories"
+import { STACK_CATEGORIES, STACK_ITEM_ICONS } from "@/constants/stack-categories"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -128,15 +128,20 @@ export default function StackPage() {
                   </div>
 
                   <div className="flex flex-wrap gap-2">
-                    {category.items.map((item) => (
-                      <span
-                        key={item}
-                        className="font-mono text-sm px-3 py-1.5 bg-muted text-muted-foreground
-                               rounded-sm hover:text-primary transition-colors cursor-default"
-                      >
-                        {item}
-                      </span>
-                    ))}
+                    {category.items.map((item) => {
+                      const ItemIcon = STACK_ITEM_ICONS[item]
+                      return (
+                        <span
+                          key={item}
+                          className="font-mono text-sm px-3 py-1.5 bg-muted text-muted-foreground
+                                 rounded-sm hover:text-primary transition-colors cursor-default
+                                 inline-flex items-center gap-1.5"
+                        >
+                          {ItemIcon && <ItemIcon className="w-3.5 h-3.5 shrink-0" />}
+                          {item}
+                        </span>
+                      )
+                    })}
                   </div>
                 </div>
               )

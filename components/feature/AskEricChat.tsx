@@ -91,7 +91,7 @@ export default function AskEricChat() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-card border border-primary/20 p-4 rounded-full shadow-lg shadow-primary/10 
+          className="bg-[#080a0f] border border-primary/20 p-4 rounded-full shadow-lg shadow-primary/10
                      hover:border-primary/50 transition-all group cursor-pointer"
         >
           <MessageSquare className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
