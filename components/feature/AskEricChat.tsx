@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useRef, useEffect } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import ReactMarkdown from "react-markdown"
 import { Send, Terminal, X, MessageSquare, Loader2 } from "lucide-react"
 import { MAX_CHARS_FOR_ASK_ERIC } from "@/constants/max-chars-input-chat"
@@ -14,12 +15,23 @@ interface Message {
 
 export default function AskEricChat() {
   const [isOpen, setIsOpen] = useState(false)
+  const [showBalloon, setShowBalloon] = useState(false)
   const [input, setInput] = useState("")
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [userMessagesOnly, setUserMessagesOnly] = useState<Message[]>([])
   const [historyIndex, setHistoryIndex] = useState(-1)
   const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (isOpen) return
+    const show = setTimeout(() => setShowBalloon(true), 3000)
+    const hide = setTimeout(() => setShowBalloon(false), 7000)
+    return () => {
+      clearTimeout(show)
+      clearTimeout(hide)
+    }
+  }, [isOpen])
 
   // Auto-scroll to last message
   useEffect(() => {
@@ -89,13 +101,33 @@ export default function AskEricChat() {
     <div className="fixed bottom-6 right-6 z-50 font-mono">
       {/* Floating Button */}
       {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="bg-card border border-primary/20 p-4 rounded-full shadow-lg shadow-primary/10 
-                     hover:border-primary/50 transition-all group cursor-pointer"
-        >
-          <MessageSquare className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
-        </button>
+        <div className="relative">
+          <AnimatePresence>
+            {showBalloon && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: 4 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: 4 }}
+                transition={{ duration: 0.2 }}
+                className="absolute bottom-full right-0 mb-3 px-3 py-2 text-xs font-mono
+                           text-primary border border-primary/30 rounded-sm whitespace-nowrap"
+                style={{ backgroundColor: "#080a0f" }}
+              >
+                got questions? ask me.
+                {/* Arrow */}
+                <span className="absolute -bottom-[5px] right-5 w-2.5 h-2.5 border-r border-b border-primary/30 rotate-45"
+                  style={{ backgroundColor: "#080a0f" }} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <button
+            onClick={() => setIsOpen(true)}
+            className="bg-[#080a0f] border border-primary/20 p-4 rounded-full shadow-lg shadow-primary/10
+                       hover:border-primary/50 transition-all group cursor-pointer"
+          >
+            <MessageSquare className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+          </button>
+        </div>
       )}
 
       {/* Terminal Window */}
