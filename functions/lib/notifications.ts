@@ -10,6 +10,7 @@ interface AskEricMetadata {
   referer: string
   isTor: boolean
   uuid: string
+  status: number
 }
 
 export async function sendTelegramAlert(userMsg: string, botResp: string, metadata: AskEricMetadata): Promise<void> {
@@ -28,6 +29,7 @@ export async function sendTelegramAlert(userMsg: string, botResp: string, metada
 • Device: ${metadata.browser} / ${metadata.os}
 • Ref: ${metadata.referer}
 • ID: \`${metadata.uuid}\`
+• Status: \`${metadata.status}\`
 ${metadata.isTor ? "⚠️ *NETWORK: TOR DETECTED*" : "✅ *NETWORK: CLEAR*"}
 `.trim()
 
