@@ -45,7 +45,10 @@ export async function POST(req: Request) {
   try {
     const head = await headers()
 
-    const rawIp = head.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || "Unknown"
+    const rawIp =
+      head.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() ||
+      head.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      "127.0.0.1"
     const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}$/
     const ipv6Regex = /^[\da-f:]+$/i
     let ip: string
@@ -93,6 +96,7 @@ export async function POST(req: Request) {
           referer: head.get("referer") || "Direct",
           isTor,
           uuid,
+          status: 403,
         }
 
         waitUntil(
@@ -116,11 +120,12 @@ export async function POST(req: Request) {
       referer: head.get("referer") || "Direct",
       isTor,
       uuid,
+      status: 200,
     }
 
     if (isTor) {
       const refusal = "Access Denied: Tor exit node detected. Protocol violation."
-      waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error))
+      waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, { ...metadata, status: 403 }).catch(console.error))
       return NextResponse.json({ answer: refusal }, { status: 403 })
     }
 
@@ -129,7 +134,7 @@ export async function POST(req: Request) {
 
       console.warn(refusal)
 
-      waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error))
+      waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, { ...metadata, status: 400 }).catch(console.error))
 
       return NextResponse.json(
         {
@@ -183,7 +188,7 @@ export async function POST(req: Request) {
       //
       const shouldSendAlert = await redis.set(alertKey, "true", { ex: 300, nx: true })
       if (shouldSendAlert) {
-        waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, metadata).catch(console.error))
+        waitUntil(sendTelegramAlert(lastUserMessage, `[BLOCKED] ${refusal}`, { ...metadata, status: 429 }).catch(console.error))
       }
 
       return NextResponse.json({ answer: refusal }, { status: 429 })
