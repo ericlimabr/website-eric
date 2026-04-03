@@ -19,4 +19,10 @@ export const CONTACT_DATA = [
     prefix: "03",
     target: "_blank",
   },
+  {
+    label: "WhatsApp",
+    value: "+55 61 99103-6135",
+    href: "https://wa.me/5561991036135",
+    prefix: "04",
+  },
 ]

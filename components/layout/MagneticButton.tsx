@@ -6,9 +6,11 @@ interface MagneticButtonProps {
   href: string
   className?: string
   strength?: number
+  target?: string
+  rel?: string
 }
 
-export default function MagneticButton({ children, href, className = "", strength = 0.4 }: MagneticButtonProps) {
+export default function MagneticButton({ children, href, className = "", strength = 0.4, target, rel }: MagneticButtonProps) {
   const buttonRef = useRef<HTMLAnchorElement>(null)
   const textRef = useRef<HTMLSpanElement>(null)
 
@@ -68,7 +70,7 @@ export default function MagneticButton({ children, href, className = "", strengt
   }, [strength])
 
   return (
-    <a ref={buttonRef} href={href} className={className}>
+    <a ref={buttonRef} href={href} className={className} target={target} rel={rel}>
       <span ref={textRef} className="inline-flex items-center">
         {children}
       </span>
