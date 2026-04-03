@@ -258,11 +258,13 @@ export default function Hero() {
               <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
             </MagneticButton>
             <MagneticButton
-              href="/contact"
+              href="https://wa.me/5561991036135"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-3 border border-border text-foreground font-medium rounded-sm
                        hover:border-primary/50 hover:text-primary transition-all duration-300 inline-block"
             >
-              Contact
+              WhatsApp
             </MagneticButton>
           </motion.div>
         </motion.div>
