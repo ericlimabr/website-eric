@@ -17,8 +17,8 @@ export default function DashboardHeader({ snapshot }: { snapshot: Snapshot }) {
   const year = meta.period.end.split("-")[0]
 
   return (
-    <header className="bg-background border-b border-border px-6 py-10 lg:py-14">
-      <div className="max-w-5xl mx-auto">
+    <header className="bg-background border-b border-border py-10 lg:py-14">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <p className="font-mono text-xs text-primary uppercase tracking-widest mb-4">
           // {meta.project}
         </p>
