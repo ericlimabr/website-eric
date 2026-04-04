@@ -1,0 +1,256 @@
+{
+  "meta": {
+    "project": "Mulheres em Tech Career Hub",
+    "snapshotVersion": "1.0.0",
+    "week": 1,
+    "period": {
+      "start": "2026-03-30",
+      "end": "2026-04-05"
+    },
+    "generatedAt": "2026-04-04T00:00:00Z",
+    "generatedBy": "claude-sonnet-4-6",
+    "previousSnapshotWeek": null
+  },
+
+  "git": {
+    "branch": "main",
+    "totalCommits": 11,
+    "weekCommits": 11,
+    "pullRequests": {
+      "merged": 5,
+      "open": 1
+    },
+    "linesAdded": 16911,
+    "linesRemoved": 1379,
+    "filesChanged": 41,
+    "commitLog": [
+      { "hash": "232a15d", "date": "2026-03-24", "message": "commit inicial",                                                                                                        "type": "chore", "isMerge": false, "pr": null },
+      { "hash": "ca9d9de", "date": "2026-03-31", "message": "feat: bootstrap NestJS migration (Steps 1–3)",                                                                         "type": "feat",  "isMerge": false, "pr": 1 },
+      { "hash": "f07b0fa", "date": "2026-03-31", "message": "Merge pull request #1 from empowergen/feat/nestjs-migration-steps-1-3",                                               "type": "merge", "isMerge": true,  "pr": 1 },
+      { "hash": "e33540e", "date": "2026-03-31", "message": "test: add unit tests for AppModule and DatabaseModule",                                                                "type": "test",  "isMerge": false, "pr": 2 },
+      { "hash": "31a0a39", "date": "2026-03-31", "message": "Merge pull request #2 from empowergen/feat/unit-tests-app-and-database-modules",                                      "type": "merge", "isMerge": true,  "pr": 2 },
+      { "hash": "6b3e2db", "date": "2026-04-02", "message": "feat: add rate limiting, CORS hardening, global validation and exception filter (steps 4–10)",                        "type": "feat",  "isMerge": false, "pr": 3 },
+      { "hash": "f751c30", "date": "2026-04-02", "message": "Merge pull request #3 from empowergen/feat/rate-limiting-cors-validation",                                            "type": "merge", "isMerge": true,  "pr": 3 },
+      { "hash": "93ca863", "date": "2026-04-02", "message": "test: add unit tests for AiService and AiController (step 10)",                                                       "type": "test",  "isMerge": false, "pr": 4 },
+      { "hash": "492b28c", "date": "2026-04-03", "message": "Merge pull request #4 from empowergen/feat/unit-tests-step-10",                                                       "type": "merge", "isMerge": true,  "pr": 4 },
+      { "hash": "4ba22ab", "date": "2026-04-03", "message": "feat: implement Google OAuth + JWT authentication (step 11)",                                                          "type": "feat",  "isMerge": false, "pr": 5 },
+      { "hash": "92048fb", "date": "2026-04-03", "message": "Merge pull request #5 from empowergen/feat/auth-google-oauth-jwt",                                                    "type": "merge", "isMerge": true,  "pr": 5 }
+    ]
+  },
+
+  "overallProgress": {
+    "phase1PercentComplete": 90,
+    "phase2PercentComplete": 0,
+    "phase3PercentComplete": 0,
+    "phase4PercentComplete": 0,
+    "productPercentComplete": 36,
+    "weekDelta": {
+      "phase1": 90,
+      "phase2": 0,
+      "phase3": 0,
+      "phase4": 0,
+      "product": 36
+    }
+  },
+
+  "phases": {
+    "phase1": {
+      "id": "phase1",
+      "name": "Pre-Phase — NestJS Migration & Backend Foundation",
+      "description": "Full migration from single Express server.ts to production-grade NestJS: project structure, env validation, Prisma database, structured logging, health check, error handling, validation, CORS, rate limiting, AI endpoints hardening, Google OAuth + JWT auth, user profiles, and GCS file uploads.",
+      "status": "in_progress",
+      "percentComplete": 90,
+      "weekDelta": 90,
+      "estimatedWeeks": "2-3",
+      "steps": [
+        { "id": "p1-s1",  "name": "Project restructure",               "description": "Migrate from Express to NestJS module structure; set up tsconfig, eslint, nest-cli.json, main.ts, AppModule.",                                                                 "weight": 5,  "percentComplete": 100, "status": "complete",     "weekDelta": 5,  "subTasks": [ { "name": "NestJS scaffold and directory structure", "done": true }, { "name": "Remove Express entry point", "done": true }, { "name": "AppModule bootstrap", "done": true } ] },
+        { "id": "p1-s2",  "name": "Environment & config validation",   "description": "ConfigModule.forRoot() with Joi schema; configuration.ts mapping all env vars.",                                                                                                "weight": 5,  "percentComplete": 100, "status": "complete",     "weekDelta": 5,  "subTasks": [ { "name": "ConfigModule with Joi validation", "done": true }, { "name": "configuration.ts mapping file", "done": true } ] },
+        { "id": "p1-s3",  "name": "Database: Prisma + PostgreSQL",     "description": "Full Prisma schema (10 models, 5 enums), PrismaService with lifecycle hooks, pg adapter, seed script.",                                                                         "weight": 10, "percentComplete": 100, "status": "complete",     "weekDelta": 10, "subTasks": [ { "name": "Prisma schema with all models", "done": true }, { "name": "PrismaService", "done": true }, { "name": "DatabaseModule", "done": true }, { "name": "Seed script", "done": false } ] },
+        { "id": "p1-s4",  "name": "Structured logging",                "description": "nestjs-pino LoggerModule with pino-pretty in dev, raw JSON in production; bufferLogs in main.ts.",                                                                              "weight": 5,  "percentComplete": 100, "status": "complete",     "weekDelta": 5,  "subTasks": [ { "name": "LoggerModule.forRootAsync with ConfigService", "done": true }, { "name": "pino-pretty dev transport", "done": true } ] },
+        { "id": "p1-s5",  "name": "Health check endpoint",             "description": "GET /health via @nestjs/terminus; required for Cloud Run health probe.",                                                                                                         "weight": 5,  "percentComplete": 100, "status": "complete",     "weekDelta": 5,  "subTasks": [ { "name": "HealthModule with TerminusModule", "done": true }, { "name": "HealthController GET /health", "done": true } ] },
+        { "id": "p1-s6",  "name": "Centralized error handler",         "description": "Global @Catch() HttpExceptionFilter returning structured JSON error responses.",                                                                                                 "weight": 5,  "percentComplete": 100, "status": "complete",     "weekDelta": 5,  "subTasks": [ { "name": "HttpExceptionFilter class", "done": true }, { "name": "app.useGlobalFilters() wiring", "done": true } ] },
+        { "id": "p1-s7",  "name": "Input validation (DTOs)",           "description": "Global ValidationPipe + 5 AI DTO classes with class-validator decorators.",                                                                                                     "weight": 8,  "percentComplete": 100, "status": "complete",     "weekDelta": 8,  "subTasks": [ { "name": "Global ValidationPipe", "done": true }, { "name": "GenerateTextDto", "done": true }, { "name": "GenerateImageDto", "done": true }, { "name": "GenerateTextThinkingDto", "done": true }, { "name": "AnalyzeImageDto", "done": true }, { "name": "GroundedSearchDto", "done": true } ] },
+        { "id": "p1-s8",  "name": "CORS hardening",                    "description": "app.enableCors() with origin allowlist (FRONTEND_URL + localhost).",                                                                                                            "weight": 3,  "percentComplete": 100, "status": "complete",     "weekDelta": 3,  "subTasks": [ { "name": "CORS origin callback with allowlist", "done": true } ] },
+        { "id": "p1-s9",  "name": "Rate limiting",                     "description": "ThrottlerModule.forRoot() (30 req/60s global) with ThrottlerGuard as APP_GUARD.",                                                                                              "weight": 5,  "percentComplete": 100, "status": "complete",     "weekDelta": 5,  "subTasks": [ { "name": "ThrottlerModule.forRoot()", "done": true }, { "name": "APP_GUARD registration", "done": true } ] },
+        { "id": "p1-s10", "name": "Apply guards to AI endpoints",      "description": "AiModule / AiController / AiService migrating 5 handlers from server.ts; AI-specific throttle (10 req/60s).",                                                                  "weight": 8,  "percentComplete": 100, "status": "complete",     "weekDelta": 8,  "subTasks": [ { "name": "AiService wrapping GoogleGenAI", "done": true }, { "name": "AiController with @Throttle override", "done": true }, { "name": "AiModule registration", "done": true } ] },
+        { "id": "p1-s11", "name": "Authentication: Google OAuth + JWT","description": "GoogleStrategy, JwtModule, AuthService (issue/refresh/revoke tokens), AuthController (4 endpoints).",                                                                          "weight": 15, "percentComplete": 100, "status": "complete",     "weekDelta": 15, "subTasks": [ { "name": "GoogleStrategy", "done": true }, { "name": "AuthService issueAccessToken", "done": true }, { "name": "AuthService issueRefreshToken", "done": true }, { "name": "AuthService refreshAccessToken", "done": true }, { "name": "AuthService revokeRefreshToken", "done": true }, { "name": "AuthController 4 endpoints", "done": true }, { "name": "AuthModule", "done": true } ] },
+        { "id": "p1-s12", "name": "JWT guard",                         "description": "JwtStrategy, JwtAuthGuard, RolesGuard, @Roles() and @CurrentUser() decorators; guard enabled on AiController.",                                                               "weight": 6,  "percentComplete": 100, "status": "complete",     "weekDelta": 6,  "subTasks": [ { "name": "JwtStrategy", "done": true }, { "name": "JwtAuthGuard", "done": true }, { "name": "RolesGuard", "done": true }, { "name": "@Roles() decorator", "done": true }, { "name": "@CurrentUser() decorator", "done": true } ] },
+        { "id": "p1-s13", "name": "User profile endpoints",            "description": "UsersModule with GET /users/me and PATCH /users/me; Prisma transaction for partial update.",                                                                                    "weight": 10, "percentComplete": 100, "status": "complete",     "weekDelta": 10, "subTasks": [ { "name": "PatchUserDto", "done": true }, { "name": "UsersService getMe + patchMe", "done": true }, { "name": "UsersController", "done": true } ] },
+        { "id": "p1-s14", "name": "File storage: GCS pre-signed uploads","description": "UploadsModule with POST /uploads/presign (signed POST policy URL) and POST /uploads/:id/confirm.",                                                                         "weight": 10, "percentComplete": 0,   "status": "not_started",  "weekDelta": 0,  "subTasks": [ { "name": "PresignDto", "done": false }, { "name": "UploadsService createPresignedUrl", "done": false }, { "name": "UploadsController 2 endpoints", "done": false } ] }
+      ]
+    },
+
+    "phase2": {
+      "id": "phase2",
+      "name": "MVP — Core Product Features",
+      "description": "Full job board (CRUD, bookmarks), CV persistence, AI analytics instrumentation, and mentorship session booking. Transforms the platform from an AI-only tool into a complete career platform.",
+      "status": "not_started",
+      "percentComplete": 0,
+      "weekDelta": 0,
+      "estimatedWeeks": "2-3",
+      "steps": [
+        { "id": "p2-s15", "name": "Jobs table seed data",              "weight": 5,  "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p2-s16", "name": "GET /jobs (paginated list)",        "weight": 13, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p2-s17", "name": "GET /jobs/:id",                     "weight": 6,  "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p2-s18", "name": "POST /jobs (create)",               "weight": 7,  "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p2-s19", "name": "PUT /jobs/:id (update)",            "weight": 7,  "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p2-s20", "name": "DELETE /jobs/:id (soft archive)",   "weight": 5,  "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p2-s21", "name": "Job bookmarks",                     "weight": 8,  "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p2-s22", "name": "CV persistence",                    "weight": 8,  "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p2-s23", "name": "AI usage analytics",                "weight": 7,  "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p2-s24", "name": "Mentors table seed data",           "weight": 5,  "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p2-s25", "name": "GET /mentors (list + detail)",      "weight": 9,  "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p2-s26", "name": "POST /mentors/:id/sessions",        "weight": 14, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p2-s27", "name": "GET /users/me/mentoring-sessions",  "weight": 6,  "percentComplete": 0, "status": "not_started", "weekDelta": 0 }
+      ]
+    },
+
+    "phase3": {
+      "id": "phase3",
+      "name": "Frontend Integration",
+      "description": "Connect Angular 20 frontend to the NestJS backend, replacing all mock data and setTimeout() stubs with real API calls. Implement auth flow, protected routes, and real-time data across all feature areas.",
+      "status": "not_started",
+      "percentComplete": 0,
+      "weekDelta": 0,
+      "estimatedWeeks": "2-3",
+      "steps": [
+        { "id": "p3-s1", "name": "API client & auth interceptor",      "weight": 20, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p3-s2", "name": "Google OAuth login flow",            "weight": 15, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p3-s3", "name": "Jobs page real data",                "weight": 15, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p3-s4", "name": "User profile page",                  "weight": 15, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p3-s5", "name": "CV upload & persistence",            "weight": 15, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p3-s6", "name": "Mentors & session booking",          "weight": 20, "percentComplete": 0, "status": "not_started", "weekDelta": 0 }
+      ]
+    },
+
+    "phase4": {
+      "id": "phase4",
+      "name": "Production Readiness",
+      "description": "Cloud Run deployment, integration and E2E testing, observability setup, and performance tuning. The platform goes live.",
+      "status": "not_started",
+      "percentComplete": 0,
+      "weekDelta": 0,
+      "estimatedWeeks": "1-2",
+      "steps": [
+        { "id": "p4-s1", "name": "Cloud Run deployment pipeline",      "weight": 30, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p4-s2", "name": "Integration tests",                  "weight": 25, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p4-s3", "name": "E2E tests",                          "weight": 25, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p4-s4", "name": "Observability & monitoring",         "weight": 20, "percentComplete": 0, "status": "not_started", "weekDelta": 0 }
+      ]
+    }
+  },
+
+  "security": {
+    "totalFound": 0,
+    "totalFixed": 0,
+    "totalOpen": 0,
+    "bySeverity": {
+      "critical": { "found": 0, "fixed": 0, "open": 0 },
+      "high":     { "found": 0, "fixed": 0, "open": 0 },
+      "medium":   { "found": 0, "fixed": 0, "open": 0 },
+      "low":      { "found": 0, "fixed": 0, "open": 0 }
+    },
+    "weekDelta": { "found": 0, "fixed": 0 },
+    "audits": [],
+    "positiveFindings": [
+      "Global ValidationPipe with whitelist + forbidNonWhitelisted rejects unknown fields",
+      "HttpExceptionFilter hides internal errors from 500 responses",
+      "ThrottlerGuard applied globally (30 req/60s) with tighter override on AI and auth endpoints (10 req/60s)",
+      "CORS locked to FRONTEND_URL + localhost allowlist",
+      "JWT access tokens expire in 1h; refresh tokens stored as bcrypt hashes",
+      "Refresh token revocation via database flag"
+    ]
+  },
+
+  "tests": {
+    "unitTests":        { "total": 201, "passing": 201, "failing": 0, "byService": { "maestro": 201, "aiWorker": 0, "frontend": 0 } },
+    "integrationTests": { "total": 0, "passing": 0, "failing": 0 },
+    "e2eTests":         { "total": 0, "passing": 0, "failing": 0 },
+    "manualTests":      { "postmanCollections": 0, "postmanRequests": 0 },
+    "coverage":         { "maestro": null, "aiWorker": null, "frontend": null },
+    "frameworks":       { "maestro": "Jest + ts-jest (runInBand)", "aiWorker": "n/a", "frontend": "Jest (Angular)" },
+    "weekDelta":        { "added": 201 }
+  },
+
+  "codeMetrics": {
+    "totalLinesOfCode": 1212,
+    "byService": {
+      "backend":  { "language": "TypeScript (NestJS)", "loc": 985,  "files": 30 },
+      "database": { "language": "Prisma SDL",          "loc": 227,  "files": 1  },
+      "frontend": { "language": "TypeScript (Angular 20)", "loc": 0, "files": 0 }
+    },
+    "weekDelta": { "linesAdded": 985, "linesRemoved": 0, "netChange": 985 }
+  },
+
+  "architecture": {
+    "services": [
+      { "name": "backend",  "language": "TypeScript (NestJS 11)", "status": "partial",  "healthCheck": true  },
+      { "name": "frontend", "language": "TypeScript (Angular 20)", "status": "partial", "healthCheck": false }
+    ],
+    "database": {
+      "engine": "PostgreSQL (via Prisma)",
+      "tables": 10,
+      "migrations": 0,
+      "rowLevelSecurity": false,
+      "multiTenancy": false
+    },
+    "apiEndpoints": {
+      "defined": 17,
+      "implemented": 17,
+      "withAuth": 12,
+      "withRateLimit": 17
+    },
+    "patterns": [
+      "NestJS feature module pattern (AiModule, AuthModule, UsersModule, HealthModule, DatabaseModule)",
+      "Global guards via APP_GUARD token",
+      "DTO-based validation with class-validator + ValidationPipe",
+      "Repository pattern via PrismaService",
+      "JWT + refresh token rotation with bcrypt hashing",
+      "AI proxy pattern — NestJS → Gemini API"
+    ]
+  },
+
+  "infrastructure": {
+    "dockerServices": 1,
+    "makefileTargets": 0,
+    "environments": ["development", "production"],
+    "ciConfigured": false,
+    "cdConfigured": false,
+    "monitoringStack": ["pino (structured JSON logging)"],
+    "observability": {
+      "loggingConfigured": true,
+      "metricsConfigured": false,
+      "tracingConfigured": false
+    }
+  },
+
+  "weekHighlights": {
+    "shipped": [
+      "Steps 1–3: Full NestJS migration — AppModule, ConfigModule (Joi), PrismaService + 10-model schema",
+      "Steps 4–5: nestjs-pino structured logging + GET /health (Cloud Run ready)",
+      "Step 6: Global HttpExceptionFilter with structured JSON error responses",
+      "Steps 7–9: ValidationPipe (class-validator DTOs), CORS allowlist, ThrottlerModule global rate limiting",
+      "Step 10: AiModule/AiController/AiService — 5 endpoints migrated from Express, AI throttle override",
+      "Step 11: Google OAuth + JWT — GoogleStrategy, AuthService (issue/refresh/revoke), 4 auth endpoints",
+      "Step 12: JwtStrategy, JwtAuthGuard, RolesGuard, @Roles() and @CurrentUser() decorators",
+      "Step 13: UsersModule — GET /users/me + PATCH /users/me with Prisma transaction",
+      "201 unit tests passing across 17 spec files"
+    ],
+    "fixed": [
+      "pino-pretty worker thread causing Jest open-handle warning — disabled in test env, switched to runInBand"
+    ],
+    "started": [
+      "Step 14: GCS pre-signed uploads (pending decision on cloud provider)"
+    ],
+    "blockers": [
+      "Step 14 blocked pending confirmation of GCS vs alternative file storage provider"
+    ],
+    "nextWeekPlanned": [
+      "Step 14: File storage pre-signed uploads (GCS or alternative)",
+      "Step 15: Jobs table seed data",
+      "Step 16: GET /jobs with pagination and filters",
+      "Step 17: GET /jobs/:id",
+      "Step 18: POST /jobs (create)"
+    ]
+  }
+}

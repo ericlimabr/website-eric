@@ -1,0 +1,443 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vector-leads.com/dashboard/metrics-schema/v1",
+  "title": "Vector Leads — Weekly Development Snapshot",
+  "description": "Schema for weekly engineering progress snapshots powering the Vector Leads development dashboard.",
+  "type": "object",
+  "required": ["meta", "git", "overallProgress", "phases", "security", "tests", "codeMetrics", "architecture", "infrastructure", "weekHighlights"],
+  "properties": {
+
+    "meta": {
+      "type": "object",
+      "description": "Snapshot metadata and identification.",
+      "required": ["project", "snapshotVersion", "week", "period", "generatedAt"],
+      "properties": {
+        "project":           { "type": "string" },
+        "snapshotVersion":   { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "week":              { "type": "integer", "minimum": 1 },
+        "period": {
+          "type": "object",
+          "required": ["start", "end"],
+          "properties": {
+            "start": { "type": "string", "format": "date" },
+            "end":   { "type": "string", "format": "date" }
+          }
+        },
+        "generatedAt":       { "type": "string", "format": "date-time" },
+        "generatedBy":       { "type": "string" },
+        "previousSnapshotWeek": { "type": ["integer", "null"], "minimum": 1 }
+      }
+    },
+
+    "git": {
+      "type": "object",
+      "description": "Git repository activity for the snapshot period.",
+      "required": ["branch", "totalCommits", "weekCommits", "pullRequests", "linesAdded", "linesRemoved", "filesChanged"],
+      "properties": {
+        "branch":       { "type": "string" },
+        "totalCommits": { "type": "integer", "minimum": 0 },
+        "weekCommits":  { "type": "integer", "minimum": 0 },
+        "pullRequests": {
+          "type": "object",
+          "properties": {
+            "merged": { "type": "integer", "minimum": 0 },
+            "open":   { "type": "integer", "minimum": 0 }
+          }
+        },
+        "linesAdded":   { "type": "integer", "minimum": 0 },
+        "linesRemoved": { "type": "integer", "minimum": 0 },
+        "filesChanged": { "type": "integer", "minimum": 0 },
+        "commitLog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["hash", "date", "message", "type"],
+            "properties": {
+              "hash":      { "type": "string" },
+              "date":      { "type": "string", "format": "date" },
+              "message":   { "type": "string" },
+              "type":      { "type": "string", "enum": ["feat", "fix", "chore", "docs", "refactor", "test", "ci", "merge", "other"] },
+              "isMerge":   { "type": "boolean" },
+              "pr":        { "type": ["integer", "null"] }
+            }
+          }
+        }
+      }
+    },
+
+    "overallProgress": {
+      "type": "object",
+      "description": "High-level progress percentages across all phases.",
+      "required": ["phase1PercentComplete", "phase2PercentComplete", "phase3PercentComplete", "phase4PercentComplete", "productPercentComplete", "weekDelta"],
+      "properties": {
+        "phase1PercentComplete": { "type": "number", "minimum": 0, "maximum": 100 },
+        "phase2PercentComplete": { "type": "number", "minimum": 0, "maximum": 100 },
+        "phase3PercentComplete": { "type": "number", "minimum": 0, "maximum": 100 },
+        "phase4PercentComplete": { "type": "number", "minimum": 0, "maximum": 100 },
+        "productPercentComplete":{ "type": "number", "minimum": 0, "maximum": 100,
+          "description": "Weighted average across all four phases (phase weights: P1=40%, P2=30%, P3=20%, P4=10%)." },
+        "weekDelta": {
+          "type": "object",
+          "description": "How many percentage points each phase moved this week.",
+          "properties": {
+            "phase1": { "type": "number" },
+            "phase2": { "type": "number" },
+            "phase3": { "type": "number" },
+            "phase4": { "type": "number" },
+            "product":{ "type": "number" }
+          }
+        }
+      }
+    },
+
+    "phases": {
+      "type": "object",
+      "description": "Detailed breakdown of each development phase.",
+      "required": ["phase1", "phase2", "phase3", "phase4"],
+      "properties": {
+        "phase1": { "$ref": "#/definitions/PhaseDetail" },
+        "phase2": { "$ref": "#/definitions/PhaseDetail" },
+        "phase3": { "$ref": "#/definitions/PhaseDetail" },
+        "phase4": { "$ref": "#/definitions/PhaseDetail" }
+      }
+    },
+
+    "security": {
+      "type": "object",
+      "description": "Security audit results and vulnerability tracking.",
+      "required": ["totalFound", "totalFixed", "totalOpen", "weekDelta", "audits"],
+      "properties": {
+        "totalFound":  { "type": "integer", "minimum": 0 },
+        "totalFixed":  { "type": "integer", "minimum": 0 },
+        "totalOpen":   { "type": "integer", "minimum": 0 },
+        "bySeverity": {
+          "type": "object",
+          "properties": {
+            "critical": { "$ref": "#/definitions/VulnerabilityCounts" },
+            "high":     { "$ref": "#/definitions/VulnerabilityCounts" },
+            "medium":   { "$ref": "#/definitions/VulnerabilityCounts" },
+            "low":      { "$ref": "#/definitions/VulnerabilityCounts" }
+          }
+        },
+        "weekDelta": {
+          "type": "object",
+          "properties": {
+            "found": { "type": "integer" },
+            "fixed": { "type": "integer" }
+          }
+        },
+        "audits": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/SecurityAudit" }
+        },
+        "positiveFindings": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Security practices confirmed as correctly implemented."
+        }
+      }
+    },
+
+    "tests": {
+      "type": "object",
+      "description": "Test suite status across all services.",
+      "required": ["unitTests", "integrationTests", "e2eTests", "manualTests", "weekDelta"],
+      "properties": {
+        "unitTests": {
+          "type": "object",
+          "properties": {
+            "total":    { "type": "integer", "minimum": 0 },
+            "passing":  { "type": "integer", "minimum": 0 },
+            "failing":  { "type": "integer", "minimum": 0 },
+            "byService": {
+              "type": "object",
+              "properties": {
+                "maestro":   { "type": "integer", "minimum": 0 },
+                "aiWorker":  { "type": "integer", "minimum": 0 },
+                "frontend":  { "type": "integer", "minimum": 0 }
+              }
+            }
+          }
+        },
+        "integrationTests": {
+          "type": "object",
+          "properties": {
+            "total":   { "type": "integer", "minimum": 0 },
+            "passing": { "type": "integer", "minimum": 0 },
+            "failing": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "e2eTests": {
+          "type": "object",
+          "properties": {
+            "total":   { "type": "integer", "minimum": 0 },
+            "passing": { "type": "integer", "minimum": 0 },
+            "failing": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "manualTests": {
+          "type": "object",
+          "properties": {
+            "postmanCollections": { "type": "integer", "minimum": 0 },
+            "postmanRequests":    { "type": "integer", "minimum": 0 }
+          }
+        },
+        "coverage": {
+          "type": "object",
+          "description": "Test coverage percentages (null = not yet measured).",
+          "properties": {
+            "maestro":  { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+            "aiWorker": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+            "frontend": { "type": ["number", "null"], "minimum": 0, "maximum": 100 }
+          }
+        },
+        "frameworks": {
+          "type": "object",
+          "description": "Testing frameworks configured (not necessarily used).",
+          "properties": {
+            "maestro":  { "type": "string" },
+            "aiWorker": { "type": "string" },
+            "frontend": { "type": "string" }
+          }
+        },
+        "weekDelta": {
+          "type": "object",
+          "properties": {
+            "added": { "type": "integer", "description": "New tests written this week" }
+          }
+        }
+      }
+    },
+
+    "codeMetrics": {
+      "type": "object",
+      "description": "Source code volume and composition metrics.",
+      "required": ["totalLinesOfCode", "byService", "weekDelta"],
+      "properties": {
+        "totalLinesOfCode": { "type": "integer", "minimum": 0 },
+        "byService": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "language":     { "type": "string" },
+              "loc":          { "type": "integer", "minimum": 0 },
+              "files":        { "type": "integer", "minimum": 0 },
+              "dependencies": { "type": "integer", "minimum": 0 }
+            }
+          }
+        },
+        "weekDelta": {
+          "type": "object",
+          "properties": {
+            "linesAdded":   { "type": "integer" },
+            "linesRemoved": { "type": "integer" },
+            "netChange":    { "type": "integer" }
+          }
+        }
+      }
+    },
+
+    "architecture": {
+      "type": "object",
+      "description": "Architectural components and their implementation status.",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name":       { "type": "string" },
+              "language":   { "type": "string" },
+              "status":     { "type": "string", "enum": ["planned", "scaffolded", "partial", "complete"] },
+              "healthCheck":{ "type": "boolean" }
+            }
+          }
+        },
+        "database": {
+          "type": "object",
+          "properties": {
+            "engine":           { "type": "string" },
+            "tables":           { "type": "integer", "minimum": 0 },
+            "migrations":       { "type": "integer", "minimum": 0 },
+            "rowLevelSecurity": { "type": "boolean" },
+            "multiTenancy":     { "type": "boolean" }
+          }
+        },
+        "apiEndpoints": {
+          "type": "object",
+          "properties": {
+            "defined":      { "type": "integer", "minimum": 0 },
+            "implemented":  { "type": "integer", "minimum": 0 },
+            "withAuth":     { "type": "integer", "minimum": 0 },
+            "withRateLimit":{ "type": "integer", "minimum": 0 }
+          }
+        },
+        "patterns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Architectural patterns actively applied."
+        }
+      }
+    },
+
+    "infrastructure": {
+      "type": "object",
+      "description": "DevOps and infrastructure configuration status.",
+      "properties": {
+        "dockerServices":    { "type": "integer", "minimum": 0 },
+        "makefileTargets":   { "type": "integer", "minimum": 0 },
+        "environments":      { "type": "array", "items": { "type": "string" } },
+        "ciConfigured":      { "type": "boolean" },
+        "cdConfigured":      { "type": "boolean" },
+        "monitoringStack":   { "type": "array", "items": { "type": "string" } },
+        "observability": {
+          "type": "object",
+          "properties": {
+            "loggingConfigured":    { "type": "boolean" },
+            "metricsConfigured":    { "type": "boolean" },
+            "tracingConfigured":    { "type": "boolean" }
+          }
+        }
+      }
+    },
+
+    "weekHighlights": {
+      "type": "object",
+      "description": "Human-readable summary of the week's most important events.",
+      "required": ["shipped", "fixed", "started", "blockers"],
+      "properties": {
+        "shipped": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Features or components that reached a shippable state this week."
+        },
+        "fixed": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Bugs, vulnerabilities, or issues resolved this week."
+        },
+        "started": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Work items started but not yet complete."
+        },
+        "blockers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Known impediments that could delay upcoming work."
+        },
+        "nextWeekPlanned": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Key deliverables planned for the following week."
+        }
+      }
+    }
+
+  },
+
+  "definitions": {
+
+    "PhaseDetail": {
+      "type": "object",
+      "required": ["id", "name", "description", "status", "percentComplete", "weekDelta", "steps"],
+      "properties": {
+        "id":              { "type": "string" },
+        "name":            { "type": "string" },
+        "description":     { "type": "string" },
+        "status":          { "type": "string", "enum": ["not_started", "in_progress", "complete"] },
+        "percentComplete": { "type": "number", "minimum": 0, "maximum": 100 },
+        "weekDelta":       { "type": "number" },
+        "estimatedWeeks":  { "type": "string" },
+        "steps": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/PhaseStep" }
+        }
+      }
+    },
+
+    "PhaseStep": {
+      "type": "object",
+      "required": ["id", "name", "weight", "percentComplete", "status"],
+      "properties": {
+        "id":              { "type": "string" },
+        "name":            { "type": "string" },
+        "description":     { "type": "string" },
+        "weight":          { "type": "number", "minimum": 0, "maximum": 100,
+          "description": "This step's contribution to the overall phase %. All step weights within a phase sum to 100." },
+        "percentComplete": { "type": "number", "minimum": 0, "maximum": 100 },
+        "status":          { "type": "string", "enum": ["not_started", "in_progress", "complete", "blocked"] },
+        "weekDelta":       { "type": "number" },
+        "subTasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "done"],
+            "properties": {
+              "name": { "type": "string" },
+              "done": { "type": "boolean" },
+              "notes":{ "type": "string" }
+            }
+          }
+        }
+      }
+    },
+
+    "VulnerabilityCounts": {
+      "type": "object",
+      "properties": {
+        "found":  { "type": "integer", "minimum": 0 },
+        "fixed":  { "type": "integer", "minimum": 0 },
+        "open":   { "type": "integer", "minimum": 0 }
+      }
+    },
+
+    "SecurityAudit": {
+      "type": "object",
+      "required": ["name", "date", "scope", "summary", "fixed"],
+      "properties": {
+        "name":  { "type": "string" },
+        "date":  { "type": "string", "format": "date" },
+        "scope": { "type": "string" },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "critical": { "type": "integer", "minimum": 0 },
+            "high":     { "type": "integer", "minimum": 0 },
+            "medium":   { "type": "integer", "minimum": 0 },
+            "low":      { "type": "integer", "minimum": 0 },
+            "total":    { "type": "integer", "minimum": 0 }
+          }
+        },
+        "fixed": {
+          "type": "object",
+          "properties": {
+            "critical": { "type": "integer", "minimum": 0 },
+            "high":     { "type": "integer", "minimum": 0 },
+            "medium":   { "type": "integer", "minimum": 0 },
+            "low":      { "type": "integer", "minimum": 0 },
+            "total":    { "type": "integer", "minimum": 0 }
+          }
+        },
+        "openVulnerabilities": { "type": "integer", "minimum": 0 },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "severity", "title", "status"],
+            "properties": {
+              "id":       { "type": "string" },
+              "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+              "title":    { "type": "string" },
+              "file":     { "type": "string" },
+              "status":   { "type": "string", "enum": ["open", "fixed", "wont_fix", "acknowledged"] },
+              "fixedIn":  { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
