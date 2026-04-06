@@ -16,6 +16,21 @@ export default function DashboardHeader({ snapshot }: { snapshot: Snapshot }) {
   const pct = overallProgress?.productPercentComplete ?? 0
   const year = meta.period.end.split("-")[0]
 
+  const PHASES = ["phase1", "phase2", "phase3", "phase4"] as const
+  const phaseWeights = PHASES.map((p) =>
+    (phases?.[p]?.steps ?? []).reduce((sum, s) => sum + (s.weight ?? 0), 0)
+  )
+  const totalWeight = phaseWeights.reduce((a, b) => a + b, 0) || 1
+
+  // Distribute the overall pct fill across phases proportionally by weight
+  let remaining = pct
+  const phaseFills = phaseWeights.map((w) => {
+    const maxContrib = (w / totalWeight) * 100
+    const fill = Math.min(maxContrib, remaining)
+    remaining -= fill
+    return fill
+  })
+
   return (
     <header className="bg-background border-b border-border py-10 lg:py-14">
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
@@ -64,27 +79,31 @@ export default function DashboardHeader({ snapshot }: { snapshot: Snapshot }) {
         {/* Phase progress bar */}
         <div className="mt-8">
           <div className="flex justify-between mb-2">
-            {(["phase1", "phase2", "phase3", "phase4"] as const).map((p, i) => (
+            {PHASES.map((p, i) => (
               <span key={p} className="font-mono text-xs text-muted-foreground">Phase {i + 1}</span>
             ))}
           </div>
-          <div className="h-1.5 bg-muted rounded-full overflow-hidden flex gap-px">
-            {(["phase1", "phase2", "phase3", "phase4"] as const).map((p) => {
+          <div className="h-1.5 bg-muted rounded-full overflow-hidden flex">
+            {PHASES.map((p, i) =>
+              phaseFills[i] > 0 ? (
+                <div
+                  key={p}
+                  className={`h-full transition-all ${STATUS_BAR[phases?.[p]?.status ?? "not_started"]}`}
+                  style={{ width: `${phaseFills[i]}%` }}
+                />
+              ) : null
+            )}
+          </div>
+          <div className="flex justify-between mt-2">
+            {PHASES.map((p, i) => {
               const phase = phases?.[p]
               return (
-                <div key={p} className="flex-1 relative bg-muted rounded-full overflow-hidden">
-                  <div
-                    className={`absolute left-0 top-0 h-full rounded-full transition-all ${STATUS_BAR[phase?.status ?? "not_started"]}`}
-                    style={{ width: `${phase?.percentComplete ?? 0}%` }}
-                  />
+                <div key={p} className="flex items-center gap-1">
+                  <span className={`w-1.5 h-1.5 rounded-full ${STATUS_BAR[phase?.status ?? "not_started"]}`} />
+                  <span className="font-mono text-xs text-muted-foreground">{phase?.percentComplete ?? 0}%</span>
                 </div>
               )
             })}
-          </div>
-          <div className="flex justify-between mt-2">
-            <span className="font-mono text-xs text-muted-foreground">Start</span>
-            <span className="font-mono text-xs text-primary">{pct}% complete</span>
-            <span className="font-mono text-xs text-muted-foreground">Launch</span>
           </div>
         </div>
       </div>
