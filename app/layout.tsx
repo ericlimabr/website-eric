@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import ScrollToTop from "@/components/feature/ScrollToTop"
+import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider"
 import { CONTACT_DATA } from "@/constants/contact-data"
 import AskEricChat from "@/components/feature/AskEricChat"
 
@@ -83,12 +84,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="theme-color" content="#0e4429" />
         <script type="application/ld+json" suppressHydrationWarning>
           {JSON.stringify(jsonLd)}
         </script>
       </head>
       <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}>
-        {children}
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
         <ScrollToTop />
         <AskEricChat />
       </body>

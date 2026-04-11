@@ -84,15 +84,18 @@ export default function DashboardHeader({ snapshot }: { snapshot: Snapshot }) {
             ))}
           </div>
           <div className="h-1.5 bg-muted rounded-full overflow-hidden flex">
-            {PHASES.map((p, i) =>
-              phaseFills[i] > 0 ? (
+            {PHASES.map((p, i) => {
+              if (phaseFills[i] <= 0) return null
+              const status = phases?.[p]?.status ?? "not_started"
+              const barColor = status === "not_started" ? "bg-primary/40" : STATUS_BAR[status]
+              return (
                 <div
                   key={p}
-                  className={`h-full transition-all ${STATUS_BAR[phases?.[p]?.status ?? "not_started"]}`}
+                  className={`h-full transition-all ${barColor}`}
                   style={{ width: `${phaseFills[i]}%` }}
                 />
-              ) : null
-            )}
+              )
+            })}
           </div>
           <div className="flex justify-between mt-2">
             {PHASES.map((p, i) => {
