@@ -8,7 +8,7 @@ declare module "d3-force-3d" {
     numDimensions(n: number): this
     force(name: string, force: Force<N> | null): this
     stop(): this
-    tick(): this
+    tick(iterations?: number): this
     nodes(): N[]
     nodes(nodes: N[]): this
   }
