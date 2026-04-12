@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import MagneticButton from "./MagneticButton"
+import HeroTunnel from "./HeroTunnel"
 import { SiGo, SiPython, SiTypescript, SiDocker, SiPostgresql, SiReact, SiNextdotjs, SiLinux } from "react-icons/si"
 import { IconType } from "react-icons"
 
@@ -171,6 +172,9 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       onMouseMove={handleMouseMove}
     >
+      {/* Data stream tunnel */}
+      <HeroTunnel />
+
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-radial" />
 
@@ -262,7 +266,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 border border-border text-foreground font-medium rounded-sm
-                       hover:border-primary/50 hover:text-primary transition-all duration-300 inline-block"
+                       bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-primary/50 hover:text-primary transition-all duration-300 inline-block"
             >
               WhatsApp
             </MagneticButton>
