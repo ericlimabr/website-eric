@@ -1,0 +1,1002 @@
+{
+  "meta": {
+    "project": "Vector Leads",
+    "snapshotVersion": "1.0.0",
+    "week": 7,
+    "period": {
+      "start": "2026-04-06",
+      "end": "2026-04-12"
+    },
+    "generatedAt": "2026-04-12T00:00:00Z",
+    "generatedBy": "claude-sonnet-4-6",
+    "previousSnapshotWeek": 6
+  },
+
+  "git": {
+    "branch": "main",
+    "totalCommits": 66,
+    "weekCommits": 0,
+    "pullRequests": {
+      "merged": 0,
+      "open": 0
+    },
+    "linesAdded": 63815,
+    "linesRemoved": 8931,
+    "filesChanged": 313,
+    "commitLog": [
+      { "hash": "adc34ab0483ffd698eba4be03c4640e3a020e251", "date": "2026-04-04", "message": "Merge pull request #30 from ericlimabr/feat/phase2-frontend-step3-tenant-settings",         "type": "merge",  "isMerge": true,  "pr": 30 },
+      { "hash": "a7db56fb7046e2c16d0f1b0d83ccd7e9b2bce82b", "date": "2026-04-04", "message": "feat(frontend): Phase 2 Frontend Step 3 — tenant settings & prompt editor",                 "type": "feat",   "isMerge": false, "pr": 30 },
+      { "hash": "26aa3ae122bddb58df052d679c6499ed75bffd70", "date": "2026-04-04", "message": "Merge pull request #29 from ericlimabr/feat/phase2-step6-7-rag-pipeline",                   "type": "merge",  "isMerge": true,  "pr": 29 },
+      { "hash": "6e25b07329dd32d868b3d0dc58a6a78ac6ed8e25", "date": "2026-04-04", "message": "feat: Phase 2 Steps 6 & 7 — full RAG write pipeline (AI Worker + Maestro)",                 "type": "feat",   "isMerge": false, "pr": 29 },
+      { "hash": "3409c5b5a2dbe60fe8380d5874a7bd70c6fc4b66", "date": "2026-04-04", "message": "Merge pull request #28 from ericlimabr/feat/phase2-step5-qdrant-rag",                       "type": "merge",  "isMerge": true,  "pr": 28 },
+      { "hash": "29dc8838ad480ad4408a2a5c7dd4ea642b96b186", "date": "2026-04-04", "message": "feat(ai-worker): Phase 2 Step 5 — per-tenant Qdrant RAG (replaces shared FAISS)",           "type": "feat",   "isMerge": false, "pr": 28 },
+      { "hash": "6eafec4f76305c22a5abdfca3a9308ae94811cb2", "date": "2026-04-04", "message": "Merge pull request #27 from ericlimabr/feat/phase2-step4-tenant-aware-config",              "type": "merge",  "isMerge": true,  "pr": 27 },
+      { "hash": "0658982efaa5c6deca212add888cc29bf2d97c85", "date": "2026-04-04", "message": "feat(ai-worker): Phase 2 Step 4 — tenant-aware configuration",                              "type": "feat",   "isMerge": false, "pr": 27 },
+      { "hash": "c7acc4f01778f6b338a42c0ad524453872d45ff9", "date": "2026-03-30", "message": "Merge pull request #26 from ericlimabr/feat/phase2-step3-tenant-config",                    "type": "merge",  "isMerge": true,  "pr": 26 },
+      { "hash": "4611e72140aaa2b32119d3b58d910c0d693708d1", "date": "2026-03-30", "message": "feat(maestro): Phase 2 Step 3 — tenant config API + Redis cache",                           "type": "feat",   "isMerge": false, "pr": 26 },
+      { "hash": "cb1633be5e7ca518c82c548acb79f12ac539160a", "date": "2026-03-24", "message": "Merge pull request #25 from ericlimabr/feat/phase2-step1-2-test-coverage",                  "type": "merge",  "isMerge": true,  "pr": 25 },
+      { "hash": "633ddfd460c74ad6622711e4b9d772bce502079f", "date": "2026-03-24", "message": "test(phase2): add unit & integration coverage for Steps 1 & 2",                             "type": "test",   "isMerge": false, "pr": 25 },
+      { "hash": "43f6abac43fd2b2b76f2d908a143b1162fd401ad", "date": "2026-03-24", "message": "Merge pull request #24 from ericlimabr/feat/phase2-step2-rbac",                             "type": "merge",  "isMerge": true,  "pr": 24 },
+      { "hash": "735721e86d4f03d71225ac1ed15754d36524401a", "date": "2026-03-23", "message": "fix(rbac): fix Postman test failures for Phase 2 user management",                           "type": "fix",    "isMerge": false, "pr": 24 },
+      { "hash": "33f2c17338f84db959a643bafa68086abd7dc5de", "date": "2026-03-23", "message": "Merge pull request #22 from ericlimabr/feat/phase2-step1-schema-migrations",                "type": "merge",  "isMerge": true,  "pr": 22 },
+      { "hash": "ea052ea50f55869db307333a970d6b2ef7cdf361", "date": "2026-03-23", "message": "Merge pull request #23 from ericlimabr/feat/conversation-copy-button",                      "type": "merge",  "isMerge": true,  "pr": 23 },
+      { "hash": "519ce1c86a2e541769431e4532c59b8f3b54d03e", "date": "2026-03-23", "message": "feat(frontend): add copy-conversation button to chat header",                               "type": "feat",   "isMerge": false, "pr": 23 },
+      { "hash": "492dc0242d5e83697ec7fc84c00de0801dbd660f", "date": "2026-03-23", "message": "feat(maestro): Phase 2 Step 1 — schema migrations 011-014 + domain updates",                "type": "feat",   "isMerge": false, "pr": 22 },
+      { "hash": "0eed8f6245612424fd8266a5834d087dd31dc3ca", "date": "2026-03-18", "message": "Merge pull request #21 from ericlimabr/feat/phase1-remaining",                              "type": "merge",  "isMerge": true,  "pr": 21 },
+      { "hash": "68e60da780b3b45f47518ba7213b6ab9cf2d1cc4", "date": "2026-03-18", "message": "fix(frontend): fix double AI response by batching streaming state updates",                  "type": "fix",    "isMerge": false, "pr": 21 },
+      { "hash": "3d3c78aece4d64223fbaf41fd1e6df8e346ca217", "date": "2026-03-18", "message": "feat(phase1): complete remaining Phase 1 items and improve test output",                    "type": "feat",   "isMerge": false, "pr": 21 },
+      { "hash": "7dc44c591411ea020451e660a1250f02ab3cf520", "date": "2026-03-18", "message": "Merge pull request #20 from ericlimabr/feat/static-rag",                                   "type": "merge",  "isMerge": true,  "pr": 20 },
+      { "hash": "b5cad5602014d2551bfeb7f351acf2373c61c64c", "date": "2026-03-18", "message": "feat(ai-worker): implement static RAG pipeline with FAISS retriever",                       "type": "feat",   "isMerge": false, "pr": 20 },
+      { "hash": "2933b1d82914789d00d8893e32a2407639453126", "date": "2026-03-18", "message": "Merge pull request #19 from ericlimabr/fix/ws-async-persistence",                          "type": "merge",  "isMerge": true,  "pr": 19 },
+      { "hash": "25f9ff743522a0ea7839f75f1037bec1b6757da1", "date": "2026-03-17", "message": "fix(maestro): decouple post-stream DB writes from WebSocket connection lifecycle",           "type": "fix",    "isMerge": false, "pr": 19 },
+      { "hash": "f2f3dad271bbe5be40903eed8dd0a27641482787", "date": "2026-03-17", "message": "Merge pull request #18 from ericlimabr/fix/bugs-and-frontend-tests",                        "type": "merge",  "isMerge": true,  "pr": 18 },
+      { "hash": "516586b4293357154e8e82976ba57756d455d788", "date": "2026-03-17", "message": "fix: schema sync, type corrections, WS auth, and frontend test suite",                      "type": "fix",    "isMerge": false, "pr": 18 },
+      { "hash": "aba9c6a6f5306dc0639ecd114e06e7689f6cb2f5", "date": "2026-03-16", "message": "Merge pull request #17 from ericlimabr/feat/tests-postman-coverage",                        "type": "merge",  "isMerge": true,  "pr": 17 },
+      { "hash": "8e6616ec1e91df3295d469182e1d04dc27b5488e", "date": "2026-03-16", "message": "test(maestro): expand integration tests and Postman collection coverage",                   "type": "test",   "isMerge": false, "pr": 17 },
+      { "hash": "2bc805541e7ddbba16062ef13c895182d205c546", "date": "2026-03-16", "message": "Merge pull request #16 from ericlimabr/feat/maestro-step10-observability",                  "type": "merge",  "isMerge": true,  "pr": 16 },
+      { "hash": "05508313de2b94e82331e7ecff762f0fb6fb0d12", "date": "2026-03-16", "message": "fix(maestro): correct naming inconsistencies in Step 10 observability",                     "type": "fix",    "isMerge": false, "pr": 16 },
+      { "hash": "8334ac8e36a7773ec72bb0d4bc44258ade19612d", "date": "2026-03-16", "message": "feat(maestro): Step 10 — Observability (Prometheus + request-ID)",                          "type": "feat",   "isMerge": false, "pr": 16 },
+      { "hash": "c6060dfb354e1b6effab33f4daecd536fd05140e", "date": "2026-03-12", "message": "Merge pull request #15 from ericlimabr/feat/frontend-steps3-5",                             "type": "merge",  "isMerge": true,  "pr": 15 },
+      { "hash": "4c9a824d7eefdf920b6887eb6fa36b0d09459d0a", "date": "2026-03-12", "message": "feat(roadmap): detail Phase 2 roadmap — maestro, ai-worker, frontend (9+7+8 steps)",        "type": "docs",   "isMerge": false, "pr": 15 },
+      { "hash": "0d907673a1b556f2af26b3433d54548e0be6c27a", "date": "2026-03-12", "message": "feat(frontend): Steps 3-5 — layout shell, lead management, chat UI + brand",                "type": "feat",   "isMerge": false, "pr": 15 },
+      { "hash": "91f00ca9e183893141b68017a051482414f65981", "date": "2026-03-12", "message": "feat(frontend): Steps 3-5 — layout shell, lead management, chat UI + brand",                "type": "feat",   "isMerge": false, "pr": 15 },
+      { "hash": "992157f25cf9985b4b1acb709e1e44af70c36013", "date": "2026-03-12", "message": "Merge pull request #14 from ericlimabr/fix/docs-inconsistencies",                          "type": "merge",  "isMerge": true,  "pr": 14 },
+      { "hash": "f7d2f51822435a3293aabe59fde7055a3c95d9fd", "date": "2026-03-12", "message": "fix(docs): correct 5 inconsistencies across HLD, API, costs and testing docs",              "type": "fix",    "isMerge": false, "pr": 14 },
+      { "hash": "4f8fb0b7bd67d882cdd5bd8ea725df3a2c3b88bd", "date": "2026-03-12", "message": "Merge pull request #13 from ericlimabr/test/ai-worker-unit-integration",                    "type": "merge",  "isMerge": true,  "pr": 13 },
+      { "hash": "989f3a713f5aff89635f1b088e52f650a5779e7d", "date": "2026-03-11", "message": "test(ai-worker): unit + integration tests — 71 unit, 12 integration",                       "type": "test",   "isMerge": false, "pr": 13 },
+      { "hash": "aee97a2e4ce26ed00b1bbd88667df9d9c5cd1452", "date": "2026-03-11", "message": "Merge pull request #12 from ericlimabr/feat/maestro-steps8-9",                              "type": "merge",  "isMerge": true,  "pr": 12 },
+      { "hash": "0846f70a51073cf8ce4f2bf326898e5f650405b9", "date": "2026-03-11", "message": "feat(maestro): Steps 8 + 9 — Redis integration, RBAC middleware + Postman",                 "type": "feat",   "isMerge": false, "pr": 12 },
+      { "hash": "43e86cbbe049b1e9c91a596715c2cbb527b3f3bf", "date": "2026-03-11", "message": "Merge pull request #11 from ericlimabr/feat/maestro-step7",                                 "type": "merge",  "isMerge": true,  "pr": 11 },
+      { "hash": "271c4c8b6797aa48a4666c0879e3f634fe7ae608", "date": "2026-03-11", "message": "feat(maestro): Step 7 — WebSocket streaming bridge + tests",                                "type": "feat",   "isMerge": false, "pr": 11 },
+      { "hash": "81e4488424134a177d39924a1739d3fa3ea0ba03", "date": "2026-03-10", "message": "Merge pull request #10 from ericlimabr/test/unit-layer1-complete",                          "type": "merge",  "isMerge": true,  "pr": 10 },
+      { "hash": "6dec91a71ffb11ea72c6bfd0f0d860ff50fe500b", "date": "2026-03-10", "message": "test(maestro): Layer 2 integration tests — repositories + full HTTP stack",                  "type": "test",   "isMerge": false, "pr": 10 },
+      { "hash": "856351c44a11bf80616687a8bc2d8505a8b796ff", "date": "2026-03-09", "message": "test(maestro): complete Layer 1 unit tests — handlers, middleware, config",                  "type": "test",   "isMerge": false, "pr": 10 },
+      { "hash": "bbb7dabeb7ea57483f96eaf6b2d957542af59a2f", "date": "2026-03-09", "message": "Merge pull request #9 from ericlimabr/feat/maestro-step6-unit-tests",                       "type": "merge",  "isMerge": true,  "pr": 9  },
+      { "hash": "4e0eee96f193e691036d221cf9fad2016f3ba44f", "date": "2026-03-09", "message": "feat(maestro): Step 6 — AI Worker HTTP client + Layer 1 unit tests",                        "type": "feat",   "isMerge": false, "pr": 9  },
+      { "hash": "bc6d0d6e7cd9643dbdf30958bac3691dccca6c50", "date": "2026-03-09", "message": "Merge pull request #8 from ericlimabr/feat/maestro-step5",                                  "type": "merge",  "isMerge": true,  "pr": 8  },
+      { "hash": "ebe0942eec4c177ce3cb32f17663b1bbc682c597", "date": "2026-03-09", "message": "feat(maestro): complete Step 5 — conversation management",                                  "type": "feat",   "isMerge": false, "pr": 8  },
+      { "hash": "47a07fb0d93a5d87b79a73513c006776eb77dbc6", "date": "2026-03-05", "message": "Merge pull request #7 from ericlimabr/feat/frontend-auth",                                  "type": "merge",  "isMerge": true,  "pr": 7  },
+      { "hash": "5a68c20d3c28cb0e3632c2939a6ee55a74308d13", "date": "2026-03-05", "message": "feat(auth): implement frontend auth flow and harden maestro security",                       "type": "feat",   "isMerge": false, "pr": 7  },
+      { "hash": "666278a6e6b4071e36ef5c9c3483bf8741033b88", "date": "2026-02-27", "message": "Merge pull request #6 from ericlimabr/feat/maestro-core",                                   "type": "merge",  "isMerge": true,  "pr": 6  },
+      { "hash": "aa8e4778d9eb03e83c208c50ba8eda05ed939e9e", "date": "2026-02-27", "message": "feat(maestro): implement core backend — domain, repositories, middleware, server",           "type": "feat",   "isMerge": false, "pr": 6  },
+      { "hash": "286f665d59a8a6a623851b281c736dcfa2b78b4c", "date": "2026-02-26", "message": "Merge pull request #5 from ericlimabr/fix/ai-worker-security-solid",                        "type": "merge",  "isMerge": true,  "pr": 5  },
+      { "hash": "ddc9653e902b305608c17c6045f8305645c09adf", "date": "2026-02-26", "message": "feat(ai-worker): implement SOLID principles, JWT auth, and streaming responses",             "type": "feat",   "isMerge": false, "pr": 5  },
+      { "hash": "4c657c88117c8f11d43fd93f6fd6536797d70ff9", "date": "2026-02-25", "message": "Merge pull request #4 from ericlimabr/feat/ai-worker-core",                                 "type": "merge",  "isMerge": true,  "pr": 4  },
+      { "hash": "2c648610a2d1d32283ac8971df2331d0ae6a9f17", "date": "2026-02-25", "message": "feat(ai-worker): implement core AI worker with BANT qualification engine",                   "type": "feat",   "isMerge": false, "pr": 4  },
+      { "hash": "b6efd2f991215b9e1d90756e86906d052bd733a7", "date": "2026-02-14", "message": "Merge pull request #3 from ericlimabr/feat/complete-project-setup",                         "type": "merge",  "isMerge": true,  "pr": 3  },
+      { "hash": "d47e07caaee774b0b997126f8e87e504a5b5fb48", "date": "2026-02-14", "message": "feat: complete project setup with Next.js 16, Python 3.13, Groq integration and fixed directory structure", "type": "feat", "isMerge": false, "pr": 3 },
+      { "hash": "f168f16a848996e9327f218b61f021d887489881", "date": "2026-02-14", "message": "Merge pull request #2 from ericlimabr/fix/project-structure-and-deps",                      "type": "merge",  "isMerge": true,  "pr": 2  },
+      { "hash": "f40c0056103a4a7e4aed734a3b0879b51192ba76", "date": "2026-02-14", "message": "fix: correct directory structure and update to Next.js 16 with Python 3.13 support",         "type": "fix",    "isMerge": false, "pr": 2  },
+      { "hash": "644ddf6c59c7b2a320beb5a2656084e8091ce89d", "date": "2026-02-14", "message": "Merge pull request #1 from ericlimabr/feat/add-groq-llm-support",                           "type": "merge",  "isMerge": true,  "pr": 1  },
+      { "hash": "2279ffd538a74d984c6df85c50b8f7520ffa7c8d", "date": "2026-02-14", "message": "feat: add Groq as primary LLM provider with multi-provider support",                         "type": "feat",   "isMerge": false, "pr": 1  },
+      { "hash": "e1f72f0f90502da66cf785d3bf567b8bbbafd659", "date": "2026-02-10", "message": "first commit",                                                                               "type": "chore",  "isMerge": false, "pr": null }
+    ]
+  },
+
+  "overallProgress": {
+    "phase1PercentComplete": 100,
+    "phase2PercentComplete": 49,
+    "phase3PercentComplete": 0,
+    "phase4PercentComplete": 0,
+    "productPercentComplete": 55,
+    "weekDelta": {
+      "phase1": 0,
+      "phase2": 12,
+      "phase3": 0,
+      "phase4": 0,
+      "product": 4
+    }
+  },
+
+  "phases": {
+    "phase1": {
+      "id": "phase1",
+      "name": "MVP e Validação de Fluxo",
+      "description": "Core backend, AI qualification engine, and minimal chat frontend — the full end-to-end BANT flow running in production.",
+      "status": "complete",
+      "percentComplete": 100,
+      "weekDelta": 0,
+      "estimatedWeeks": "6-8",
+      "steps": [
+        {
+          "id": "p1-s0",
+          "name": "Project Setup & Infrastructure",
+          "description": "Monorepo structure, Docker Compose stack, environment config, database init script, Makefile automation.",
+          "weight": 7,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "Monorepo directory structure (maestro, ai-worker, frontend)", "done": true },
+            { "name": "Docker Compose — postgres, redis, qdrant, minio, maestro, ai-worker, frontend", "done": true },
+            { "name": "PostgreSQL init script with RLS, extensions, seed data", "done": true },
+            { "name": "Makefile with 74 targets (dev, test, build, lint, deploy)", "done": true },
+            { "name": ".env.example with all env vars documented", "done": true },
+            { "name": "Optional monitoring stack (Prometheus + Grafana via profile)", "done": true },
+            { "name": "Postman API collections (3 collections)", "done": true }
+          ]
+        },
+        {
+          "id": "p1-s1",
+          "name": "Maestro — Domain Layer",
+          "description": "Go domain entities (Lead, Conversation, Message, Tenant, User), validation helpers, custom error types, repository port interfaces.",
+          "weight": 12,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "Lead entity with BANT score, status enum, Validate()", "done": true },
+            { "name": "Conversation entity with status machine, Validate()", "done": true },
+            { "name": "Message entity with role enum, content-length cap, Validate()", "done": true },
+            { "name": "Tenant entity with config JSONB, domain normalisation, Validate()", "done": true },
+            { "name": "User entity with role enum", "done": true },
+            { "name": "Custom error types: ErrNotFound, ErrValidation, ErrForbidden, ErrConflict", "done": true },
+            { "name": "Repository port interfaces (ILeadRepository, IConversationRepository, IMessageRepository, ITenantRepository, IUserRepository)", "done": true },
+            { "name": "Permission type + role→permission map (LeadsRead/Write, ConversationsRead/Write)", "done": true }
+          ]
+        },
+        {
+          "id": "p1-s2",
+          "name": "Maestro — Infrastructure & Repository Layer",
+          "description": "PostgreSQL connection with retry, GORM-based repositories, tenant context isolation, database migrations.",
+          "weight": 11,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "PostgreSQL connection with 5-attempt linear backoff retry", "done": true },
+            { "name": "Connection pool tuning (max open/idle, ConnMaxLifetime, ConnMaxIdleTime)", "done": true },
+            { "name": "Schema migrations (16 migration files incl. tenant domain/slug, RLS, documents table)", "done": true },
+            { "name": "LeadRepository — CRUD with tenant isolation, pagination cap, UpdateQualification split", "done": true },
+            { "name": "ConversationRepository — CRUD with cross-tenant LeadID ownership check", "done": true },
+            { "name": "MessageRepository — CRUD with 100-message cap, IDOR guards on read and insert", "done": true },
+            { "name": "TenantRepository — CRUD with unique-constraint conflict mapping", "done": true },
+            { "name": "UserRepository — CRUD with bcrypt password hashing", "done": true },
+            { "name": "tenantIDFromContext returning ErrForbidden on missing tenant", "done": true },
+            { "name": "Redis session store (JWT blacklist) + conversation history cache", "done": true }
+          ]
+        },
+        {
+          "id": "p1-s3",
+          "name": "Maestro — HTTP Server & Security Middleware",
+          "description": "Gin HTTP server with timeouts, rate limiting, body size cap, JWT auth, CORS, security headers, RBAC, Prometheus metrics, and structured logging.",
+          "weight": 10,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "Gin server with read/write/idle timeouts (Slowloris protection)", "done": true },
+            { "name": "Token-bucket rate limiter (per-IP, RWMutex, 100K cap, auto-eviction)", "done": true },
+            { "name": "X-Forwarded-For spoofing protection — CIDR width validation on TrustedProxies", "done": true },
+            { "name": "Request body size middleware (10 MB default, configurable)", "done": true },
+            { "name": "Custom request logger with sensitive param redaction (case-insensitive)", "done": true },
+            { "name": "JWT authentication middleware with role enum validation, JTI, and optional blacklist check", "done": true },
+            { "name": "CORS middleware via gin-contrib/cors with allowed origins", "done": true },
+            { "name": "Security headers middleware (X-Frame-Options, HSTS, X-Content-Type-Options, Referrer-Policy)", "done": true },
+            { "name": "RBAC middleware — RequirePermission(p) with role→permission map", "done": true },
+            { "name": "Request-ID middleware — X-Request-ID propagated through context and response header", "done": true },
+            { "name": "Prometheus metrics endpoint (/metrics) with request count, duration, and status histograms", "done": true },
+            { "name": "Graceful shutdown on SIGINT/SIGTERM", "done": true },
+            { "name": "Health check endpoint (no env disclosure)", "done": true },
+            { "name": "Config validation on startup (JWT_SECRET min 32 chars, APP_ENV enum, port range, AI_WORKER_URL)", "done": true }
+          ]
+        },
+        {
+          "id": "p1-s4",
+          "name": "AI Worker — Core Engine",
+          "description": "Python FastAPI service with Groq LLM integration, BANT scoring, conversation history, streaming SSE.",
+          "weight": 12,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "FastAPI application with middleware and route registration", "done": true },
+            { "name": "Groq LLM client with streaming SSE responses", "done": true },
+            { "name": "BANT scoring algorithm (Budget, Authority, Need, Timeline)", "done": true },
+            { "name": "Prompt templates for BANT qualification agent", "done": true },
+            { "name": "Redis-based conversation history management", "done": true },
+            { "name": "Pydantic request/response schema validation", "done": true },
+            { "name": "Health check endpoint", "done": true },
+            { "name": "CORS origins list parsing (cors_origins_list method — production crash fixed)", "done": true }
+          ]
+        },
+        {
+          "id": "p1-s5",
+          "name": "AI Worker — Security & SOLID Refactor",
+          "description": "JWT authentication middleware, per-tenant rate limiting, SOLID principles applied across all layers.",
+          "weight": 8,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "JWT token verification middleware (pyjwt, HS256 algorithm pinning)", "done": true },
+            { "name": "Tenant context extraction from JWT claims", "done": true },
+            { "name": "Per-tenant rate limiting middleware (Redis INCR, TTL window)", "done": true },
+            { "name": "Dependency injection for LLM client and scorer", "done": true },
+            { "name": "Service layer separation (ChatService, ScorerService)", "done": true },
+            { "name": "Structured logging with structlog", "done": true },
+            { "name": "Full multi-provider fallback (Groq → OpenAI → Anthropic)", "done": false, "notes": "Descoped to Phase 2 — Groq as sole provider is sufficient for Phase 1 MVP" }
+          ]
+        },
+        {
+          "id": "p1-s6",
+          "name": "Maestro — HTTP API Handlers (Leads & Conversations)",
+          "description": "HTTP handler implementations for the lead and conversation REST endpoints with RBAC.",
+          "weight": 12,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "POST /api/v1/leads — create lead (LeadsWrite permission)", "done": true },
+            { "name": "GET /api/v1/leads — list with filters and pagination (LeadsRead permission)", "done": true },
+            { "name": "GET /api/v1/leads/:id — get lead by ID (LeadsRead permission)", "done": true },
+            { "name": "PATCH /api/v1/leads/:id — update lead, RBAC-gated via LeadsWrite", "done": true },
+            { "name": "DELETE /api/v1/leads/:id — delete lead", "done": false, "notes": "Descoped to Phase 2 — soft delete via status transition is sufficient for Phase 1 MVP" },
+            { "name": "POST /api/v1/conversations — start conversation (ConversationsWrite)", "done": true },
+            { "name": "POST /api/v1/conversations/sandbox — create throw-away sandbox lead + conversation (ConversationsWrite)", "done": true },
+            { "name": "GET /api/v1/conversations/:id — get conversation with full message history", "done": true },
+            { "name": "POST /api/v1/auth/logout — blacklist JWT in Redis", "done": true }
+          ]
+        },
+        {
+          "id": "p1-s7",
+          "name": "Maestro — Authentication (Signup, Login, JWT Issuance)",
+          "description": "User login, JWT access/refresh token issuance with JTI, refresh token rotation, bcrypt, logout blacklist, and RBAC enforcement.",
+          "weight": 10,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "POST /api/v1/auth/register — tenant + owner user creation", "done": false, "notes": "Descoped to Phase 2 — users provisioned via DB seed script for Phase 1 MVP" },
+            { "name": "POST /api/v1/auth/login — credential check + JWT issuance", "done": true },
+            { "name": "POST /api/v1/auth/refresh — refresh token rotation with new JTI", "done": true },
+            { "name": "POST /api/v1/auth/logout — JTI blacklisted in Redis", "done": true },
+            { "name": "Auth middleware (JWT validation, role enum check, tenant context injection, blacklist check)", "done": true },
+            { "name": "Password hashing with bcrypt", "done": true },
+            { "name": "RBAC — Permission-based middleware (LeadsRead/Write, ConversationsRead/Write)", "done": true },
+            { "name": "Structured audit logging on login success, failure, and refresh failure", "done": true }
+          ]
+        },
+        {
+          "id": "p1-s8",
+          "name": "Maestro ↔ AI Worker Integration & WebSocket Streaming",
+          "description": "HTTP client from Maestro to AI Worker, WebSocket upgrade for real-time chat, SSE streaming proxy.",
+          "weight": 12,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "HTTP client from Maestro to AI Worker with explicit timeout (resolves F-18)", "done": true },
+            { "name": "Exponential backoff retry wrapper (max 3 attempts before stream starts)", "done": true },
+            { "name": "SSE parser — content delta, [DONE], score event, error event", "done": true },
+            { "name": "WebSocket upgrade endpoint GET /ws/chat/:conversation_id", "done": true },
+            { "name": "SSE stream forwarding from AI Worker → WebSocket delta frames", "done": true },
+            { "name": "[DONE] frame sent to client after AI stream ends — re-enables frontend input", "done": true },
+            { "name": "Hub — thread-safe connection registry keyed by conversation_id", "done": true },
+            { "name": "Lead score update via LeadUseCase.UpdateScore after stream completes (decoupled from WS lifecycle)", "done": true },
+            { "name": "Handoff detection and conversation state transition", "done": false, "notes": "Descoped to Phase 2 — full end-to-end BANT flow works without explicit handoff signalling for Phase 1 MVP" },
+            { "name": "WS reconnect logic (handled by frontend ws-client.ts)", "done": true }
+          ]
+        },
+        {
+          "id": "p1-s9",
+          "name": "RAG Document Pipeline",
+          "description": "Document chunking, embedding generation, vector retrieval, and context injection into LLM prompts.",
+          "weight": 9,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "POST /api/v1/documents — file upload to MinIO", "done": false, "notes": "Descoped to Phase 2 — dynamic ingestion pipeline (MinIO + Qdrant) is a Phase 2 feature" },
+            { "name": "Async chunking worker (LangChain RecursiveCharacterTextSplitter)", "done": true },
+            { "name": "Embedding generation (sentence-transformers all-MiniLM-L6-v2)", "done": true },
+            { "name": "Vector store — FAISS index with cosine similarity (static; sufficient for Phase 1 MVP)", "done": true },
+            { "name": "Retrieval query at chat time (top-k similarity search)", "done": true },
+            { "name": "Context injection into LLM system prompt", "done": true }
+          ]
+        },
+        {
+          "id": "p1-s10",
+          "name": "Frontend — Chat UI & Dashboard",
+          "description": "Next.js auth flow, protected layout shell, lead management, analytics dashboard, real-time WebSocket chat UI, and internal admin panel.",
+          "weight": 7,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "Next.js 16 + TypeScript strict mode project scaffold", "done": true },
+            { "name": "Tailwind CSS v4 + shadcn/ui component library with brand token system", "done": true },
+            { "name": "API client with JWT refresh and localStorage token management", "done": true },
+            { "name": "Authentication pages — login with UUID auto-format, form validation, password toggle", "done": true },
+            { "name": "Protected route middleware (Next.js Edge Runtime, redirects to /login)", "done": true },
+            { "name": "Layout shell — sidebar, mobile overlay, role-aware nav, logout", "done": true },
+            { "name": "Lead management — list with filters/pagination, detail page, create dialog", "done": true },
+            { "name": "Real-time chat UI — WebSocket client, streaming bubbles, TypingIndicator, BANT score card", "done": true },
+            { "name": "Analytics dashboard — stats cards, recent leads, BANT reference card", "done": true },
+            { "name": "Internal admin panel — /admin route group with overview (service health) and AI sandbox pages", "done": true }
+          ]
+        }
+      ]
+    },
+
+    "phase2": {
+      "id": "phase2",
+      "name": "Multi-Tenant Dashboard & Analytics",
+      "description": "Full SaaS multi-tenant foundation: schema isolation, RBAC, tenant config, WhatsApp, RAG, analytics, handoff queue, and CRM integrations.",
+      "status": "in_progress",
+      "percentComplete": 49,
+      "weekDelta": 12,
+      "estimatedWeeks": "6-8",
+      "steps": [
+        {
+          "id": "p2-m-s1",
+          "name": "Maestro — Schema Migrations (011–015)",
+          "description": "Full multi-tenant schema: tenant status enum, lead company/phone columns, user_invitations table, PostgreSQL Row-Level Security (permissive), and role constraint expansion.",
+          "weight": 5,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "Migration 011 — tenant_status enum (active, suspended, trial)", "done": true },
+            { "name": "Migration 012 — add company and phone columns to leads", "done": true },
+            { "name": "Migration 013 — create user_invitations table (token, role, expiry, tenant_id)", "done": true },
+            { "name": "Migration 014 — enable PostgreSQL RLS on tenants, leads, conversations, messages, users (PERMISSIVE)", "done": true },
+            { "name": "Migration 015 — expand users_role_check constraint to include Phase 2 roles (owner, member, readonly)", "done": true },
+            { "name": "TenantStatus domain type + Validate() update", "done": true },
+            { "name": "UserInvitation domain entity (ID, TenantID, Email, Role, Token, ExpiresAt)", "done": true },
+            { "name": "IUserInvitationRepository port interface (Create, FindByToken, Delete)", "done": true }
+          ]
+        },
+        {
+          "id": "p2-m-s2",
+          "name": "Maestro — Expanded RBAC (Owner / Admin / Member / Agent / ReadOnly)",
+          "description": "New roles, new permissions, invitation-based user onboarding, and user management endpoints.",
+          "weight": 7,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "New roles: Owner, Member, ReadOnly (Agent was Phase 1)", "done": true },
+            { "name": "New permissions: ConfigManage, RAGManage, UsersManage, HandoffClaim, ExportData", "done": true },
+            { "name": "RoleAdmin granted UsersManage permission", "done": true },
+            { "name": "POST /api/v1/users/invite — invite user by email + role (UsersManage permission)", "done": true },
+            { "name": "POST /api/v1/users/accept — accept invitation with token + password (public endpoint)", "done": true },
+            { "name": "GET /api/v1/users — list all tenant users (UsersManage permission)", "done": true },
+            { "name": "DELETE /api/v1/users/:id — remove user from tenant (UsersManage permission)", "done": true },
+            { "name": "UserInvitationRepository (GORM) — CRUD on user_invitations table", "done": true },
+            { "name": "Postman collection updated — all new endpoints passing", "done": true }
+          ]
+        },
+        {
+          "id": "p2-m-s3",
+          "name": "Maestro — Tenant Configuration API",
+          "description": "Typed per-tenant AI config (LLM model, temperature, system prompt, etc.), Redis-cached reads, and self-service signup endpoint.",
+          "weight": 7,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "TenantConfig domain type with typed fields and DefaultTenantConfig()", "done": true },
+            { "name": "TenantConfigPatch with Apply() for partial updates", "done": true },
+            { "name": "GetConfig / SetConfig helpers on Tenant aggregate (JSONB round-trip)", "done": true },
+            { "name": "TenantUseCase.GetConfig — Redis cache-aside (5-min TTL), DB fallback", "done": true },
+            { "name": "TenantUseCase.UpdateConfig — patch apply + cache invalidation", "done": true },
+            { "name": "TenantUseCase.Signup — create tenant + owner atomically", "done": true },
+            { "name": "RedisTenantConfigCache (Get / Set / Invalidate)", "done": true },
+            { "name": "POST /api/v1/tenants/signup — public self-service onboarding", "done": true },
+            { "name": "GET /api/v1/tenants/config — any authenticated member", "done": true },
+            { "name": "PATCH /api/v1/tenants/config — ConfigManage permission required", "done": true }
+          ]
+        },
+        {
+          "id": "p2-m-s4",
+          "name": "Maestro — WhatsApp Business API Integration",
+          "description": "Inbound webhook, per-tenant channel credentials, FindOrCreateLeadByPhone, outbound reply via Cloud API.",
+          "weight": 9,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        },
+        {
+          "id": "p2-m-s5",
+          "name": "Maestro — Dashboard Analytics Endpoints",
+          "description": "GET /dashboard/stats, /dashboard/conversations/stats, /leads/recent, /dashboard/trend — Redis-cached (TTL 60s).",
+          "weight": 5,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        },
+        {
+          "id": "p2-m-s6",
+          "name": "Maestro — RAG Knowledge Base Endpoints",
+          "description": "POST/GET/DELETE /rag/corpus, re-index trigger. MinIO storage + AI Worker ingest call. RAGManage permission.",
+          "weight": 7,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "Migration 016 — documents table + document_status enum + RLS policy (documents_tenant_isolation)", "done": true },
+            { "name": "Document domain entity with StorageKeyFor() helper", "done": true },
+            { "name": "IDocumentRepository port interface (Create, FindByID, FindAll, UpdateStatus, Delete)", "done": true },
+            { "name": "DocumentRepository (GORM) — CRUD on documents table", "done": true },
+            { "name": "IStorageClient interface + MinIOClient (minio-go/v7) for file upload/delete/EnsureBucket", "done": true },
+            { "name": "RAGUseCase.Upload — 202 immediately, async indexDocument goroutine", "done": true },
+            { "name": "RAGUseCase.indexDocument — extractText → chunkText → IngestRAG → UpdateStatus", "done": true },
+            { "name": "POST /api/v1/rag/corpus, GET /api/v1/rag/corpus, DELETE /api/v1/rag/corpus/:id, POST /:id/reindex — all behind RAGManage", "done": true },
+            { "name": "SignRAGServiceToken (sub=maestro) added to jwtutil", "done": true },
+            { "name": "IngestRAG and DeleteRAGCollection added to IAIWorkerClient + retryingClient", "done": true },
+            { "name": "RAG handler wired conditionally — only when MINIO_ENDPOINT is set", "done": true }
+          ]
+        },
+        {
+          "id": "p2-m-s7",
+          "name": "Maestro — Human Handoff Queue",
+          "description": "HandoffEvent entity, GET /handoff, POST /claim, POST /resolve, GET /ws/live-chat/:id.",
+          "weight": 8,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        },
+        {
+          "id": "p2-m-s8",
+          "name": "Maestro — CRM & Webhook Integrations",
+          "description": "RD Station, HubSpot, generic webhook dispatcher. Events: lead.created, lead.qualified, lead.hot, handoff.created.",
+          "weight": 6,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        },
+        {
+          "id": "p2-m-s9",
+          "name": "Maestro — Lead Export & Bulk Operations",
+          "description": "GET /leads/export (CSV), PATCH /leads/bulk. ExportData permission.",
+          "weight": 4,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        },
+        {
+          "id": "p2-aw-s1",
+          "name": "AI Worker — Tenant-Aware Configuration",
+          "description": "Load TenantConfig from Redis cache / Maestro fallback before each request. Foundation for all per-tenant AI behaviour.",
+          "weight": 5,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "TenantConfig Pydantic model (llm_model, temperature, max_tokens, system_prompt_template, qualification_threshold, rag_enabled, rag_top_k)", "done": true },
+            { "name": "get_tenant_config(): Redis cache (5-min TTL) → Maestro HTTP → empty defaults", "done": true },
+            { "name": "get_tenant_config_dep FastAPI dependency (also enforces rate limit transitively)", "done": true },
+            { "name": "ChatService accepts TenantConfig instead of tenant_id", "done": true },
+            { "name": "LLM params (model, temperature, max_tokens) resolved per-tenant with Settings fallback (zero-value sentinel)", "done": true },
+            { "name": "maestro_internal_url and qdrant_url added to Settings", "done": true }
+          ]
+        },
+        {
+          "id": "p2-aw-s2",
+          "name": "AI Worker — Per-Tenant Qdrant RAG (replaces FAISS)",
+          "description": "One Qdrant collection per tenant (tenant_{id}). Same sentence-transformers model. Gated on rag_enabled flag.",
+          "weight": 8,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "QdrantVectorStore — per-tenant collections (tenant_{id}), deterministic chunk IDs via SHA-256 upsert", "done": true },
+            { "name": "QdrantRetriever with retrieve_async() — returns [] on error or missing collection", "done": true },
+            { "name": "get_qdrant_retriever() FastAPI dependency — returns None when qdrant_url unset", "done": true },
+            { "name": "EmbeddingProvider Protocol + SentenceTransformerEmbedder singleton", "done": true },
+            { "name": "FAISSRetriever updated with optional tenant_id param (backward compatible)", "done": true },
+            { "name": "ChatService._retrieve_context — Qdrant (rag_enabled=True) → FAISS fallback → None", "done": true }
+          ]
+        },
+        {
+          "id": "p2-aw-s3",
+          "name": "AI Worker — Document Ingestion Pipeline",
+          "description": "POST /v1/rag/ingest (service JWT) — receives {tenant_id, chunks} from Maestro, embeds and upserts into tenant's Qdrant collection.",
+          "weight": 6,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "POST /v1/rag/ingest — service JWT (sub=maestro), tenant_id ownership check", "done": true },
+            { "name": "DELETE /v1/rag/collection — deletes tenant's Qdrant collection", "done": true },
+            { "name": "IngestionService.ingest() — embeds chunks and upserts into Qdrant", "done": true },
+            { "name": "IngestionService.chunk_text() — sliding-window (size=500, overlap=50)", "done": true },
+            { "name": "verify_service_token dependency — validates JWT, enforces sub whitelist {maestro}", "done": true },
+            { "name": "503 response when Qdrant unavailable (QDRANT_URL unset)", "done": true }
+          ]
+        },
+        {
+          "id": "p2-aw-s4",
+          "name": "AI Worker — Configurable LLM per Tenant",
+          "description": "GroqProvider, OpenAIProvider, AnthropicProvider behind a LLMProvider Protocol; factory selects by model prefix.",
+          "weight": 6,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        },
+        {
+          "id": "p2-aw-s5",
+          "name": "AI Worker — Dynamic System Prompt",
+          "description": "Template variables: {sdr_name}, {company_name}, {domain}, {products}, {qualification_threshold}. RAG context block appended when enabled.",
+          "weight": 4,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        },
+        {
+          "id": "p2-aw-s6",
+          "name": "AI Worker — Handoff Detection",
+          "description": "HandoffDetector.should_handoff(): high score, user frustration, low RAG confidence, commercial intent. Emits SSE event:handoff.",
+          "weight": 7,
+          "percentComplete": 80,
+          "status": "in_progress",
+          "weekDelta": 6,
+          "subTasks": [
+            { "name": "HandoffDetector.should_handoff() — stateless class, injected via FastAPI dependency", "done": true },
+            { "name": "Rule 1: high_score — BANT total meets qualification_threshold (default 70)", "done": true },
+            { "name": "Rule 2: user_frustration — frustration signals in last 3 user messages (PT + EN)", "done": true },
+            { "name": "Rule 3: low_confidence — RAG active but retrieval_score < 0.30", "done": true },
+            { "name": "Rule 4: commercial_request — pricing/proposal signals in most recent message", "done": true },
+            { "name": "SSE event:handoff emitted in chat endpoint and forwarded via WebSocket bridge", "done": false, "notes": "HandoffDetector is wired as dependency in chat.py but the handoff SSE event is not yet emitted" }
+          ]
+        },
+        {
+          "id": "p2-aw-s7",
+          "name": "AI Worker — Conversation Analytics",
+          "description": "GET /v1/analytics/qualification, GET /v1/analytics/response-time — called internally by Maestro dashboard endpoints.",
+          "weight": 4,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        },
+        {
+          "id": "p2-fe-s1",
+          "name": "Frontend — Analytics Dashboard (real data)",
+          "description": "Replaces placeholder stats cards. Stats row, BANT funnel chart (SVG), 30-day trend sparkline, recent leads table.",
+          "weight": 5,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        },
+        {
+          "id": "p2-fe-s2",
+          "name": "Frontend — Knowledge Base Management",
+          "description": "Drag-and-drop upload (PDF/DOCX/TXT, max 10 MB). Documents table with status polling every 5s. RAGManage permission.",
+          "weight": 6,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 6,
+          "subTasks": [
+            { "name": "rag-service.ts — listDocuments, uploadDocuments (sequential per-file FormData), deleteDocument, reindexDocument", "done": true },
+            { "name": "use-knowledge-base.ts — useDocuments (5s polling while any doc processing), useDeleteDocument (optimistic), useReindexDocument", "done": true },
+            { "name": "DocumentUploader component — drag-and-drop + file picker, client-side type/size validation (PDF/DOCX/TXT, ≤10 MB)", "done": true },
+            { "name": "DocumentRow component — StatusBadge (gold=processing, sage=ready, terra=failed), reindex button for failed, inline delete confirm", "done": true },
+            { "name": "/knowledge-base page — upload zone (owner/admin only), processing notice, documents table, loading/error/empty states", "done": true },
+            { "name": "Knowledge base nav item added to sidebar (owner/admin roles only, BookOpen icon)", "done": true },
+            { "name": "Document and DocumentStatus types added to domain.ts", "done": true }
+          ]
+        },
+        {
+          "id": "p2-fe-s3",
+          "name": "Frontend — Tenant Settings & Prompt Editor",
+          "description": "LLM model selector, temperature slider, max tokens, qualification threshold, system prompt editor with variable hints.",
+          "weight": 5,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "/settings route (protected) — admin-only edit, read-only view for other roles", "done": true },
+            { "name": "LLM model text input with provider prefix hints (gpt-*, claude-*, llama-*)", "done": true },
+            { "name": "Temperature range slider (0–2.0, step 0.1) with live value readout", "done": true },
+            { "name": "Max tokens and qualification threshold number inputs", "done": true },
+            { "name": "System prompt textarea with variable hint chips ({sdr_name}, {company_name}, {domain}, {products}, {qualification_threshold})", "done": true },
+            { "name": "Settings nav item added to sidebar (admin role only)", "done": true },
+            { "name": "tenantService (getConfig / patchConfig) + TenantConfig / TenantConfigPatch types in domain.ts", "done": true },
+            { "name": "useTenantConfig (React Query) + usePatchTenantConfig (mutation with cache update on success)", "done": true },
+            { "name": "9 unit tests — tenant-service.test.ts + use-tenant-config.test.ts", "done": true }
+          ]
+        },
+        {
+          "id": "p2-fe-s4",
+          "name": "Frontend — User Management",
+          "description": "Members table, invite dialog, remove member (owner only). accept-invite page for invitation acceptance.",
+          "weight": 5,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 5,
+          "subTasks": [
+            { "name": "user-service.ts — list, invite, remove, acceptInvitation", "done": true },
+            { "name": "use-users.ts — useUsers (query), useInviteUser, useRemoveUser (optimistic), useAcceptInvitation (mutations)", "done": true },
+            { "name": "/settings/users page — members table with role badges, joined date, inline delete confirm, invite dialog", "done": true },
+            { "name": "/settings layout — tab nav (Configurações / Membros), Membros tab gated to owner/admin", "done": true },
+            { "name": "/accept-invite page — token from URL query param, password + confirm form, Suspense boundary", "done": true },
+            { "name": "accept-invite added to PUBLIC_PATHS in middleware — unauthenticated invitees can access", "done": true },
+            { "name": "21 unit tests — user-service.test.ts (9) + use-users.test.ts (12)", "done": true }
+          ]
+        },
+        {
+          "id": "p2-fe-s5",
+          "name": "Frontend — Human Handoff Queue",
+          "description": "Queue cards with wait time, last 3 messages preview, Assumir Atendimento button. Badge count in sidebar polling every 5s.",
+          "weight": 4,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        },
+        {
+          "id": "p2-fe-s6",
+          "name": "Frontend — Live Agent Chat",
+          "description": "Full conversation history + mode toggle (direct reply / AI suggestion). AI suggestion panel with accept/edit/dismiss.",
+          "weight": 6,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        },
+        {
+          "id": "p2-fe-s7",
+          "name": "Frontend — Lead Export & Bulk Actions",
+          "description": "Checkbox column, bulk action bar, Exportar CSV button. ExportData permission.",
+          "weight": 3,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        },
+        {
+          "id": "p2-fe-s8",
+          "name": "Frontend — Tenant Signup (Self-Service Onboarding)",
+          "description": "3-step wizard: company info → owner account → first AI config. Calls POST /api/v1/tenants/signup.",
+          "weight": 4,
+          "percentComplete": 0,
+          "status": "not_started",
+          "weekDelta": 0,
+          "subTasks": []
+        }
+      ]
+    },
+
+    "phase3": {
+      "id": "phase3",
+      "name": "CRM Integrations & Channel Expansion",
+      "description": "Native integrations with RD Station, HubSpot, Pipefy, WhatsApp Business, and Slack notifications.",
+      "status": "not_started",
+      "percentComplete": 0,
+      "weekDelta": 0,
+      "estimatedWeeks": "4-6",
+      "steps": [
+        { "id": "p3-s1", "name": "RD Station Integration", "weight": 20, "percentComplete": 0, "status": "not_started", "weekDelta": 0, "subTasks": [] },
+        { "id": "p3-s2", "name": "HubSpot Integration",    "weight": 20, "percentComplete": 0, "status": "not_started", "weekDelta": 0, "subTasks": [] },
+        { "id": "p3-s3", "name": "Pipefy Integration",     "weight": 15, "percentComplete": 0, "status": "not_started", "weekDelta": 0, "subTasks": [] },
+        { "id": "p3-s4", "name": "WhatsApp Business API",  "weight": 25, "percentComplete": 0, "status": "not_started", "weekDelta": 0, "subTasks": [] },
+        { "id": "p3-s5", "name": "Webhook Engine",         "weight": 10, "percentComplete": 0, "status": "not_started", "weekDelta": 0, "subTasks": [] },
+        { "id": "p3-s6", "name": "Slack / Email Alerts",   "weight": 10, "percentComplete": 0, "status": "not_started", "weekDelta": 0, "subTasks": [] }
+      ]
+    },
+
+    "phase4": {
+      "id": "phase4",
+      "name": "Enterprise Features & Fine-Tuning",
+      "description": "Dedicated AI worker pools, custom model fine-tuning, advanced RBAC, SLA monitoring, and Kubernetes deployment.",
+      "status": "not_started",
+      "percentComplete": 0,
+      "weekDelta": 0,
+      "estimatedWeeks": "6-8",
+      "steps": [
+        { "id": "p4-s1", "name": "Dedicated AI Worker Pools",    "weight": 25, "percentComplete": 0, "status": "not_started", "weekDelta": 0, "subTasks": [] },
+        { "id": "p4-s2", "name": "Custom Model Fine-Tuning",     "weight": 20, "percentComplete": 0, "status": "not_started", "weekDelta": 0, "subTasks": [] },
+        { "id": "p4-s3", "name": "Advanced RBAC & SSO",          "weight": 15, "percentComplete": 0, "status": "not_started", "weekDelta": 0, "subTasks": [] },
+        { "id": "p4-s4", "name": "SLA Monitoring & Reporting",   "weight": 15, "percentComplete": 0, "status": "not_started", "weekDelta": 0, "subTasks": [] },
+        { "id": "p4-s5", "name": "Kubernetes / Capy Deployment", "weight": 15, "percentComplete": 0, "status": "not_started", "weekDelta": 0, "subTasks": [] },
+        { "id": "p4-s6", "name": "AI Performance Benchmarking",  "weight": 10, "percentComplete": 0, "status": "not_started", "weekDelta": 0, "subTasks": [] }
+      ]
+    }
+  },
+
+  "security": {
+    "totalFound": 48,
+    "totalFixed": 48,
+    "totalOpen": 0,
+    "bySeverity": {
+      "critical": { "found": 4,  "fixed": 4,  "open": 0 },
+      "high":     { "found": 18, "fixed": 18, "open": 0 },
+      "medium":   { "found": 17, "fixed": 17, "open": 0 },
+      "low":      { "found": 9,  "fixed": 9,  "open": 0 }
+    },
+    "weekDelta": {
+      "found": 0,
+      "fixed": 0
+    },
+    "positiveFindings": [
+      "All repository queries use GORM parameterized placeholders — no SQL injection surface",
+      "Every query is scoped with AND tenant_id = ? — cross-tenant access blocked at DB layer",
+      "No hardcoded secrets anywhere — all config via env vars",
+      "Domain structs carry no framework imports — hexagonal isolation is real",
+      "SQL migrations are embedded in the binary — no runtime file tampering possible",
+      "Graceful shutdown with signal handling correctly implemented",
+      "Foreign key constraints with ON DELETE CASCADE enforce referential integrity",
+      "JTI claim added to all tokens for revocation support; logout blacklists JTI in Redis",
+      "Refresh token rotation implemented — new pair issued on every /auth/refresh call",
+      "Security response headers enforced on all routes (X-Frame-Options, X-Content-Type-Options, HSTS, Referrer-Policy)",
+      "CORS configured with explicit allowed origins via gin-contrib/cors",
+      "Permission-based RBAC (LeadsRead/Write, ConversationsRead/Write, ConfigManage, RAGManage, UsersManage) on every protected route",
+      "AI Worker HTTP client has explicit configurable timeout — F-18 resolved",
+      "Token bucket rate limiter with per-IP isolation verified in integration tests",
+      "Request-ID middleware enables full request tracing across distributed logs",
+      "User invitation tokens are single-use and expire — accepted/revoked invitations are hard-deleted",
+      "Owner role cannot be assigned via invitation — OwnerRole enum value rejected at use-case layer",
+      "RAG service JWT uses dedicated sub=maestro whitelist — inter-service token cannot be used for user auth",
+      "Qdrant collection names are tenant-scoped (tenant_{id}) — cross-tenant RAG contamination is structurally impossible",
+      "accept-invite endpoint is public (no JWT required) — invitation token is the sole authentication factor",
+      "FormData uploads skip Content-Type: application/json header — browser sets correct multipart boundary"
+    ],
+    "audits": [
+      {
+        "name": "Maestro Core Security Audit — Round 1",
+        "date": "2026-02-27",
+        "scope": "Go backend — 23 source files, Steps 1 & 2 (domain, repositories, middleware, server)",
+        "summary": { "critical": 4, "high": 11, "medium": 8, "low": 4, "total": 27 },
+        "fixed":   { "critical": 4, "high": 11, "medium": 8, "low": 4, "total": 27 },
+        "openVulnerabilities": 0,
+        "findings": [
+          { "id": "C-1",  "severity": "critical", "title": "JWT_SECRET not validated on startup",                          "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "C-2",  "severity": "critical", "title": "Status filter value not validated before query",               "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "C-3",  "severity": "critical", "title": "IDOR — missing tenant isolation in FindByConversationID",      "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "C-4",  "severity": "critical", "title": "Cross-tenant message injection via IDOR on Insert",            "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "H-1",  "severity": "high",     "title": "HTTP server has no read/write/idle timeouts (Slowloris)",      "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "H-2",  "severity": "high",     "title": "No size limit on Message.Content",                            "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "H-3",  "severity": "high",     "title": "No size limit on Lead.Metadata / Tenant.Config JSONB",        "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "H-4",  "severity": "high",     "title": "Health endpoint leaks environment name",                      "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "H-5",  "severity": "high",     "title": "No rate limiting or body-size cap on any route",              "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "H-6",  "severity": "high",     "title": "IP spoofing / rate limit bypass via X-Forwarded-For",         "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "H-7",  "severity": "high",     "title": "Mutex held for full map iteration in cleanupLoop",            "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "H-8",  "severity": "high",     "title": "Mass assignment / tenant injection in Create",                "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "H-9",  "severity": "high",     "title": "Cross-tenant IDOR via unvalidated LeadID on Conversation",    "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "H-10", "severity": "high",     "title": "Global write lock held during Allow() slow path",             "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "H-11", "severity": "high",     "title": "Mass assignment / privilege escalation in Lead Update",       "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "H-12", "severity": "high",     "title": "Unbounded message retrieval — memory exhaustion DoS",         "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "M-1",  "severity": "medium",   "title": "tenantIDFromContext returns empty string silently",           "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "M-2",  "severity": "medium",   "title": "AIWorkerURL and port not validated in config",               "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "M-3",  "severity": "medium",   "title": "gin.Logger() may log Authorization header values",           "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "M-4",  "severity": "medium",   "title": "Logger sync error silently ignored on shutdown",             "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "M-5",  "severity": "medium",   "title": "Unbounded memory growth in RateLimiter entries map",         "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "M-6",  "severity": "medium",   "title": "Incomplete domain validation (Role and ConversationStatus)",  "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "M-7",  "severity": "medium",   "title": "Case-sensitivity bypass in log redaction",                   "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "M-8",  "severity": "medium",   "title": "Database DoS via unbounded offset pagination",               "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "L-1",  "severity": "low",      "title": "DB connection pool missing ConnMaxLifetime / ConnMaxIdleTime","status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "L-2",  "severity": "low",      "title": "No startup retry when PostgreSQL is temporarily unavailable", "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "L-3",  "severity": "low",      "title": "No unique constraint on (tenant_id, email) for leads",       "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" },
+          { "id": "L-4",  "severity": "low",      "title": "No string length validation on Lead.Name, Email, Phone",     "status": "fixed", "fixedIn": "PR #6 feat/maestro-core" }
+        ]
+      },
+      {
+        "name": "Maestro Core Security Audit — Round 2",
+        "date": "2026-03-04",
+        "scope": "Go backend — HTTP handlers, auth use case, JWT, config, middleware (Steps 3–7 additions)",
+        "summary": { "critical": 0, "high": 7, "medium": 9, "low": 5, "total": 21 },
+        "fixed":   { "critical": 0, "high": 7, "medium": 9, "low": 5, "total": 21 },
+        "openVulnerabilities": 0,
+        "findings": [
+          { "id": "F-01", "severity": "high",   "title": "No RBAC on tenant creation — any authenticated user could create tenants",          "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-02", "severity": "medium", "title": "No security headers (X-Frame-Options, HSTS, etc.)",                                 "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-03", "severity": "high",   "title": "No JTI claim — token revocation impossible",                                        "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-04", "severity": "high",   "title": "No CORS configuration — open to cross-origin requests",                            "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-05", "severity": "high",   "title": "No refresh token rotation — stolen refresh token reusable indefinitely",           "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-06", "severity": "high",   "title": "Role value not validated in JWT parse — arbitrary role injection",                 "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-07", "severity": "medium", "title": "Hardcoded bcrypt demo password in migration file",                                  "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-08", "severity": "high",   "title": "Field-level RBAC missing on PATCH /leads/:id — agents could escalate lead status", "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-09", "severity": "medium", "title": "Service token lacks JTI — replay risk",                                            "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-10", "severity": "high",   "title": "Rate limiter bypassable via spoofed client IP (TRUSTED_PROXIES too wide)",         "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-11", "severity": "medium", "title": "Missing audit logging for sensitive auth operations",                               "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-12", "severity": "low",    "title": "APP_ENV not validated — unexpected logging modes in prod",                         "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-13", "severity": "medium", "title": "No UUID validation on path parameters",                                            "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-14", "severity": "medium", "title": "Request binding tags missing max-length constraints on lead fields",               "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-15", "severity": "medium", "title": "Demo credentials documented in plaintext in source (migration comment)",           "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-16", "severity": "low",    "title": "Response pagination page cap is silent — client confusion risk",                   "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-17", "severity": "low",    "title": "DB connection pool has no explicit acquisition timeout",                           "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-18", "severity": "medium", "title": "No explicit HTTP client for AI Worker — inherits Go default (no timeout)",         "status": "fixed", "fixedIn": "PR #9 feat/maestro-step6-unit-tests" },
+          { "id": "F-19", "severity": "low",    "title": "Metadata JSONB validates after full parse — minor DoS surface",                   "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-22", "severity": "medium", "title": "Unbounded memory allocation for conversation history — 500 msgs × 100 KB = 50 MB","status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" },
+          { "id": "F-23", "severity": "low",    "title": "Unhandled tenant domain collision and lack of slug normalization",                 "status": "fixed", "fixedIn": "PR #7 feat/frontend-auth" }
+        ]
+      }
+    ]
+  },
+
+  "tests": {
+    "unitTests": {
+      "total": 607,
+      "passing": 607,
+      "failing": 0,
+      "byService": {
+        "maestro":  264,
+        "aiWorker": 204,
+        "frontend": 139
+      }
+    },
+    "integrationTests": {
+      "total":   73,
+      "passing": 73,
+      "failing": 0
+    },
+    "e2eTests": {
+      "total":   0,
+      "passing": 0,
+      "failing": 0
+    },
+    "manualTests": {
+      "postmanCollections": 3,
+      "postmanRequests":    56
+    },
+    "coverage": {
+      "maestro":  44.1,
+      "aiWorker": 95.0,
+      "frontend": null
+    },
+    "frameworks": {
+      "maestro":  "go test ./...",
+      "aiWorker": "pytest + pytest-cov",
+      "frontend": "Jest + React Testing Library"
+    },
+    "weekDelta": {
+      "added": 44
+    }
+  },
+
+  "codeMetrics": {
+    "totalLinesOfCode": 20647,
+    "byService": {
+      "maestro": {
+        "language": "Go",
+        "loc": 6776,
+        "files": 66,
+        "dependencies": 62
+      },
+      "aiWorker": {
+        "language": "Python",
+        "loc": 4695,
+        "files": 55,
+        "dependencies": 90
+      },
+      "frontend": {
+        "language": "TypeScript / React",
+        "loc": 8987,
+        "files": 85,
+        "dependencies": 25
+      },
+      "database": {
+        "language": "SQL",
+        "loc": 189,
+        "files": 17
+      }
+    },
+    "weekDelta": {
+      "linesAdded": 2450,
+      "linesRemoved": 75,
+      "netChange": 2375
+    }
+  },
+
+  "architecture": {
+    "services": [
+      { "name": "maestro",    "language": "Go 1.24",       "status": "partial",  "healthCheck": true  },
+      { "name": "ai-worker",  "language": "Python 3.13",   "status": "partial",  "healthCheck": true  },
+      { "name": "frontend",   "language": "Next.js 16",    "status": "partial",  "healthCheck": false },
+      { "name": "postgres",   "language": "PostgreSQL 16", "status": "complete", "healthCheck": true  },
+      { "name": "redis",      "language": "Redis 7",       "status": "complete", "healthCheck": true  },
+      { "name": "qdrant",     "language": "Qdrant",        "status": "complete", "healthCheck": true  },
+      { "name": "minio",      "language": "MinIO",         "status": "complete", "healthCheck": true  },
+      { "name": "prometheus", "language": "Prometheus",    "status": "complete", "healthCheck": false },
+      { "name": "grafana",    "language": "Grafana",       "status": "complete", "healthCheck": false }
+    ],
+    "database": {
+      "engine": "PostgreSQL 16",
+      "tables": 11,
+      "migrations": 16,
+      "rowLevelSecurity": true,
+      "multiTenancy": true
+    },
+    "apiEndpoints": {
+      "defined":       32,
+      "implemented":   32,
+      "withAuth":      27,
+      "withRateLimit": 24
+    },
+    "patterns": [
+      "Clean / Hexagonal Architecture",
+      "Repository Pattern",
+      "Dependency Injection",
+      "SOLID Principles",
+      "Multi-Tenancy with Row-Level Security",
+      "Domain-Driven Design entities",
+      "Token-Bucket Rate Limiting",
+      "Server-Sent Events (SSE) streaming",
+      "Refresh Token Rotation",
+      "JWT with JTI and Redis Blacklist for token revocation",
+      "WebSocket Real-time Bridge (Hub pattern)",
+      "Permission-based RBAC middleware",
+      "Cache-aside Pattern (Redis conversation history)",
+      "Testcontainers for ephemeral integration test infrastructure",
+      "Static RAG with FAISS (file-based vector retrieval + context injection)",
+      "Invitation-based user onboarding (HMAC token, single-use, expiry enforcement)",
+      "Expanded permission matrix (Owner / Admin / Agent / Member / ReadOnly)",
+      "Per-Tenant Qdrant RAG (collection-per-tenant, structural cross-tenant isolation)",
+      "Service JWT inter-service authentication (sub whitelist, dedicated signing function)",
+      "Async document indexing pipeline (202 Accepted → goroutine → Qdrant upsert → status update)",
+      "Zero-value sentinel for tenant config overrides (empty = use platform default)",
+      "Optimistic UI updates with rollback on error (TanStack Query — delete document, remove user)",
+      "Status polling via refetchInterval function (5s while any document is processing)",
+      "Suspense boundary isolation for useSearchParams() in Next.js App Router"
+    ]
+  },
+
+  "infrastructure": {
+    "dockerServices": 9,
+    "makefileTargets": 74,
+    "environments": ["development", "staging", "production"],
+    "ciConfigured": false,
+    "cdConfigured": false,
+    "monitoringStack": ["Prometheus", "Grafana"],
+    "observability": {
+      "loggingConfigured":  true,
+      "metricsConfigured":  true,
+      "tracingConfigured":  false
+    }
+  },
+
+  "weekHighlights": {
+    "shipped": [
+      "Phase 2 Frontend Step 4 (p2-fe-s4) — User Management UI: /settings/users members table with role badges and joined date, invite dialog, inline remove confirm (owner only), settings tab layout, 21 unit tests (user-service + use-users hooks)",
+      "Phase 2 Frontend Step 2 (p2-fe-s2) — Knowledge Base Management: drag-and-drop DocumentUploader (PDF/DOCX/TXT ≤10 MB), DocumentRow with StatusBadge, reindex button for failed docs, 5s polling via refetchInterval, optimistic delete with rollback, RAGManage permission gate",
+      "Phase 2 AI Worker Step 6 (partial, p2-aw-s6) — HandoffDetector with all 4 rules implemented (high_score, user_frustration, low_confidence, commercial_request), 19 unit tests, injected as FastAPI dependency in chat endpoint"
+    ],
+    "fixed": [
+      "/accept-invite page missing from PUBLIC_PATHS in Next.js middleware — unauthenticated invitees were redirected to /login before setting their password",
+      "AcceptInviteForm missing Suspense boundary — Next.js App Router requires Suspense around components calling useSearchParams()",
+      "apiClient always set Content-Type: application/json — fixed by detecting instanceof FormData and omitting the header so browsers can set the correct multipart boundary"
+    ],
+    "started": [],
+    "blockers": [
+      "SSE event:handoff not yet emitted in chat.py — HandoffDetector is wired as a dependency but the handoff event is not forwarded through the WebSocket bridge to complete p2-aw-s6",
+      "Frontend Step 8 (tenant signup wizard) blocked — requires payment gate decision before a public self-service UI can be exposed (no Stripe or equivalent in scope)"
+    ],
+    "nextWeekPlanned": [
+      "Complete p2-aw-s6 — emit SSE event:handoff in chat.py stream loop and forward via Maestro WebSocket bridge",
+      "Phase 2 Maestro Step 5 — Dashboard Analytics Endpoints (GET /dashboard/stats, /dashboard/conversations/stats, /leads/recent — Redis TTL-60s cache)",
+      "Phase 2 Frontend Step 1 — Analytics Dashboard with real data (stats row, BANT funnel SVG chart, 30-day trend sparkline)",
+      "Phase 2 AI Worker Step 4 — Configurable LLM per tenant (GroqProvider, OpenAIProvider, AnthropicProvider behind LLMProvider Protocol)",
+      "Phase 2 AI Worker Step 5 — Dynamic System Prompt with template variable substitution ({sdr_name}, {company_name}, {domain}, {products})"
+    ]
+  }
+}
