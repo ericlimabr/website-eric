@@ -30,7 +30,7 @@ export default function DashboardShell({ snapshots }: { snapshots: Snapshot[] })
       {snapshots.length > 1 && (
         <div className="bg-background border-b border-border">
           <div className="max-w-7xl mx-auto px-4 lg:px-8">
-            <div className="flex gap-2 overflow-x-auto py-3">
+            <div className="flex gap-2 overflow-x-auto py-3 scrollbar-eric">
               {snapshots.map((s, i) => (
                 <button
                   key={s.meta.week}
