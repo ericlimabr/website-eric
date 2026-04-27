@@ -1,0 +1,375 @@
+{
+  "meta": {
+    "project": "Mulheres em Tech Career Hub",
+    "snapshotVersion": "1.0.0",
+    "week": 4,
+    "period": {
+      "start": "2026-04-20",
+      "end": "2026-04-26"
+    },
+    "generatedAt": "2026-04-25T23:59:00Z",
+    "generatedBy": "claude-sonnet-4-6",
+    "previousSnapshotWeek": 3
+  },
+
+  "git": {
+    "branch": "main",
+    "totalCommits": 36,
+    "weekCommits": 8,
+    "pullRequests": {
+      "merged": 4,
+      "open": 0
+    },
+    "linesAdded": 7368,
+    "linesRemoved": 21141,
+    "filesChanged": 167,
+    "commitLog": [
+      { "hash": "97b163abaf3df78c7348db89899de022021d3d6b", "date": "2026-04-24", "message": "feat(uploads): presigned upload flow, MinIO docker-compose, and docs",                        "type": "feat",  "isMerge": false, "pr": 10 },
+      { "hash": "07dd379d98d0c60f17c3f3f865dd6aae2c942ae2", "date": "2026-04-24", "message": "Merge pull request #10 from empowergen/feat/uploads-module-and-docker-setup",              "type": "merge", "isMerge": true,  "pr": 10 },
+      { "hash": "c0e7abc52fbd448903c5e47e2b3c90f31376cb08", "date": "2026-04-24", "message": "feat(phase-3): CV persistence, mentor list/booking, pagination, and session history",      "type": "feat",  "isMerge": false, "pr": 5  },
+      { "hash": "981d0c66b299c751b5eca5c5ff1109a7e55de3a1", "date": "2026-04-24", "message": "Merge pull request #5 from empowergen/feat/mentorship-pagination-and-session-history",    "type": "merge", "isMerge": true,  "pr": 5  },
+      { "hash": "6076dbc9d7d911a49a6ddab8419c6aed8af47a06", "date": "2026-04-25", "message": "feat: return publicUrl from confirmUpload and fix CurrentUser extraction",                  "type": "feat",  "isMerge": false, "pr": 11 },
+      { "hash": "19ca01697749faabc40d68edb8c6e28d4aee5793", "date": "2026-04-25", "message": "Merge pull request #11 from empowergen/feat/uploads-confirm-public-url",                  "type": "merge", "isMerge": true,  "pr": 11 },
+      { "hash": "8511b4a400ff946e8150497a55f729e8e9bb6382", "date": "2026-04-25", "message": "feat(uploads): wire UploadsService into CareerHubComponent",                              "type": "feat",  "isMerge": false, "pr": 6  },
+      { "hash": "f8bdf6b923bb40aed2ac96f6c66758e3fef83e30", "date": "2026-04-25", "message": "Merge pull request #6 from empowergen/feat/item-19-tests",                                "type": "merge", "isMerge": true,  "pr": 6  }
+    ]
+  },
+
+  "overallProgress": {
+    "phase1PercentComplete": 100,
+    "phase2PercentComplete": 100,
+    "phase3PercentComplete": 96,
+    "phase4PercentComplete": 0,
+    "productPercentComplete": 89,
+    "weekDelta": {
+      "phase1": 10,
+      "phase2": 0,
+      "phase3": 36,
+      "phase4": 0,
+      "product": 11
+    }
+  },
+
+  "phases": {
+    "phase1": {
+      "id": "phase1",
+      "name": "Pre-Phase — NestJS Migration & Backend Foundation",
+      "description": "Full migration from single Express server.ts to production-grade NestJS: project structure, env validation, Prisma database, structured logging, health check, error handling, validation, CORS, rate limiting, AI endpoints hardening, Google OAuth + JWT auth, user profiles, and GCS file uploads.",
+      "status": "complete",
+      "percentComplete": 100,
+      "weekDelta": 10,
+      "estimatedWeeks": "2-3",
+      "steps": [
+        { "id": "p1-s1",  "name": "Project restructure",                  "description": "Migrate from Express to NestJS module structure; set up tsconfig, eslint, nest-cli.json, main.ts, AppModule.",                                                                  "weight": 5,  "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "NestJS scaffold and directory structure", "done": true }, { "name": "Remove Express entry point", "done": true }, { "name": "AppModule bootstrap", "done": true } ] },
+        { "id": "p1-s2",  "name": "Environment & config validation",      "description": "ConfigModule.forRoot() with Joi schema; configuration.ts mapping all env vars.",                                                                                                 "weight": 5,  "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "ConfigModule with Joi validation", "done": true }, { "name": "configuration.ts mapping file", "done": true } ] },
+        { "id": "p1-s3",  "name": "Database: Prisma + PostgreSQL",        "description": "Full Prisma schema (11 models, 5 enums), PrismaService with lifecycle hooks, pg adapter, seed script.",                                                                          "weight": 10, "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "Prisma schema with all models", "done": true }, { "name": "PrismaService", "done": true }, { "name": "DatabaseModule", "done": true }, { "name": "Seed script", "done": true } ] },
+        { "id": "p1-s4",  "name": "Structured logging",                   "description": "nestjs-pino LoggerModule with pino-pretty in dev, raw JSON in production; bufferLogs in main.ts.",                                                                               "weight": 5,  "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "LoggerModule.forRootAsync with ConfigService", "done": true }, { "name": "pino-pretty dev transport", "done": true } ] },
+        { "id": "p1-s5",  "name": "Health check endpoint",                "description": "GET /health via @nestjs/terminus; required for Cloud Run health probe.",                                                                                                          "weight": 5,  "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "HealthModule with TerminusModule", "done": true }, { "name": "HealthController GET /health", "done": true } ] },
+        { "id": "p1-s6",  "name": "Centralized error handler",            "description": "Global @Catch() HttpExceptionFilter returning structured JSON error responses.",                                                                                                  "weight": 5,  "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "HttpExceptionFilter class", "done": true }, { "name": "app.useGlobalFilters() wiring", "done": true } ] },
+        { "id": "p1-s7",  "name": "Input validation (DTOs)",              "description": "Global ValidationPipe + 5 AI DTO classes with class-validator decorators.",                                                                                                      "weight": 8,  "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "Global ValidationPipe", "done": true }, { "name": "GenerateTextDto", "done": true }, { "name": "GenerateImageDto", "done": true }, { "name": "GenerateTextThinkingDto", "done": true }, { "name": "AnalyzeImageDto", "done": true }, { "name": "GroundedSearchDto", "done": true } ] },
+        { "id": "p1-s8",  "name": "CORS hardening",                       "description": "app.enableCors() with origin allowlist (FRONTEND_URL + localhost).",                                                                                                             "weight": 3,  "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "CORS origin callback with allowlist", "done": true } ] },
+        { "id": "p1-s9",  "name": "Rate limiting",                        "description": "ThrottlerModule.forRoot() (30 req/60s global) with ThrottlerGuard as APP_GUARD.",                                                                                               "weight": 5,  "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "ThrottlerModule.forRoot()", "done": true }, { "name": "APP_GUARD registration", "done": true } ] },
+        { "id": "p1-s10", "name": "Apply guards to AI endpoints",         "description": "AiModule / AiController / AiService migrating 5 handlers from server.ts; AI-specific throttle (10 req/60s).",                                                                   "weight": 8,  "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "AiService wrapping GoogleGenAI", "done": true }, { "name": "AiController with @Throttle override", "done": true }, { "name": "AiModule registration", "done": true } ] },
+        { "id": "p1-s11", "name": "Authentication: Google OAuth + JWT",   "description": "GoogleStrategy, JwtModule, AuthService (issue/refresh/revoke tokens), AuthController (4 endpoints).",                                                                           "weight": 15, "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "GoogleStrategy", "done": true }, { "name": "AuthService issueAccessToken", "done": true }, { "name": "AuthService issueRefreshToken", "done": true }, { "name": "AuthService refreshAccessToken", "done": true }, { "name": "AuthService revokeRefreshToken", "done": true }, { "name": "AuthController 4 endpoints", "done": true }, { "name": "AuthModule", "done": true } ] },
+        { "id": "p1-s12", "name": "JWT guard",                            "description": "JwtStrategy, JwtAuthGuard, RolesGuard, @Roles() and @CurrentUser() decorators; guard enabled on AiController.",                                                                "weight": 6,  "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "JwtStrategy", "done": true }, { "name": "JwtAuthGuard", "done": true }, { "name": "RolesGuard", "done": true }, { "name": "@Roles() decorator", "done": true }, { "name": "@CurrentUser() decorator", "done": true } ] },
+        { "id": "p1-s13", "name": "User profile endpoints",               "description": "UsersModule with GET /users/me and PATCH /users/me; Prisma transaction for partial update.",                                                                                     "weight": 10, "percentComplete": 100, "status": "complete", "weekDelta": 0,  "subTasks": [ { "name": "PatchUserDto", "done": true }, { "name": "UsersService getMe + patchMe", "done": true }, { "name": "UsersController", "done": true } ] },
+        { "id": "p1-s14", "name": "File storage: presigned uploads",      "description": "UploadsModule with POST /uploads/presign (AWS SDK v3 getSignedUrl via MinIO S3-compatible endpoint) and POST /uploads/:fileId/confirm. FileUpload Prisma model tracks lifecycle. STORAGE_PUBLIC_URL rewrites internal Docker hostname in presigned URL before returning to browser.",
+          "weight": 10, "percentComplete": 100, "status": "complete", "weekDelta": 10, "subTasks": [ { "name": "PresignDto (fileName, mimeType, sizeBytes with allowlist)", "done": true }, { "name": "UploadsService.getPresignedUploadUrl() with S3Client + getSignedUrl", "done": true }, { "name": "UploadsController POST /uploads/presign + POST /uploads/:fileId/confirm", "done": true }, { "name": "FileUpload Prisma model (pending/confirmed lifecycle)", "done": true }, { "name": "UploadsService.confirmUpload() returns fileId, key, publicUrl", "done": true } ] }
+      ]
+    },
+
+    "phase2": {
+      "id": "phase2",
+      "name": "MVP — Core Product Features",
+      "description": "Full job board (CRUD, bookmarks), CV persistence, AI analytics instrumentation, and mentorship session booking. Transforms the platform from an AI-only tool into a complete career platform.",
+      "status": "complete",
+      "percentComplete": 100,
+      "weekDelta": 0,
+      "estimatedWeeks": "2-3",
+      "steps": [
+        { "id": "p2-s15", "name": "Jobs table seed data",             "description": "createMany with skipDuplicates in existing seed script; 6 sample job entries covering all workModel and level variants.",                                                     "weight": 5,  "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "Seed entries for jobs table", "done": true }, { "name": "skipDuplicates for idempotent re-runs", "done": true } ] },
+        { "id": "p2-s16", "name": "GET /jobs (paginated list)",       "description": "Multi-filter Prisma where (area, workModel, isPcd, keyword), pagination, $transaction([count, findMany]), confidential masking.",                                           "weight": 13, "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "ListJobsDto with all filters", "done": true }, { "name": "Confidential masking", "done": true }, { "name": "Paginated $transaction", "done": true } ] },
+        { "id": "p2-s17", "name": "GET /jobs/:id",                   "description": "Single findUnique + 404 on null or ARCHIVED; same confidential masking as list.",                                                                                             "weight": 6,  "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "findUnique with 404 guard", "done": true }, { "name": "404 on ARCHIVED status", "done": true } ] },
+        { "id": "p2-s18", "name": "POST /jobs (create)",              "description": "DTO validation + prisma.job.create(); companyId injected from JWT payload via @CurrentUser().",                                                                               "weight": 7,  "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "CreateJobDto", "done": true }, { "name": "companyId from JWT", "done": true } ] },
+        { "id": "p2-s19", "name": "PUT /jobs/:id (update)",           "description": "Ownership check (404 if not found, 403 if different company) + prisma.job.update() with partial body.",                                                                       "weight": 7,  "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "UpdateJobDto (PartialType)", "done": true }, { "name": "Ownership guard 403", "done": true } ] },
+        { "id": "p2-s20", "name": "DELETE /jobs/:id (soft archive)",  "description": "Status field update to ARCHIVED; reuses ownership check pattern from update.",                                                                                               "weight": 5,  "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "status: ARCHIVED update", "done": true }, { "name": "Ownership guard reuse", "done": true } ] },
+        { "id": "p2-s21", "name": "Job bookmarks",                    "description": "POST/DELETE /jobs/:id/save (upsert + deleteMany on savedJob), GET /users/me/saved-jobs (findMany with job + company join, confidential masking, savedAt field).",            "weight": 8,  "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "POST /jobs/:id/save (upsert)", "done": true }, { "name": "DELETE /jobs/:id/save (deleteMany)", "done": true }, { "name": "GET /users/me/saved-jobs with join", "done": true } ] },
+        { "id": "p2-s22", "name": "CV persistence",                   "description": "POST /users/me/cv stores JSONB content to candidateProfile; GET /users/me/cv returns it; 404 if never saved.",                                                               "weight": 8,  "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "CvContentDto", "done": true }, { "name": "POST /users/me/cv (204)", "done": true }, { "name": "GET /users/me/cv with 404", "done": true } ] },
+        { "id": "p2-s23", "name": "AI usage analytics",               "description": "AnalyticsModule + fire-and-forget trackEvent() helper; all 5 AI endpoints record latencyMs and model after each Gemini call.",                                               "weight": 7,  "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "AnalyticsService.trackEvent (void, fire-and-forget)", "done": true }, { "name": "AnalyticsModule with export", "done": true }, { "name": "AiService instruments all 5 methods", "done": true } ] },
+        { "id": "p2-s24", "name": "Mentors table seed data",          "description": "createMany with skipDuplicates; 6 mentor records matching the frontend mock array in career-hub.component.ts.",                                                               "weight": 5,  "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "Seed entries for mentors table", "done": true } ] },
+        { "id": "p2-s25", "name": "GET /mentors (list + detail)",     "description": "GET /mentors: paginated, area filter (array has), keyword search on name/title/company, isActive scope. GET /mentors/:id: 404 on inactive.",                                "weight": 9,  "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "ListMentorsDto", "done": true }, { "name": "GET /mentors with isActive filter", "done": true }, { "name": "GET /mentors/:id with 404", "done": true } ] },
+        { "id": "p2-s26", "name": "POST /mentors/:id/sessions",       "description": "Interactive $transaction(async tx => ...) checks for existing pending session (409 Conflict if found), then creates new session; requires JWT auth.",                         "weight": 14, "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "BookSessionDto", "done": true }, { "name": "$transaction duplicate check", "done": true }, { "name": "ConflictException (409) on duplicate", "done": true } ] },
+        { "id": "p2-s27", "name": "GET /users/me/mentoring-sessions", "description": "findMany filtered by candidateId, ordered by createdAt desc, with mentor relation included; requires JWT auth.",                                                              "weight": 6,  "percentComplete": 100, "status": "complete", "weekDelta": 0, "subTasks": [ { "name": "getMentoringSessions with mentor join", "done": true } ] }
+      ]
+    },
+
+    "phase3": {
+      "id": "phase3",
+      "name": "Frontend Integration",
+      "description": "Connect Angular 20 frontend to the NestJS backend, replacing all mock data and setTimeout() stubs with real API calls. Implement auth flow, protected routes, and real-time data across all feature areas.",
+      "status": "in_progress",
+      "percentComplete": 96,
+      "weekDelta": 36,
+      "estimatedWeeks": "2-3",
+      "steps": [
+        {
+          "id": "p3-s1",
+          "name": "API client & auth interceptor",
+          "description": "Angular HttpClient with functional HttpInterceptorFn; injects Authorization header; concurrent 401 handling with BehaviorSubject queue; token refresh via POST /auth/refresh; infinite-loop guard on /auth/refresh path.",
+          "weight": 20,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "auth.interceptor.ts (functional HttpInterceptorFn)", "done": true },
+            { "name": "Bearer token injection on all requests", "done": true },
+            { "name": "401 detection and token refresh with retry", "done": true },
+            { "name": "Concurrent 401 queuing (BehaviorSubject)", "done": true },
+            { "name": "Infinite-loop guard on /auth/refresh", "done": true },
+            { "name": "provideHttpClient(withInterceptors([authInterceptor]))", "done": true }
+          ]
+        },
+        {
+          "id": "p3-s2",
+          "name": "Google OAuth login flow",
+          "description": "loginWithGoogle() redirects to GET /auth/google; AuthCallbackComponent reads accessToken+refreshToken from query params, stores to localStorage, calls getProfile(), cleans URL. hydrateFromTokens() restores session on page reload.",
+          "weight": 15,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "loginWithGoogle() → window.location.href redirect", "done": true },
+            { "name": "AuthCallbackComponent reads tokens from URL params", "done": true },
+            { "name": "localStorage token storage", "done": true },
+            { "name": "hydrateFromTokens() on app init", "done": true },
+            { "name": "getProfile() called after callback to fix blank avatar", "done": true },
+            { "name": "POST /auth/refresh wired in auth.service.ts", "done": true },
+            { "name": "POST /auth/logout wired in auth.service.ts", "done": true }
+          ]
+        },
+        {
+          "id": "p3-s3",
+          "name": "Jobs page real data",
+          "description": "JobService fully rewritten with loadJobs/getJob/createJob/updateJob/deleteJob over HTTP. Model aligned: id→string UUID, company→companyName nullable, postedDate→postedAt with formatRelativeDate helper, WorkModel enum bidirectional maps. Pagination signals (currentPage/totalPages), server-side pagination controls. Bookmark HTTP wiring: loadSavedJobs on init, saveJob/unsaveJob with optimistic updates.",
+          "weight": 15,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "Job.id → string (UUID) throughout", "done": true },
+            { "name": "company → companyName nullable (confidential masking)", "done": true },
+            { "name": "postedDate → postedAt + formatRelativeDate helper", "done": true },
+            { "name": "WORK_MODEL_BACKEND_MAP + BACKEND_TO_WORK_MODEL enum maps", "done": true },
+            { "name": "matchPercentage computed client-side via match.utils.ts", "done": true },
+            { "name": "loadJobs/getJob/createJob/updateJob/deleteJob HTTP methods", "done": true },
+            { "name": "currentPage/totalPages signals + prev/next pagination UI", "done": true },
+            { "name": "loadSavedJobs on init + saveJob/unsaveJob optimistic toggle", "done": true },
+            { "name": "ngOnInit wires loadJobs + loadSavedJobs", "done": true },
+            { "name": "postJob() calls createJob() with CreateJobPayload", "done": true }
+          ]
+        },
+        {
+          "id": "p3-s4",
+          "name": "User profile page",
+          "description": "UserService.getProfile() wired to AppComponent.ngOnInit and AuthCallbackComponent — real name/email/avatar replaces blank placeholder on every load. updateProfile() service method ready. Profile form → updateProfile() binding not yet implemented.",
+          "weight": 15,
+          "percentComplete": 75,
+          "status": "in_progress",
+          "weekDelta": 0,
+          "subTasks": [
+            { "name": "UserService.getProfile() calls GET /users/me", "done": true },
+            { "name": "getProfile() tap updates authService.currentUser signal", "done": true },
+            { "name": "AppComponent.ngOnInit calls getProfile() on page reload", "done": true },
+            { "name": "AuthCallbackComponent calls getProfile() after OAuth", "done": true },
+            { "name": "UserService.updateProfile() calls PATCH /users/me", "done": true },
+            { "name": "Profile edit form wired to updateProfile()", "done": false }
+          ]
+        },
+        {
+          "id": "p3-s5",
+          "name": "CV upload & persistence",
+          "description": "UserService.loadCv() called on ngOnInit to restore saved CV from GET /users/me/cv. UserService.saveCv() called on CV content change to persist to POST /users/me/cv. UploadsService.uploadFile() wired as fire-and-forget before Gemini extraction for image and PDF files; text files are not uploaded (Gemini-only, transient).",
+          "weight": 15,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 15,
+          "subTasks": [
+            { "name": "UserService.loadCv() calls GET /users/me/cv on component init", "done": true },
+            { "name": "UserService.saveCv() calls POST /users/me/cv on content change", "done": true },
+            { "name": "UploadsService.uploadFile() wired for image files (fire-and-forget)", "done": true },
+            { "name": "UploadsService.uploadFile() wired for PDF files (fire-and-forget)", "done": true },
+            { "name": "UploadsService unit tests (5 tests) and CareerHub upload tests (3 tests)", "done": true }
+          ]
+        },
+        {
+          "id": "p3-s6",
+          "name": "Mentors & session booking",
+          "description": "MentorService.listMentors() replaces hardcoded array with GET /mentors including area filter and server-side pagination (mentorTotalPages signal). MentorService.bookSession() replaces setTimeout with POST /mentors/:id/sessions; 409 ConflictException caught (if (err.status === 409)) with user-facing message. MentorService.getMySessions() loads GET /users/me/mentoring-sessions for session history view (mentorshipView signal toggle list/history).",
+          "weight": 20,
+          "percentComplete": 100,
+          "status": "complete",
+          "weekDelta": 20,
+          "subTasks": [
+            { "name": "MentorService.listMentors() — GET /mentors with params (area filter)", "done": true },
+            { "name": "mentorTotalPages signal — server-side pagination for mentor list", "done": true },
+            { "name": "MentorService.bookSession() — POST /mentors/:id/sessions", "done": true },
+            { "name": "409 ConflictException handling (if err.status === 409) with UI message", "done": true },
+            { "name": "MentorService.getMySessions() — GET /users/me/mentoring-sessions", "done": true },
+            { "name": "mentorshipView signal toggles list/history views", "done": true }
+          ]
+        }
+      ]
+    },
+
+    "phase4": {
+      "id": "phase4",
+      "name": "Production Readiness",
+      "description": "Cloud Run deployment, integration and E2E testing, observability setup, and performance tuning. The platform goes live.",
+      "status": "not_started",
+      "percentComplete": 0,
+      "weekDelta": 0,
+      "estimatedWeeks": "1-2",
+      "steps": [
+        { "id": "p4-s1", "name": "Cloud Run deployment pipeline", "weight": 30, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p4-s2", "name": "Integration tests",             "weight": 25, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p4-s3", "name": "E2E tests",                     "weight": 25, "percentComplete": 0, "status": "not_started", "weekDelta": 0 },
+        { "id": "p4-s4", "name": "Observability & monitoring",    "weight": 20, "percentComplete": 0, "status": "not_started", "weekDelta": 0 }
+      ]
+    }
+  },
+
+  "security": {
+    "totalFound": 0,
+    "totalFixed": 0,
+    "totalOpen": 0,
+    "bySeverity": {
+      "critical": { "found": 0, "fixed": 0, "open": 0 },
+      "high":     { "found": 0, "fixed": 0, "open": 0 },
+      "medium":   { "found": 0, "fixed": 0, "open": 0 },
+      "low":      { "found": 0, "fixed": 0, "open": 0 }
+    },
+    "weekDelta": { "found": 0, "fixed": 0 },
+    "audits": [],
+    "positiveFindings": [
+      "Global ValidationPipe with whitelist + forbidNonWhitelisted rejects unknown fields",
+      "HttpExceptionFilter hides internal errors from 500 responses",
+      "ThrottlerGuard applied globally (30 req/60s) with tighter override on AI and auth endpoints (10 req/60s)",
+      "CORS locked to FRONTEND_URL + localhost allowlist",
+      "JWT access tokens expire in 1h; refresh tokens stored as bcrypt hashes",
+      "Refresh token revocation via database flag",
+      "Interactive $transaction() wraps read-then-write for duplicate session booking — no TOCTOU race condition",
+      "ConflictException (409) on duplicate pending session — prevents double-booking at the application layer",
+      "Fire-and-forget analytics never propagate errors to the request path — analytics failures are silent",
+      "Ownership check (403 ForbiddenException) on job update/archive prevents cross-company mutation",
+      "Angular auth interceptor queues concurrent 401s behind single refresh call — no duplicate refresh race",
+      "Infinite-loop guard on /auth/refresh path — revoked refresh token fails fast instead of looping",
+      "Optimistic bookmark toggle with rollback on HTTP error — UI stays consistent with server state",
+      "PresignDto allowlist (application/pdf, image/jpeg, image/png, image/webp, image/gif) + 10MB sizeBytes cap enforced at validation layer before any S3 call",
+      "UploadsService.confirmUpload() validates fileId ownership (userId check) before marking confirmed — prevents cross-user file confirmation",
+      "Presigned URL rewrite: internal MinIO Docker hostname never exposed to browser; STORAGE_PUBLIC_URL substitutes the public-facing address"
+    ]
+  },
+
+  "tests": {
+    "unitTests":        { "total": 560, "passing": 560, "failing": 0, "byService": { "maestro": 318, "aiWorker": 0, "frontend": 242 } },
+    "integrationTests": { "total": 0, "passing": 0, "failing": 0 },
+    "e2eTests":         { "total": 0, "passing": 0, "failing": 0 },
+    "manualTests":      { "postmanCollections": 0, "postmanRequests": 0 },
+    "coverage":         { "maestro": null, "aiWorker": null, "frontend": null },
+    "frameworks":       { "maestro": "Jest + ts-jest (runInBand)", "aiWorker": "n/a", "frontend": "Jest (jest-preset-angular, jsdom)" },
+    "weekDelta":        { "added": 121 }
+  },
+
+  "codeMetrics": {
+    "totalLinesOfCode": 9006,
+    "byService": {
+      "backend":  { "language": "TypeScript (NestJS)", "loc": 1821, "files": 48 },
+      "database": { "language": "Prisma SDL",          "loc": 246,  "files": 1  },
+      "frontend": { "language": "TypeScript (Angular 20)", "loc": 6939, "files": 35 }
+    },
+    "weekDelta": { "linesAdded": 228, "linesRemoved": 0, "netChange": 228 }
+  },
+
+  "architecture": {
+    "services": [
+      { "name": "backend",  "language": "TypeScript (NestJS 11)", "status": "complete", "healthCheck": true  },
+      { "name": "frontend", "language": "TypeScript (Angular 20)", "status": "partial", "healthCheck": false },
+      { "name": "postgres", "language": "PostgreSQL 16",           "status": "complete", "healthCheck": true  },
+      { "name": "minio",    "language": "MinIO (S3-compatible)",   "status": "complete", "healthCheck": true  }
+    ],
+    "database": {
+      "engine": "PostgreSQL (via Prisma)",
+      "tables": 11,
+      "migrations": 0,
+      "rowLevelSecurity": false,
+      "multiTenancy": false
+    },
+    "apiEndpoints": {
+      "defined": 28,
+      "implemented": 28,
+      "withAuth": 19,
+      "withRateLimit": 28
+    },
+    "patterns": [
+      "NestJS feature module pattern (AiModule, AuthModule, UsersModule, HealthModule, DatabaseModule, JobsModule, MentorsModule, AnalyticsModule, UploadsModule)",
+      "Global guards via APP_GUARD token",
+      "DTO-based validation with class-validator + ValidationPipe",
+      "Repository pattern via PrismaService",
+      "JWT + refresh token rotation with bcrypt hashing",
+      "AI proxy pattern — NestJS → Gemini API",
+      "Fire-and-forget analytics via void async + .catch() chain — never blocks request path",
+      "Interactive $transaction(async tx => ...) for duplicate-safe writes (read-then-write atomicity)",
+      "Prisma array has filter for tagged/categorized resources (mentor areas)",
+      "Upsert + deleteMany toggle pattern for bookmark save/unsave",
+      "Confidential job masking — companyName/companyLogo nulled at service layer for isConfidential jobs",
+      "Angular functional HttpInterceptorFn with BehaviorSubject queue for concurrent 401 refresh",
+      "Optimistic UI updates with server rollback (savedJobIds signal toggled before HTTP, reverted on error)",
+      "Signal-based state management (Angular 20 signals) — no NgRx; service signals as single source of truth",
+      "Client-side match score computation from user skills vs job tags (computeMatchPercentage util)",
+      "Bidirectional enum mapping (WorkModel Portuguese UI ↔ backend uppercase English)",
+      "S3-compatible presigned PUT flow — browser uploads directly to MinIO; backend issues 5-min signed URL and confirms after upload",
+      "Internal/public URL rewrite — presigned URL hostname replaced with STORAGE_PUBLIC_URL before returning to client; internal Docker network hostname never leaks",
+      "Docker Compose multi-service orchestration — postgres + minio + minio-init (one-shot bucket creator) + backend with health-gated startup dependencies"
+    ]
+  },
+
+  "infrastructure": {
+    "dockerServices": 4,
+    "makefileTargets": 0,
+    "environments": ["development", "production"],
+    "ciConfigured": true,
+    "cdConfigured": false,
+    "monitoringStack": ["pino (structured JSON logging)"],
+    "observability": {
+      "loggingConfigured": true,
+      "metricsConfigured": false,
+      "tracingConfigured": false
+    }
+  },
+
+  "weekHighlights": {
+    "shipped": [
+      "Phase 1 step 14 (COMPLETE): UploadsModule — POST /uploads/presign (AWS SDK v3 + MinIO S3-compatible, 5-min presigned PUT URL, PresignDto allowlist) and POST /uploads/:fileId/confirm (ownership check, returns publicUrl). FileUpload Prisma model tracks lifecycle. Phase 1 is now 100% complete.",
+      "Backend PR #11: confirmUpload now returns publicUrl (STORAGE_PUBLIC_URL + bucket + key); CurrentUser decorator corrected from @CurrentUser('sub') string extraction to @CurrentUser() object { id: string }.",
+      "Docker Compose (4 services): postgres:16 + minio (S3 API :9000, console :9001) + minio-init (one-shot mc bucket creator) + backend (health-gated on all three). GitHub Actions CI (ci.yml) wired: checkout → node 20 → npm ci → prisma generate → tsc --noEmit → npm test.",
+      "Phase 3 step 5 (COMPLETE): CV upload & persistence fully wired — loadCv() restores saved CV on init via GET /users/me/cv; saveCv() persists on change via POST /users/me/cv; uploadFile() sends image and PDF files to MinIO as fire-and-forget before Gemini extraction.",
+      "Phase 3 step 6 (COMPLETE): Mentor & session booking fully wired — listMentors() calls GET /mentors with area filter and server-side pagination (mentorTotalPages signal); bookSession() calls POST /mentors/:id/sessions with 409 conflict handling; getMySessions() calls GET /users/me/mentoring-sessions for session history; mentorshipView signal toggles list/history.",
+      "560 unit tests passing: 318 backend (25 suites) + 242 frontend (13 suites). Added 8 backend tests for UploadsService/Controller and 113 frontend tests (UploadsService 5 tests, CareerHub upload call-site 3 tests, plus CV/mentor wiring coverage)."
+    ],
+    "fixed": [
+      "@CurrentUser('sub') string extraction replaced with @CurrentUser() object pattern in UploadsController — aligns with how all other controllers consume the decorator",
+      "Coverage directory accidentally committed to frontend repo — deleted in PR #5, .gitignore updated to prevent recurrence"
+    ],
+    "started": [],
+    "blockers": [
+      "Phase 3 step 4 (User profile edit form): UserService.updateProfile() exists but no component calls it — profile edit form not yet wired to PATCH /users/me. One subtask remaining."
+    ],
+    "nextWeekPlanned": [
+      "Complete Phase 3 step 4: wire profile edit form component to UserService.updateProfile() → PATCH /users/me",
+      "Start Phase 4 step 1: Cloud Run deployment pipeline — Dockerfile verification, Cloud Build trigger, secret management via Secret Manager",
+      "Phase 4 step 2: integration test suite — supertest against live NestJS + PostgreSQL (in-memory or test DB)",
+      "Phase 4 step 3: E2E test scaffolding — Playwright or Cypress setup against Angular dev server",
+      "Phase 4 step 4: observability — Prometheus /metrics endpoint, Grafana or Cloud Monitoring dashboard"
+    ]
+  }
+}
