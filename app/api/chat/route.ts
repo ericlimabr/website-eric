@@ -10,6 +10,7 @@ import z from "zod"
 import { validateObject } from "@/functions/lib/validation"
 import { env } from "@/functions/lib/env"
 import { Redis } from "@upstash/redis"
+import { ASK_ERIC_ENABLED } from "@/constants/feature-flags"
 
 const groq = new Groq({ apiKey: env.GROQ_API_KEY })
 
@@ -40,6 +41,10 @@ const redis = new Redis({
 })
 
 export async function POST(req: Request) {
+  if (!ASK_ERIC_ENABLED) {
+    return NextResponse.json({ error: "Not found." }, { status: 404 })
+  }
+
   const uuid = crypto.randomUUID()
 
   try {
