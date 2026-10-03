@@ -5,6 +5,7 @@ import ScrollToTop from "@/components/feature/ScrollToTop"
 import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider"
 import { CONTACT_DATA } from "@/constants/contact-data"
 import AskEricChat from "@/components/feature/AskEricChat"
+import { ASK_ERIC_ENABLED } from "@/constants/feature-flags"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -94,7 +95,7 @@ export default function RootLayout({
           {children}
         </SmoothScrollProvider>
         <ScrollToTop />
-        <AskEricChat />
+        {ASK_ERIC_ENABLED && <AskEricChat />}
       </body>
     </html>
   )
