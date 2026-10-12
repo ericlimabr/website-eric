@@ -6,6 +6,8 @@ import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider"
 import { CONTACT_DATA } from "@/constants/contact-data"
 import AskEricChat from "@/components/feature/AskEricChat"
 import { ASK_ERIC_ENABLED } from "@/constants/feature-flags"
+import ConsentBanner from "@/components/feature/ConsentBanner"
+import { CONSENT_DEFAULT_SCRIPT, GTM_ID, GTM_SCRIPT } from "@/constants/gtm"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -85,17 +87,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script dangerouslySetInnerHTML={{ __html: CONSENT_DEFAULT_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: GTM_SCRIPT }} />
         <meta name="theme-color" content="#0e4429" />
         <script type="application/ld+json" suppressHydrationWarning>
           {JSON.stringify(jsonLd)}
         </script>
       </head>
       <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}>
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>
         <ScrollToTop />
         {ASK_ERIC_ENABLED && <AskEricChat />}
+        <ConsentBanner />
       </body>
     </html>
   )
