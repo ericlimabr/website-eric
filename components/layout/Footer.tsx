@@ -2,6 +2,7 @@
 
 import { CONTACT_DATA } from "@/constants/contact-data"
 import { PORTFOLIO_VERSION } from "@/constants/version"
+import { OPEN_CONSENT_EVENT } from "@/constants/gtm"
 import { motion } from "framer-motion"
 
 export default function Footer() {
@@ -52,6 +53,12 @@ export default function Footer() {
               <a href="/stack" className="text-muted-foreground hover:text-foreground transition-colors">
                 Stack
               </a>
+              <button
+                onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_EVENT))}
+                className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer md:text-right text-left"
+              >
+                Cookie preferences
+              </button>
               {/* <a
                 href="https://ericlima.com.br/blog"
                 target="_blank"
