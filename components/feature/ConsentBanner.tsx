@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { CONSENT_STORAGE_KEY, OPEN_CONSENT_EVENT } from "@/constants/gtm"
+import { ANALYTICS_COOKIE_PATTERN, CONSENT_STORAGE_KEY, OPEN_CONSENT_EVENT } from "@/constants/gtm"
 
 type Consent = "granted" | "denied"
 
@@ -22,17 +22,32 @@ function readConsent(): Consent | null {
   }
 }
 
+// Analytics cookies may live on the current host or any parent domain (GA4 uses the top-level one),
+// so expire each one on every candidate domain.
+function deleteAnalyticsCookies() {
+  const parts = window.location.hostname.split(".")
+  const domains = [""]
+  for (let i = 0; i < parts.length - 1; i++) domains.push(`; domain=.${parts.slice(i).join(".")}`)
+
+  for (const cookie of document.cookie.split(";")) {
+    const name = cookie.split("=")[0].trim()
+    if (!ANALYTICS_COOKIE_PATTERN.test(name)) continue
+    for (const domain of domains) {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${domain}`
+    }
+  }
+}
+
 function applyConsent(consent: Consent) {
   try {
     localStorage.setItem(CONSENT_STORAGE_KEY, consent)
   } catch {}
 
-  window.gtag?.("consent", "update", {
-    ad_storage: consent,
-    ad_user_data: consent,
-    ad_personalization: consent,
-    analytics_storage: consent,
-  })
+  window.gtag?.("consent", "update", { analytics_storage: consent })
+  // Clarity keeps recording until told otherwise; it is only defined once GTM has loaded it.
+  window.clarity?.("consent", consent === "granted")
+  if (consent === "denied") deleteAnalyticsCookies()
+
   window.dataLayer?.push({ event: "consent_update", consent })
   window.dispatchEvent(new Event(CONSENT_CHANGE_EVENT))
 }
@@ -85,8 +100,9 @@ export default function ConsentBanner() {
             Help me make this site better
           </h2>
           <p className="mb-8 max-w-2xl text-base leading-relaxed text-background/80 md:text-lg">
-            With your permission, analytics cookies show which projects and pages people actually read, so I know what
-            to build and write next. If you reject, no cookies are stored and Google Analytics only receives basic
+            With your permission, Google Analytics and Microsoft Clarity (which records anonymized sessions such as
+            clicks and scrolling) show which projects and pages people actually read, so I know what to build and write
+            next. If you reject, no cookies are stored, Clarity stays off and Google Analytics only receives basic
             cookieless signals, like a page being loaded. You can change your choice anytime under Cookie preferences in
             the footer.
           </p>
