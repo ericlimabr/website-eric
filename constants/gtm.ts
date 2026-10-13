@@ -4,8 +4,12 @@ export const CONSENT_STORAGE_KEY = "cookie-consent"
 
 export const OPEN_CONSENT_EVENT = "open-consent-banner"
 
+// Cookies set by GA4 (_ga, _ga_<id>) and Microsoft Clarity (_clck, _clsk), removed when consent is revoked.
+export const ANALYTICS_COOKIE_PATTERN = /^(_ga(_.*)?|_gid|_clck|_clsk)$/
+
 // Consent Mode v2 (advanced): GTM always loads, but storage starts denied until the visitor decides,
 // so Google tags send only cookieless pings. Runs before GTM loads, restoring a previously saved choice.
+// The site has no ads, so accepting only grants analytics_storage; ad signals stay denied.
 export const CONSENT_DEFAULT_SCRIPT = `
 window.dataLayer = window.dataLayer || [];
 window.gtag = function(){window.dataLayer.push(arguments);};
@@ -20,12 +24,7 @@ window.gtag('consent', 'default', {
 });
 try {
   if (localStorage.getItem('${CONSENT_STORAGE_KEY}') === 'granted') {
-    window.gtag('consent', 'update', {
-      ad_storage: 'granted',
-      ad_user_data: 'granted',
-      ad_personalization: 'granted',
-      analytics_storage: 'granted'
-    });
+    window.gtag('consent', 'update', { analytics_storage: 'granted' });
   }
 } catch (e) {}
 `
