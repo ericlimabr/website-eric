@@ -11,6 +11,10 @@ const envSchema = z.object({
   RESEND_API_KEY: z.string().min(1).optional(),
   CONTACT_MAIL_FROM: z.string().min(1).optional(),
   CONTACT_MAIL_TO: z.string().email().optional(),
+  // Aviso no WhatsApp pelo CallMeBot. Opcionais do mesmo jeito: sem eles o
+  // contato continua caindo no Telegram.
+  WHATSAPP_ALERT_PHONE: z.string().min(1).optional(),
+  WHATSAPP_ALERT_APIKEY: z.string().min(1).optional(),
 })
 
 const parsed = envSchema.safeParse(process.env)

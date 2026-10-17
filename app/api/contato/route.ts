@@ -4,7 +4,7 @@ import { Redis } from "@upstash/redis"
 import { z } from "zod"
 import { env } from "@/functions/lib/env"
 import { validateObject } from "@/functions/lib/validation"
-import { sendContactAlert, sendContactEmail, type ContactLead } from "@/functions/lib/notifications"
+import { sendContactAlert, sendContactEmail, sendWhatsAppAlert, type ContactLead } from "@/functions/lib/notifications"
 
 const redis = new Redis({ url: env.UPSTASH_REDIS_REST_URL, token: env.UPSTASH_REDIS_REST_TOKEN })
 
@@ -103,6 +103,12 @@ export async function POST(req: Request) {
     sendContactEmail(lead)
       .then((r) => r === "sem-configuracao" && console.warn(`Contato ${lead.id} sem envio de e-mail: falta configuração.`))
       .catch((e) => console.error("Envio por e-mail falhou:", e)),
+  )
+
+  waitUntil(
+    sendWhatsAppAlert(lead)
+      .then((r) => r === "sem-configuracao" && console.warn(`Contato ${lead.id} sem aviso no WhatsApp: falta configuração.`))
+      .catch((e) => console.error("Aviso por WhatsApp falhou:", e)),
   )
 
   return NextResponse.json({ ok: true })
