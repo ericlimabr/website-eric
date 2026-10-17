@@ -1,8 +1,13 @@
+// O endereço que APARECE no site. Quando a caixa do domínio estiver de pé ele
+// passa a receber de verdade; até lá quem escreve direto para ele não chega.
+export const CONTACT_EMAIL = "contato@ericlima.com.br"
+export const CONTACT_MAILTO = `mailto:${CONTACT_EMAIL}`
+
 export const CONTACT_DATA = [
   {
     label: "Email",
-    value: "erpdl2@gmail.com",
-    href: "mailto:erpdl2@gmail.com",
+    value: CONTACT_EMAIL,
+    href: CONTACT_MAILTO,
     prefix: "01",
   },
   {
@@ -19,10 +24,7 @@ export const CONTACT_DATA = [
     prefix: "03",
     target: "_blank",
   },
-  {
-    label: "WhatsApp",
-    value: "+55 61 99103-6135",
-    href: "https://wa.me/5561991036135",
-    prefix: "04",
-  },
 ]
+
+// Para onde o aviso de um envio novo é entregue hoje. Nunca vai para a página.
+export const CONTACT_NOTIFY_FALLBACK = "gestaoadverb@gmail.com"
