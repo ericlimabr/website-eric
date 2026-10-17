@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/constants/contact-data"
 import ContactForm from "@/components/feature/ContactForm"
+import RolarPara from "@/components/layout/RolarPara"
 
 
 export const metadata: Metadata = {
@@ -126,18 +127,18 @@ export default function Sites() {
             No fim você recebe o site no ar, não um arquivo para alguém montar depois.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href="#contato"
+            <RolarPara
+              alvo="#contato"
               className="rounded bg-primary px-7 py-4 font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
               Falar comigo
-            </a>
-            <a
-              href="#trabalhos"
+            </RolarPara>
+            <RolarPara
+              alvo="#trabalhos"
               className="rounded border border-border px-7 py-4 font-medium transition-colors hover:border-primary hover:text-primary"
             >
               Ver trabalhos
-            </a>
+            </RolarPara>
           </div>
         </div>
       </section>
