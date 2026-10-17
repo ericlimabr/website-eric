@@ -1,6 +1,6 @@
-// O endereço de contato mora aqui e em nenhum outro lugar: quando a caixa do
-// domínio existir, troca-se esta linha e o site inteiro acompanha.
-export const CONTACT_EMAIL = "erpdl2@gmail.com"
+// O endereço que APARECE no site. Quando a caixa do domínio estiver de pé ele
+// passa a receber de verdade; até lá quem escreve direto para ele não chega.
+export const CONTACT_EMAIL = "contato@ericlima.com.br"
 export const CONTACT_MAILTO = `mailto:${CONTACT_EMAIL}`
 
 export const CONTACT_DATA = [
@@ -25,3 +25,6 @@ export const CONTACT_DATA = [
     target: "_blank",
   },
 ]
+
+// Para onde o aviso de um envio novo é entregue hoje. Nunca vai para a página.
+export const CONTACT_NOTIFY_FALLBACK = "gestaoadverb@gmail.com"

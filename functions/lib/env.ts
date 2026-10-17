@@ -6,6 +6,11 @@ const envSchema = z.object({
   TELEGRAM_CHAT_ID: z.string().min(1, "Telegram Chat ID is missing"),
   UPSTASH_REDIS_REST_URL: z.string().url(),
   UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
+  // Envio de e-mail do formulário. Opcionais de propósito: enquanto a caixa do
+  // domínio não existe o envio é guardado e avisado pelo Telegram do mesmo jeito.
+  RESEND_API_KEY: z.string().min(1).optional(),
+  CONTACT_MAIL_FROM: z.string().min(1).optional(),
+  CONTACT_MAIL_TO: z.string().email().optional(),
 })
 
 const parsed = envSchema.safeParse(process.env)

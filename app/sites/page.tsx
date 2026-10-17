@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/constants/contact-data"
+import ContactForm from "@/components/feature/ContactForm"
 
-const CONTATO = `${CONTACT_MAILTO}?subject=${encodeURIComponent("Site para a minha empresa")}`
 
 export const metadata: Metadata = {
   title: "Sites para empresas de Brasília | Eric Lima",
@@ -127,10 +127,10 @@ export default function Sites() {
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href={CONTATO}
+              href="#contato"
               className="rounded bg-primary px-7 py-4 font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
-              Mandar um e-mail
+              Falar comigo
             </a>
             <a
               href="#trabalhos"
@@ -265,23 +265,23 @@ export default function Sites() {
       </section>
 
       {/* Chamada final */}
-      <section className="border-t border-border px-6 py-24">
+      <section id="contato" className="scroll-mt-10 border-t border-border px-6 py-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="max-w-3xl text-3xl font-bold leading-tight md:text-4xl">
-            Vinte minutos de conversa e você já sai sabendo o que o seu site precisa ter.
+          <p className="font-mono text-sm text-primary">// falar comigo</p>
+          <h2 className="mt-4 max-w-3xl text-3xl font-bold leading-tight md:text-4xl">
+            Conte o que a sua empresa faz e eu digo o que o seu site precisa ter.
           </h2>
           <p className="mt-5 max-w-2xl leading-relaxed text-muted-foreground">
-            Sem compromisso e sem proposta na primeira conversa. Se não fizer sentido para a sua empresa agora,
-            eu digo isso na hora.
+            Sem compromisso e sem proposta na primeira conversa. Se não fizer sentido para a sua empresa agora, eu
+            digo isso na resposta.
           </p>
-          <a
-            href={CONTATO}
-            className="mt-10 inline-block rounded bg-primary px-7 py-4 font-medium text-primary-foreground transition-opacity hover:opacity-90"
-          >
-            Mandar um e-mail
-          </a>
-          <p className="mt-6 font-mono text-sm text-muted-foreground">
-            ou escreva direto para{" "}
+
+          <div className="mt-12">
+            <ContactForm />
+          </div>
+
+          <p className="mt-10 font-mono text-sm text-muted-foreground">
+            Prefere escrever do seu jeito?{" "}
             <a href={CONTACT_MAILTO} className="text-primary underline underline-offset-4">
               {CONTACT_EMAIL}
             </a>
