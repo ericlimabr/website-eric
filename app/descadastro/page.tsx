@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/constants/contact-data"
 import UnsubscribeForm from "@/components/feature/UnsubscribeForm"
+import { decifrarEndereco } from "@/functions/lib/descadastro"
 
 /* Página pública, mas fora de busca: ela existe para quem recebeu o link, não
    para o Google. */
@@ -13,14 +14,22 @@ export const metadata: Metadata = {
 
 const FORMATO = /^[A-Za-z0-9_-]{8,64}$/
 
+/* O link do e-mail traz o endereço cifrado (t) ou um código opaco (c). Com o
+   cifrado a página decifra aqui no servidor e mostra à pessoa exatamente qual
+   endereço vai sair, que é o que ela precisa ver antes de clicar. Sem nenhum
+   dos dois, ela digita o endereço e sai do mesmo jeito. */
 export default async function Descadastro({
   searchParams,
 }: {
-  searchParams: Promise<{ c?: string }>
+  searchParams: Promise<{ c?: string; t?: string }>
 }) {
-  const { c } = await searchParams
+  const { c, t } = await searchParams
   const codigo = typeof c === "string" ? c.trim() : ""
-  const valido = FORMATO.test(codigo)
+  const token = typeof t === "string" ? t.trim() : ""
+  const temCodigo = FORMATO.test(codigo)
+  const email = token ? await decifrarEndereco(token) : null
+  const temEndereco = Boolean(email)
+  const valido = temCodigo || temEndereco
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -40,29 +49,22 @@ export default async function Descadastro({
             Não quer mais receber e-mail meu?
           </h1>
 
-          {valido ? (
-            <>
-              <p className="mt-6 leading-relaxed text-muted-foreground">
-                Um clique no botão abaixo e o seu endereço sai da minha lista. Não precisa de senha, não precisa
-                dizer o motivo e não vou pedir confirmação por e-mail.
-              </p>
+          <p className="mt-6 leading-relaxed text-muted-foreground">
+            {valido
+              ? "Um clique no botão abaixo e o seu endereço sai da minha lista. Não precisa de senha, não precisa dizer o motivo e não vou pedir confirmação por e-mail."
+              : "O link que você abriu veio sem o código do envio. Escreva abaixo o endereço onde você recebeu a minha mensagem e ele sai da lista na hora, sem senha, sem confirmação por e-mail e sem precisar dizer o motivo."}
+          </p>
 
-              <div className="mt-10">
-                <UnsubscribeForm codigo={codigo} />
-              </div>
-            </>
-          ) : (
-            <>
-              <p className="mt-6 leading-relaxed text-muted-foreground">
-                O link que você abriu está sem o código que identifica o envio, então eu não sei qual endereço
-                tirar. Responda ao meu e-mail com a palavra SAIR, ou escreva para{" "}
-                <a href={CONTACT_MAILTO} className="text-primary underline underline-offset-4">
-                  {CONTACT_EMAIL}
-                </a>
-                , e eu tiro na mão no mesmo dia.
-              </p>
-            </>
+          {email && (
+            <p className="mt-4 font-mono text-sm text-primary">{email}</p>
           )}
+
+          <div className="mt-10">
+            <UnsubscribeForm
+              codigo={temCodigo ? codigo : undefined}
+              token={email ? token : undefined}
+            />
+          </div>
 
           <div className="mt-16 border-t border-border pt-10">
             <p className="font-mono text-sm text-primary">// de onde veio o seu endereço</p>
