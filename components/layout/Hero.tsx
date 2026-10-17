@@ -8,6 +8,7 @@ import MagneticButton from "./MagneticButton"
 import HeroTunnel from "./HeroTunnel"
 import { SiGo, SiPython, SiTypescript, SiDocker, SiPostgresql, SiReact, SiNextdotjs, SiLinux } from "react-icons/si"
 import { IconType } from "react-icons"
+import { CONTACT_MAILTO } from "@/constants/contact-data"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -262,13 +263,11 @@ export default function Hero() {
               <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
             </MagneticButton>
             <MagneticButton
-              href="https://wa.me/5561991036135"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={CONTACT_MAILTO}
               className="px-8 py-3 border border-border text-foreground font-medium rounded-sm
                        bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-primary/50 hover:text-primary transition-all duration-300 inline-block"
             >
-              WhatsApp
+              Email
             </MagneticButton>
           </motion.div>
         </motion.div>

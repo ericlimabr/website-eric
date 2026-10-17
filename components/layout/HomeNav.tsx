@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
+import { CONTACT_MAILTO } from "@/constants/contact-data"
 
 export default function HomeNav() {
   const [visible, setVisible] = useState(false)
@@ -39,24 +40,20 @@ export default function HomeNav() {
                 Stack
               </Link>
               <a
-                href="https://wa.me/5561991036135"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={CONTACT_MAILTO}
                 className="font-mono text-xs px-3 py-1.5 bg-primary text-primary-foreground rounded-sm hover:bg-primary/90 transition-all duration-200"
               >
-                WhatsApp
+                Email
               </a>
             </div>
 
-            {/* Mobile: WhatsApp + hamburger */}
+            {/* Mobile: Email + hamburger */}
             <div className="flex sm:hidden items-center gap-3">
               <a
-                href="https://wa.me/5561991036135"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={CONTACT_MAILTO}
                 className="font-mono text-xs px-3 py-1.5 bg-primary text-primary-foreground rounded-sm hover:bg-primary/90 transition-all duration-200"
               >
-                WhatsApp
+                Email
               </a>
               <button
                 onClick={() => setMenuOpen((o) => !o)}

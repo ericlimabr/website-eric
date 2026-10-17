@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/constants/contact-data"
 
-const WHATSAPP = "https://wa.me/5561991036135"
+const CONTATO = `${CONTACT_MAILTO}?subject=${encodeURIComponent("Site para a minha empresa")}`
 
 export const metadata: Metadata = {
   title: "Sites para empresas de Brasília | Eric Lima",
@@ -126,12 +127,10 @@ export default function Sites() {
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={CONTATO}
               className="rounded bg-primary px-7 py-4 font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
-              Falar comigo
+              Mandar um e-mail
             </a>
             <a
               href="#trabalhos"
@@ -276,13 +275,17 @@ export default function Sites() {
             eu digo isso na hora.
           </p>
           <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={CONTATO}
             className="mt-10 inline-block rounded bg-primary px-7 py-4 font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
-            Falar comigo
+            Mandar um e-mail
           </a>
+          <p className="mt-6 font-mono text-sm text-muted-foreground">
+            ou escreva direto para{" "}
+            <a href={CONTACT_MAILTO} className="text-primary underline underline-offset-4">
+              {CONTACT_EMAIL}
+            </a>
+          </p>
         </div>
       </section>
 
