@@ -56,6 +56,8 @@ export default function ConsentBanner() {
   // On the server the stored choice is unknown, so the banner stays hidden until hydration.
   const storedConsent = useSyncExternalStore(subscribe, readConsent, () => "unknown" as const)
   const [isReopened, setIsReopened] = useState(false)
+  // The banner opens compact: the short line is the notice, the detail is one tap away.
+  const [showDetails, setShowDetails] = useState(false)
   const isVisible = isReopened || storedConsent === null
 
   useEffect(() => {
@@ -66,6 +68,7 @@ export default function ConsentBanner() {
 
   const choose = (consent: Consent) => {
     setIsReopened(false)
+    setShowDetails(false)
     applyConsent(consent)
   }
 
@@ -80,7 +83,7 @@ export default function ConsentBanner() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-[55] h-[60vh] bg-gradient-to-t from-background via-background/80 to-transparent"
+          className="pointer-events-none fixed inset-x-0 bottom-0 z-[55] h-[38vh] bg-gradient-to-t from-background via-background/80 to-transparent"
         />
       )}
       {isVisible && (
@@ -93,29 +96,42 @@ export default function ConsentBanner() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 40 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="fixed inset-x-4 bottom-4 z-[60] mx-auto max-w-3xl rounded-lg bg-foreground p-6 text-background shadow-2xl md:bottom-10 md:p-10"
+          className="fixed inset-x-4 bottom-4 z-[60] mx-auto max-w-3xl rounded-lg bg-foreground p-5 text-background shadow-2xl md:bottom-10 md:p-8"
         >
-          <p className="mb-3 font-mono text-sm font-semibold text-[hsl(168_80%_26%)]">// cookies</p>
-          <h2 id="consent-title" className="mb-3 text-2xl font-bold md:text-3xl">
+          <p className="mb-2 font-mono text-xs font-semibold text-[hsl(168_80%_26%)] md:text-sm">// cookies</p>
+          <h2 id="consent-title" className="mb-2 text-lg font-bold md:text-2xl">
             Help me make this site better
           </h2>
-          <p className="mb-8 max-w-2xl text-base leading-relaxed text-background/80 md:text-lg">
-            With your permission, Google Analytics and Microsoft Clarity (which records anonymized sessions such as
-            clicks and scrolling) show which projects and pages people actually read, so I know what to build and write
-            next. If you reject, no cookies are stored, Clarity stays off and Google Analytics only receives basic
-            cookieless signals, like a page being loaded. You can change your choice anytime under Cookie preferences in
-            the footer.
+          <p className="max-w-2xl text-sm leading-relaxed text-background/80 md:text-base">
+            Google Analytics and Microsoft Clarity show me which pages people actually read. Nothing is stored
+            without your permission.
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <button
+            type="button"
+            onClick={() => setShowDetails((open) => !open)}
+            aria-expanded={showDetails}
+            className="mt-2 cursor-pointer font-mono text-xs text-background/70 underline underline-offset-4 transition-colors hover:text-background md:text-sm"
+          >
+            {showDetails ? "Hide details" : "What this means"}
+          </button>
+          {showDetails && (
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-background/70 md:text-base">
+              Clarity records anonymized sessions, such as clicks and scrolling, so I know what to build and write
+              next. If you reject, no cookies are stored, Clarity stays off and Google Analytics only receives basic
+              cookieless signals, like a page being loaded. You can change your choice anytime under Cookie
+              preferences in the footer.
+            </p>
+          )}
+          <div className="mt-5 flex gap-3">
             <button
               onClick={() => choose("denied")}
-              className="flex-1 cursor-pointer rounded-md border-2 border-background px-6 py-4 font-mono text-base font-semibold text-background transition-colors hover:bg-background/10"
+              className="flex-1 cursor-pointer rounded-md border-2 border-background px-4 py-3 font-mono text-sm font-semibold text-background transition-colors hover:bg-background/10 md:px-6 md:py-4 md:text-base"
             >
               Reject
             </button>
             <button
               onClick={() => choose("granted")}
-              className="flex-1 cursor-pointer rounded-md border-2 border-background bg-background px-6 py-4 font-mono text-base font-semibold text-foreground transition-colors hover:bg-background/85"
+              className="flex-1 cursor-pointer rounded-md border-2 border-background bg-background px-4 py-3 font-mono text-sm font-semibold text-foreground transition-colors hover:bg-background/85 md:px-6 md:py-4 md:text-base"
             >
               Accept
             </button>
