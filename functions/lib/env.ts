@@ -11,6 +11,9 @@ const envSchema = z.object({
   RESEND_API_KEY: z.string().min(1).optional(),
   CONTACT_MAIL_FROM: z.string().min(1).optional(),
   CONTACT_MAIL_TO: z.string().email().optional(),
+  // A chave que cifra o endereço no link de descadastro: 32 bytes em base64url.
+  // Opcional porque sem ela a página continua de pé, só pede o endereço digitado.
+  DESCADASTRO_CHAVE: z.string().min(1).optional(),
   // Aviso no WhatsApp pelo CallMeBot. Opcionais do mesmo jeito: sem eles o
   // contato continua caindo no Telegram.
   WHATSAPP_ALERT_PHONE: z.string().min(1).optional(),
