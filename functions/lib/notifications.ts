@@ -140,3 +140,27 @@ export async function sendContactEmail(lead: ContactLead): Promise<"enviado" | "
   if (!resposta.ok) throw new Error(`Resend respondeu ${resposta.status}`)
   return "enviado"
 }
+
+/* O aviso de descadastro. Ele leva só o código opaco que veio no link: quem é
+   aquele código não está no servidor, o cruzamento com o destinatário mora na
+   máquina de casa. Sem parse_mode de propósito, porque código com _ ou - quebra
+   a formatação do Telegram e o aviso não pode falhar por causa de um caractere. */
+export async function sendUnsubscribeAlert(codigo: string, estado?: { gravado: boolean }): Promise<void> {
+  const linhas = [
+    "🚫 Pedido de descadastro",
+    ...(estado && !estado.gravado ? ["ATENÇÃO: não ficou gravado no banco. Este aviso é o único registro."] : []),
+    "",
+    `Código: ${codigo}`,
+    `Pedido em: ${new Date().toISOString()}`,
+    "",
+    "Tirar da lista antes do próximo disparo.",
+  ]
+
+  const resposta = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text: linhas.join("\n") }),
+  })
+
+  if (!resposta.ok) throw new Error(`Telegram respondeu ${resposta.status}`)
+}

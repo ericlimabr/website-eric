@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState, useSyncExternalStore } from "react"
+import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { ANALYTICS_COOKIE_PATTERN, CONSENT_STORAGE_KEY, OPEN_CONSENT_EVENT } from "@/constants/gtm"
 
@@ -58,7 +59,10 @@ export default function ConsentBanner() {
   const [isReopened, setIsReopened] = useState(false)
   // The banner opens compact: the short line is the notice, the detail is one tap away.
   const [showDetails, setShowDetails] = useState(false)
-  const isVisible = isReopened || storedConsent === null
+  // A página de descadastro é obrigação legal e tem que abrir limpa: o aviso de
+  // cookie cobriria justamente o texto que explica de onde veio o endereço.
+  const rota = usePathname()
+  const isVisible = (isReopened || storedConsent === null) && rota !== "/descadastro"
 
   useEffect(() => {
     const open = () => setIsReopened(true)
