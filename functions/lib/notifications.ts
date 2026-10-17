@@ -88,6 +88,24 @@ export async function sendContactAlert(lead: ContactLead, estado?: { gravado: bo
   if (!resposta.ok) throw new Error(`Telegram respondeu ${resposta.status}`)
 }
 
+/* O mesmo aviso no WhatsApp, pelo CallMeBot. Ele leva só o registro: o nome, o
+   e-mail e a mensagem de quem escreveu ficam no Telegram e no e-mail, que são
+   os canais do conteúdo. */
+export async function sendWhatsAppAlert(lead: ContactLead): Promise<"enviado" | "sem-configuracao"> {
+  const { WHATSAPP_ALERT_PHONE, WHATSAPP_ALERT_APIKEY } = env
+  if (!WHATSAPP_ALERT_PHONE || !WHATSAPP_ALERT_APIKEY) return "sem-configuracao"
+
+  const texto = `Novo contato pelo site. Os dados estão no Telegram e no e-mail. Registro ${lead.id}`
+  const url = new URL("https://api.callmebot.com/whatsapp.php")
+  url.searchParams.set("phone", WHATSAPP_ALERT_PHONE)
+  url.searchParams.set("apikey", WHATSAPP_ALERT_APIKEY)
+  url.searchParams.set("text", texto)
+
+  const resposta = await fetch(url, { method: "GET" })
+  if (!resposta.ok) throw new Error(`CallMeBot respondeu ${resposta.status}`)
+  return "enviado"
+}
+
 /* O mesmo contato por e-mail. Enquanto as três variáveis não existirem a
    função não tenta e diz que não tentou, em vez de falhar em silêncio. */
 export async function sendContactEmail(lead: ContactLead): Promise<"enviado" | "sem-configuracao"> {
