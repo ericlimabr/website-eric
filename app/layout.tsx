@@ -40,6 +40,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Eric Lima" }],
   creator: "Eric Lima",
+  metadataBase: new URL("https://ericlima.com.br"),
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     siteName: "Eric Lima Portfolio",
     images: [
       {
-        url: "/og-image.png", // Create a 1200x630px image for social media.
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Eric Lima - Software Engineering",
